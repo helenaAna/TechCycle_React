@@ -1,16 +1,20 @@
-import React from 'react';
-import Cabecalho from '../componentes/Cabecalho';
+import React, {Component} from 'react';
+import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 
 
-function Home() {
-  return (
-    <div className="App">
-      <Cabecalho/>
+class Home extends Component
+ {
+   render(){
+
+     return (
+       <div className="App">
+      <CabecalhoAdm/>
       
       <Rodape/>
     </div>
   );
 }
 
+}
 export default Home;

@@ -1,5 +1,5 @@
-import React from 'react';
-import Cabecalho from '../componentes/Cabecalho';
+import React, {Component} from 'react';
+import CabecalhoAdm from '../componentes/CabecalhoAdm'
 import Rodape from '../componentes/Rodape';
 import '../assets/css/padrao.css'
 import '../assets/css/login.css'
@@ -19,7 +19,7 @@ class Login extends Component
   efetuarLogin(event)
   {
     event.preventDefault();
-    this.setState({loading});
+    this.setState({loading : true});
 
     Axios.post('http://localhost:5000/api/login',
     {
@@ -30,7 +30,7 @@ class Login extends Component
     {
       if(data.status === 200)
       {
-        loxalStorage.setItem('usiario-tech', data.data.token)
+        localStorage.setItem('usiario-tech', data.data.token)
         this.setState({loading : false})
       }
     })
@@ -44,7 +44,7 @@ class Login extends Component
   render(){
     return(
       <div className="body_login">
-        <Cabecalho/>
+        <CabecalhoAdm/>
         <main className="main_login">
             <section className="area_login">
                 <h1>Entrar</h1>

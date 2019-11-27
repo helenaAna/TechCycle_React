@@ -1,12 +1,12 @@
 import React from 'react';
-import Cabecalho from '../componentes/Cabecalho';
+import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 
 
 function SobreNos() {
   return (
     <div className="App">
-      <Cabecalho/>
+      <CabecalhoAdm/>
  
       <Rodape/>
     </div>
