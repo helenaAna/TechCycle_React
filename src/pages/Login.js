@@ -6,9 +6,44 @@ import '../assets/css/login.css'
 import Axios from 'axios';
 
 
-function Login() {
-  return (
-    <div className="body_login">
+class Login extends Component 
+{
+  constructor(props){
+    super(props);
+    this.state = {
+      loginUsuario: '',
+      senha: '',
+      loading: false
+    }
+  }
+  efetuarLogin(event)
+  {
+    event.preventDefault();
+    this.setState({loading});
+
+    Axios.post('http://localhost:5000/api/login',
+    {
+      loginUsuario : this.state.loginUsuario,
+      senha : this.state.senha
+    })
+    .then(data => 
+    {
+      if(data.status === 200)
+      {
+        loxalStorage.setItem('usiario-tech', data.data.token)
+        this.setState({loading : false})
+      }
+    })
+  }
+
+  atualizaLogin(event)
+  {
+    this.setState({[event.target.name] : event.target.value})
+  }
+
+  render(){
+    return(
+      <div className="body_login">
         <Cabecalho/>
         <main className="main_login">
             <section className="area_login">
@@ -30,8 +65,9 @@ function Login() {
         </main>
         <Rodape/>
         <script src="https://kit.fontawesome.com/e6d6edbc99.js"></script>
-    </div>
-  );
+      </div>
+    )
+  }
 }
 
 export default Login;
