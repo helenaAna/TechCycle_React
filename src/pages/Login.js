@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import CabecalhoAdm from '../componentes/CabecalhoAdm'
-import Rodape from '../componentes/Rodape';
 import '../assets/css/padrao.css'
 import '../assets/css/login.css'
 import Axios from 'axios';
+import{parseJwt} from '../services/auth';
 
 
 class Login extends Component 
@@ -13,13 +12,15 @@ class Login extends Component
     this.state = {
       loginUsuario: '',
       senha: '',
-      loading: false
+      loading: false,
+      msgErro: ''
     }
   }
   efetuarLogin(event)
   {
     event.preventDefault();
     this.setState({loading : true});
+    this.setState({msgErro:''});
 
     Axios.post('http://localhost:5000/api/login',
     {
@@ -31,9 +32,22 @@ class Login extends Component
       if(data.status === 200)
       {
         localStorage.setItem('usiario-tech', data.data.token)
+        console.log('Meu token é: ' + data.data.token)
         this.setState({loading : false})
+
+        console.log(parseJwt().Role)
+
+        if(parseJwt().Role === 'Admistrador'){
+          this.props.history.push('/paineladm')
+        }else{
+          this.props.history.push('/home')
+        }
       }
     })
+    .catch(erro =>{
+      this.setState({loading : false})
+      this.setState({msgErro : 'Usuário ou senha inválidos'})
+    });
   }
 
   atualizaLogin(event)
@@ -44,26 +58,53 @@ class Login extends Component
   render(){
     return(
       <div className="body_login">
-        <CabecalhoAdm/>
+          <header class="header_login">
+            <a href="home.html"><img src={require("../assets/img/Logo.svg")} alt="Logotipo"/></a> 
+          </header>
         <main className="main_login">
             <section className="area_login">
                 <h1>Entrar</h1>
-                <form>
+                <form onSubmit = {this.efetuarLogin.bind(this)}>
                    <label for="nome">Nome:</label>
                    <i className="fas fa-user-friends"></i>
-                   <input className="linha_usuario" type="text" name="nome" placeholder="Digite seu nome de usuário"/>
+                   <input 
+                      value = {this.state.loginUsuario}
+                      onChange = {this.atualizaLogin.bind(this)}
+                      className="linha_usuario" 
+                      type="text" 
+                      name="loginUsuario" 
+                      placeholder="Digite seu nome de usuário"/>
                    <label for="senha">Senha:</label>
                    <i className="fas fa-lock"></i>
-                   <input type="text" name="senha" placeholder="Digite sua senha"/>
+                   <input 
+                      value = {this.state.senha}
+                      onChange = {this.atualizaLogin.bind(this)}
+                      type="password" 
+                      name="senha" 
+                      placeholder="Digite sua senha"/>
+                    <a href="#">Esqueceu a senha?</a>
+                    <div class="botao_login">
+                      <p style={{color : 'red'}}>{this.state.msgErro}</p><br/>
+                      {
+                        this.state.loading === true &&
+                        <button type="submit" disabled className="entrar_login botao">
+                          Carregando...
+                        </button>
+                      }
+                      {
+                        this.state.loading === false &&
+                        <button type="submit" className="entrar_login botao">
+                          Entrar
+                        </button>
+                      }
+                    </div>
+                    <button className="cadastrar_login botao" type="submit" value="Cadastrar">Cadastrar</button>
                 </form>
-                <a href="#">Esqueceu a senha?</a>
-                <div class="botao_login">
-                <button className="entrar_login botao" type="submit" value="Entrar">Entrar</button>
-                <button className="cadastrar_login botao" type="submit" value="Cadastrar">Cadastrar</button>
-                </div>
             </section>
         </main>
-        <Rodape/>
+        <footer className="">
+          <p> &copy; Todos os direitos reservados | FunCode 2019 </p>
+        </footer>
         <script src="https://kit.fontawesome.com/e6d6edbc99.js"></script>
       </div>
     )
