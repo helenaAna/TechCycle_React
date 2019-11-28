@@ -1,3 +1,10 @@
+.texto_login{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 13vh;
+    width: 15vw;
+}
 .body_login{
     background-image: url('../img/fundo-login.png');
     background-repeat: no-repeat;
@@ -62,12 +69,13 @@
 .area_login a{
     text-decoration: none;
     color: #EF5BA1;
+    margin-top: 1em;
 }
 .botao_login{
     display: flex;
-    justify-content: center;
-    margin-top: 1.5em; 
+    justify-content: center; 
     height: 3em; 
+
 }
 .entrar_login{
     border: solid #9A00B6 0.1em;
@@ -76,7 +84,7 @@
     font-family: 'Opens Sans', sans-serif;
     border-radius: 0.5em;
     color: #9A00B6;
-    width: 14vw;
+    width: 10vw;
     margin-right: 5em;
     font-weight: bold;
     text-transform: uppercase;
@@ -87,7 +95,7 @@
     padding: 0.5em;
     font-family: 'Opens Sans', sans-serif;
     border-radius: 0.5em;
-    width: 14vw;
+    width: 10vw;
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
@@ -109,3 +117,4 @@
     font-weight: bold;
     text-transform: uppercase;
 }
+/* Estilo do botão alterar senha  */

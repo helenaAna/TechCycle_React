@@ -37,7 +37,7 @@ class Login extends Component
 
         console.log(parseJwt().Role)
 
-        if(parseJwt().Role === 'Admistrador'){
+        if(parseJwt().Role === 'Administrador'){
           this.props.history.push('/paineladm')
         }else{
           this.props.history.push('/home')
@@ -82,9 +82,11 @@ class Login extends Component
                       type="password" 
                       name="senha" 
                       placeholder="Digite sua senha"/>
+                    <div className="texto_login">
                     <a href="#">Esqueceu a senha?</a>
+                    <p style={{color : 'red'}}>{this.state.msgErro}</p><br/>
+                    </div>  
                     <div class="botao_login">
-                      <p style={{color : 'red'}}>{this.state.msgErro}</p><br/>
                       {
                         this.state.loading === true &&
                         <button type="submit" disabled className="entrar_login botao">
@@ -97,12 +99,12 @@ class Login extends Component
                           Entrar
                         </button>
                       }
-                    </div>
                     <button className="cadastrar_login botao" type="submit" value="Cadastrar">Cadastrar</button>
+                    </div>
                 </form>
             </section>
         </main>
-        <footer className="">
+        <footer id="footer_login">
           <p> &copy; Todos os direitos reservados | FunCode 2019 </p>
         </footer>
         <script src="https://kit.fontawesome.com/e6d6edbc99.js"></script>

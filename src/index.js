@@ -10,7 +10,7 @@ import {usuarioAutenticado, parseJwt} from './services/auth'
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SobreNos from './pages/SobreNos';
-import PaineAdm from './pages/PainelAdm'
+import PainelAdm from './pages/PainelAdm'
 
 const PermissaoAdm = ({component : Component}) => (
     <Route
@@ -31,7 +31,7 @@ const Rotas = (
             <Route exact path="/home" component={Home}/> 
             <Route path="/login" component={Login}/>  
             <Route path="/sobrenos" component={SobreNos}/>
-            <PermissaoAdm path="/paineladm" component={PaineAdm}/>
+            <PermissaoAdm path="/paineladm" component={PainelAdm}/>
         </Switch>
         </div>
     </Router>
