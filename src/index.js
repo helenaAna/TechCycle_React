@@ -7,10 +7,19 @@ import{Route,BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import {usuarioAutenticado, parseJwt} from './services/auth'
 
+import PainelAdm from './pages/PainelAdm';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SobreNos from './pages/SobreNos';
-import PainelAdm from './pages/PainelAdm'
+import AlterarAnuncio from './pages/AlterarAnuncio';
+import CadastroAnuncio from './pages/CadastroAnuncio';
+import CadastroUsuario from './pages/CadastroUsuario';
+import Descricao from './pages/Descricao';
+import EditarPerfilUsuario from './pages/EditarPerfilUsuario';
+import EditarProduto from './pages/EditarProduto';
+import ListaInteresse from './pages/ListaInteresse';
+import ListaProduto from './pages/ListaProduto';
+import PerfilUsuario from './pages/PerfilUsuario'
 
 const PermissaoAdm = ({component : Component}) => (
     <Route
@@ -22,16 +31,23 @@ const PermissaoAdm = ({component : Component}) => (
     )}/>
 )
 
-
-
 const Rotas = (
     <Router>
         <div>
         <Switch>
+            <PermissaoAdm path="/paineladm" component={PainelAdm}/>
             <Route exact path="/home" component={Home}/> 
             <Route path="/login" component={Login}/>  
             <Route path="/sobrenos" component={SobreNos}/>
-            <PermissaoAdm path="/paineladm" component={PainelAdm}/>
+            <Route path="/alteraranuncio" component={AlterarAnuncio}/>
+            <Route path="/cadastroanuncio" component={CadastroAnuncio}/>
+            <Route path="/cadastrousuario" component={CadastroUsuario}/>
+            <Route path="/descricao" component={Descricao}/>
+            <Route path="/editarperfil" component={EditarPerfilUsuario}/>
+            <Route path="/editarproduto" component={EditarProduto}/>
+            <Route path="/listainteresse" component={ListaInteresse}/>
+            <Route path="/listaproduto" component={ListaProduto}/>
+            <Route path="/perfilusuario" component={PerfilUsuario}/>
         </Switch>
         </div>
     </Router>
