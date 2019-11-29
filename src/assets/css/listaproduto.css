@@ -1,0 +1,131 @@
+.produtoCadastrado_main {
+    height: 165vh;
+}
+
+.produtoCadastrado_main h1 {
+    color: var(--roxo);
+    font-weight: 500;
+    margin-left: 4em;
+    margin-top: 2.8em;
+}
+
+.produtoCadastrado_main hr {
+    background: #707070;
+    width: 85vw;
+    height: 0.1vh;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+.home_card{
+    width: 18vw;
+    height: 55vh;
+    border: solid 1px #000;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 4em;
+}
+.home_img img{
+    width: 17vw;
+    height: 23vh;
+}
+
+
+
+/* FINALIZANDO A PAGINA Produtos Cadastrados */
+
+@media screen and (max-width: 769px) {
+    /* ESTILIZANDO A PAGINA Cadastro de usuario TABLET */
+    .cadUsuario_main h1 {
+        margin-left: 2em;
+    }
+    .usuario_container_cad {
+        flex-wrap: wrap;
+    }
+    .usuario_secao_imagem_cad {
+        margin-bottom: 2em;
+        margin-bottom: 2em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100vw;
+    }
+    .botao_cad_usuario input {
+        width: 15em;
+        height: 4em;
+        border-radius: 1em;
+        border: solid var(--roxo);
+        background-color: transparent;
+        color: var(--roxo);
+        font-size: 1em;
+    }
+    .usuario_row div {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 0.5em;
+    }
+    .usuario_secao_imagem_cad p {
+        width: 29vw;
+        font-size: 1em;
+        color: red;
+    }
+    .usuario_secao_imagem_cad img {
+        width: 30vw;
+        height: 30vw;
+        padding-right: 1.5em;
+    }
+    .usuario_titulo_cad h1 {
+        color: var(--roxo);
+        font-weight: 500;
+        margin-top: 2.8em;
+        width: 82vw;
+    }
+    /* FINALIZANDO A PAGINA Cadastro de usuario */
+}
+
+@media screen and (max-width: 376px) {
+    /* FINALIZANDO A PAGINA Cadastro de usuario CELULAR*/
+    .cadUsuario_main h1 {
+        margin-left: 1.2em;
+    }
+    .usuario_container_cad {
+        flex-wrap: wrap;
+    }
+    .usuario_secao_imagem_cad {
+        width: 30vw;
+        margin-bottom: 2em;
+        width: 30vw;
+        margin-bottom: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .botao_cad_usuario button {
+        border-radius: 1em;
+        border: 1px solid var(--roxo);
+        background-color: transparent;
+        color: var(--roxo);
+        font-size: 1em;
+    }
+    .usuario_row div {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 0;
+    }
+    .usuario_secao_imagem_cad p {
+        width: 68vw;
+        font-size: 1em;
+        color: red;
+    }
+    .usuario_secao_imagem_cad img {
+        width: 60vw;
+        height: 60vw;
+    }
+    .usuario_titulo_cad h1 {
+        font-size: 1.05em;
+        margin-left: 0em;
+    }
+    /* FINALIZANDO A PAGINA Cadastro de usuario */
+}
