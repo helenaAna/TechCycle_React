@@ -19,7 +19,8 @@ import EditarPerfilUsuario from './pages/EditarPerfilUsuario';
 import EditarProduto from './pages/EditarProduto';
 import ListaInteresse from './pages/ListaInteresse';
 import ListaProduto from './pages/ListaProduto';
-import PerfilUsuario from './pages/PerfilUsuario'
+import PerfilUsuario from './pages/PerfilUsuario';
+import CadastroProduto from './pages/CadastroProduto';
 
 const PermissaoAdm = ({component : Component}) => (
     <Route
@@ -37,7 +38,7 @@ const Rotas = (
         <Switch>
             <PermissaoAdm path="/paineladm" component={PainelAdm}/>
             <Route exact path="/home" component={Home}/> 
-            <Route path="/login" component={Login}/>  
+            <Route path="/" component={Login}/>  
             <Route path="/sobrenos" component={SobreNos}/>
             <Route path="/alteraranuncio" component={AlterarAnuncio}/>
             <Route path="/cadastroanuncio" component={CadastroAnuncio}/>
@@ -48,6 +49,7 @@ const Rotas = (
             <Route path="/listainteresse" component={ListaInteresse}/>
             <Route path="/listaproduto" component={ListaProduto}/>
             <Route path="/perfilusuario" component={PerfilUsuario}/>
+            <Route path="/cadastroproduto" component={CadastroProduto}/>
         </Switch>
         </div>
     </Router>

@@ -40,9 +40,56 @@ class ListaProduto extends Component
         <div>
         <CabecalhoAdm/>
         <main className="produtoCadastrado_main">
+        <div className="titulo_div">
         <h1>Produtos Cadastrados</h1>
+        </div>
         <hr/>
-        <div>
+        <div className="home_secao-filtro">
+            <h4>Filtrar por:</h4>
+            <div className="home_filtros">
+                <div className="categoria">
+                <h5>Marca:</h5>
+                    <input type="checkbox" id="dell"/>
+                    <label for="dell">Dell</label>
+                    <input type="checkbox" id="apple"/>
+                    <label for="apple">Apple</label>
+                </div>
+                <div className="categoria">
+                <h5>Memória:</h5>
+                    <input type="checkbox" id="32gb"/>
+                    <label for="16gb">32GB</label>
+                    <input type="checkbox" id="16gb"/>
+                    <label for="16gb">16GB</label>
+                    <input type="checkbox" id="8gb"/>
+                    <label for="8gb">8GB</label>
+                    <input type="checkbox" id="6gb"/>
+                    <label for="6gb">6GB</label>
+                    <input type="checkbox" id="4gb"/>
+                    <label for="4gb">4GB</label>
+                </div>
+                <div className="categoria">
+                <h5>Precessador:</h5>
+                    <input type="checkbox" id="intel"/>
+                    <label for="intel">Intel</label>
+                    <input type="checkbox" id="amd"/>
+                    <label for="amd">AMD</label>
+                </div>
+                <div class="categoria categoriaDiferente">
+                <h5>Categoria:</h5>
+                    <div>
+                        <input type="checkbox" id="computador"/>
+                        <label for="computador">Computador</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="notebook"/>
+                        <label for="notebook">Notebook</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+       
+        <div className="produtoCadastrado_main">
         {
             this.state.listaproduto.map(function(produto){
                 return(
@@ -56,8 +103,9 @@ class ListaProduto extends Component
                         <div className="home_texto">
                             <p>{produto.descricao}</p>
                         </div>
-                        <div className="home_linha">
-                        <div className="home_btn"><a href="cadastrodeanuncio.html">Adicionar Anúncio</a></div>
+                        <div className="home_div_btn">
+                            <button className="home_btn">Adicionar Anúncio</button>
+                            <button className="home_btn">Editar Produto</button>
                         </div>
                     </div>
                     )

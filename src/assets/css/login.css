@@ -118,3 +118,61 @@
     text-transform: uppercase;
 }
 /* Estilo do botão alterar senha  */
+/* Estilizando a página Login TABLET */
+
+@media screen and (max-width: 769px) {
+    .area_login {
+        width: 60vw;
+    }
+    .area_login h1 {
+        font-size: 2em;
+    }
+    .area_login form {
+        width: 40vw;
+    }
+    .area_login form input {
+        width: 25vw;
+        height: 8.5vh;
+    }
+    .area_login a {
+        font-size: 0.8em;
+    }
+}
+
+
+/* Finalizando a página Login */
+
+
+/* Estilizando a página Login CELULAR*/
+
+@media screen and (max-width: 376px) {
+    .area_login {
+        width: 80vw;
+    }
+    .area_login h1 {
+        font-size: 1.5em;
+    }
+    .area_login form {
+        width: 50vw;
+    }
+    .area_login label {
+        margin-top: 1em;
+        font-size: 0.8em;
+    }
+    .area_login i {
+        display: none;
+    }
+    .area_login form input {
+        width: 15em;
+    }
+    .area_login a {
+        margin-top: 1.5em;
+        font-size: 0.8em;
+    }
+    .botao {
+        width: 8em;
+    }
+}
+
+
+/* Finalizando a página Login */
