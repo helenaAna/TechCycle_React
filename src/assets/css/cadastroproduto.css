@@ -122,7 +122,9 @@
 }
 
 .descricao_cad_produto {
-    margin-top: 4em;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
 }
 
 .descricao_cad_produto label {
@@ -136,7 +138,7 @@
 }
 
 .descricao_cad_produto textarea {
-    width: 27em;
+    width: 58em;
     margin-top: 1em;
     padding: 1.5em;
     border-radius: 1em;
@@ -157,6 +159,7 @@
 
 .botao_cad_produto a {
     text-decoration: none;
+    color: var(--roxo);
 }
 
 .bot_cad_editar {

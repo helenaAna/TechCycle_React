@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import Axios from 'axios';
 import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 import '../assets/css/home.css';
-import Descricao from './Descricao';
 import {Link} from 'react-router-dom'
 
 class Home extends Component{
