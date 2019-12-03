@@ -9,6 +9,77 @@ import '../assets/css/cadastroproduto.css';
 
 class CadastroProduto extends Component
 {
+    constructor(props){
+        super(props);
+        this.state = {
+            listaProduto: [],
+            nomeProduto: '',
+            modelo: '',
+            marca:'',
+            processador:'',
+            dataLancamento:'',
+            codIdentificacao:'',
+            descricao: ''
+        }
+    }
+    atualizaEstadoNomeProduto(event)
+    {
+        this.setState({nomeProduto:event.target.value})
+    }
+    atualizaEstadoModelo(event)
+    {
+        this.setState({modelo:event.target.value})
+    }
+    atualizaEstadoMarca(event)
+    {
+        this.setState({marca:event.target.value})
+    }
+    atualizaEstadoProcessador(event)
+    {
+        this.setState({processador:event.target.value})
+    }
+    atualizaEstadoDataLancamento(event)
+    {
+        this.setState({dataLancamento:event.target.value})
+    }
+    atualizaEstadoIdentificacao(event)
+    {
+        this.setState({codIdentificacao:event.target.value})
+    }
+    atualizaEstadoDescricao(event)
+    {
+        this.setState({descricao:event.target.value})
+    }
+    cadastroProduto(event){
+
+        fetch('http://localhost:5000/api/produtos',
+        {
+            method: 'POST',
+            body: JSON.stringify({
+                nomeProduto: this.state.nomeProduto,
+                modelo: this.state.modelo,
+                marca: this.state.marca,
+                processador: this.state.processador,
+                dataLancamento:this.state.dataLancamento,
+                codIdentificacao: this.state.codIdentificacao,
+                descricao: this.state.descricao
+            }),
+            headers:{
+                "Content-type" : "application/json"
+            }
+        })
+        .then(resposta => {
+            if(resposta.status === 200){
+                console.log('Produto cadastrado!');
+            }
+        })
+        .catch(erro => console.log(erro))
+    }
+    componentDidMount()
+    {
+        this.cadastroProduto();
+    }
+  
     render(){
         return(
             <div>
@@ -22,7 +93,7 @@ class CadastroProduto extends Component
             
             <section class="cad_descricao_produto">
                     <section class="secao_imagem_cad_produto">
-                    <img src="imagens/camera.svg" alt="icone de alterar imagem"/>
+                    <img src = {require("../assets/img/camera.svg")} alt="icone de alterar imagem"/>
                 </section>
 
                 <section class="descricao_cad_produto">

@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import '../src';
+
 
 import{Route,BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import {usuarioAutenticado, parseJwt} from './services/auth'
+import {usuarioAutenticado, parseJwt} from './services/auth';
 
 import PainelAdm from './pages/PainelAdm';
 import Home from './pages/Home';
@@ -22,14 +24,25 @@ import ListaProduto from './pages/ListaProduto';
 import PerfilUsuario from './pages/PerfilUsuario';
 import CadastroProduto from './pages/CadastroProduto';
 
+// const PermissaoLogar = ({component : Component}) => (
+//     <Route
+//     render = {props =>
+//     // usuarioAutenticado() && parseJwt().Role === 'Administrador' || 
+//     usuarioAutenticado() && parseJwt().Role === 'Funcionário' ? (
+//         <Component {...props}/>
+//     ) : (
+//         <Redirect to = {{pathname: '/login'}}/>
+//     )}/>
+// )
+
 const PermissaoAdm = ({component : Component}) => (
     <Route
-    render = {props =>
-    usuarioAutenticado() && parseJwt().Role === 'Administrador' ? (
-        <Component {...props}/>
-    ) : (
-        <Redirect to = {{pathname: 'login'}}/>
-    )}/>
+        render = {props =>
+            usuarioAutenticado() && parseJwt().Role === 'Administrador' ? (
+                <Component {...props}/>
+            ) : (
+                <Redirect to = {{pathname : '/login'}}/>
+            )}/>
 )
 
 const Rotas = (
@@ -38,7 +51,7 @@ const Rotas = (
         <Switch>
             <PermissaoAdm path="/paineladm" component={PainelAdm}/>
             <Route exact path="/home" component={Home}/> 
-            <Route path="/" component={Login}/>  
+            <Route path="/login" component={Login}/>  
             <Route path="/sobrenos" component={SobreNos}/>
             <Route path="/alteraranuncio" component={AlterarAnuncio}/>
             <Route path="/cadastroanuncio" component={CadastroAnuncio}/>

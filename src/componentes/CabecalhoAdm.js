@@ -1,16 +1,18 @@
 import React from 'react';
-import '../assets/css/padrao.css'
-import '../assets/css/cabecalho.css'
+import '../assets/css/padrao.css';
+import '../assets/css/cabecalho.css';
+import {Link} from 'react-router-dom';
 
 
 function Cabecalho(){
     return(
     <div>
     <header id="topo">
-        <a href="#"><img src={require("../assets/img/Logo.svg")} alt="Logotipo"/></a>
+
+       <Link to={'/home'}><img src={require("../assets/img/Logo.svg")} alt="Logotipo"/></Link>
         <nav>
             <ul>
-                <li><a href="#">Sobre Nós</a></li>
+                <li><Link to={'/sobrenos'}>Sobre Nós</Link></li>
             </ul>
         </nav>
     </header>
