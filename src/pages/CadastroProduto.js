@@ -12,80 +12,51 @@ class CadastroProduto extends Component
     constructor(props){
         super(props);
         this.state = {
-            listaProduto: [],
-            nomeProduto: '',
-            modelo: '',
-            marca:'',
-            processador:'',
-            dataLancamento:'',
-            codIdentificacao:'',
-            descricao: ''
+
+            postProduto:{
+                listaProduto: [],
+                nomeProduto: '',
+                modelo: '',
+                marca:'',
+                processador:'',
+                dataLancamento:'',
+                codIdentificacao:'',
+                descricao: ''
+            },
+            fileInput: React.createRef()
         }
-        this.atualizaEstadoNomeProduto = this.atualizaEstadoNomeProduto.bind(this);
-        this.atualizaEstadoModelo = this.atualizaEstadoModelo.bind(this);
-        this.atualizaEstadoMarca = this.atualizaEstadoMarca.bind(this);
-        this.atualizaEstadoProcessador = this.atualizaEstadoProcessador.bind(this);
-        this.atualizaEstadoDataLancamento = this.atualizaEstadoDataLancamento.bind(this);
-        this.atualizaEstadoIdentificacao = this.atualizaEstadoIdentificacao.bind(this);
-        this.atualizaEstadoDescricao = this.atualizaEstadoDescricao.bind(this);
-        this.CadastroProduto = this.cadastroProduto.bind(this);
     }
-    atualizaEstadoNomeProduto(event)
-    {
-        this.setState({nomeProduto:event.target.value})
+    cadastraProduto = (e) => {
+        e.preventDefault();
+
+        let produto = new FormData();
+
+        produto.set("nomeProduto", this.state.cadastraProduto.nomeProduto);
+        produto.set("modelo", this.state.cadastraProduto.modelo);
+        produto.set("marca", this.state.cadastraProduto.marca);
+        produto.set("processador", this.state.cadastraProduto.processador);
+        produto.set("dataLancamento", this.state.cadastraProduto.dataLancamento);
+        produto.set("codIdentificacao", this.state.cadastraProduto.codIdentificacao);
+        produto.set("descricao", this.state.cadastraProduto.descricao);
+    
+        fetch('http://localhost:5000/api/produto', {
+            method: "POST",
+            body: produto,
+        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => console.log('Não foi possível cadastrar:' + error)) 
     }
-    atualizaEstadoModelo(event)
-    {
-        this.setState({modelo:event.target.value})
-    }
-    atualizaEstadoMarca(event)
-    {
-        this.setState({marca:event.target.value})
-    }
-    atualizaEstadoProcessador(event)
-    {
-        this.setState({processador:event.target.value})
-    }
-    atualizaEstadoDataLancamento(event)
-    {
-        this.setState({dataLancamento:event.target.value})
-    }
-    atualizaEstadoIdentificacao(event)
-    {
-        this.setState({codIdentificacao:event.target.value})
-    }
-    atualizaEstadoDescricao(event)
-    {
-        this.setState({descricao:event.target.value})
-    }
-    cadastroProduto(event){
-    event.preventDefault();
-        fetch('http://localhost:5000/api/produtos',
-        {
-            method: 'POST',
-            body: JSON.stringify({
-                nomeProduto: this.state.nomeProduto,
-                modelo: this.state.modelo,
-                marca: this.state.marca,
-                processador: this.state.processador,
-                dataLancamento:this.state.dataLancamento,
-                codIdentificacao: this.state.codIdentificacao,
-                descricao: this.state.descricao
-            }),
-            headers:{
-                "Content-type" : "application/json"
+   
+    atualizaState = (input) => {
+        this.setState({
+            cadastraProduto: {
+                ...this.state.cadastraProduto,
+                [input.target.name]: input.target.value
             }
         })
-        .then(resposta => {
-            if(resposta.status === 200){
-                console.log('Produto cadastrado!');
-            }
-        })
-        .catch(erro => console.log(erro))
-    }
-    componentDidMount()
-    {
-        this.cadastroProduto();
     }
   
     render(){
@@ -113,8 +84,9 @@ class CadastroProduto extends Component
                                 name="nomeproduto" 
                                 placeholder="Nome..."
                                 value={this.state.nomeProduto}
-                                onChange={this.atualizaEstadoNomeProduto}
+                                onChange={this.atualizaState}
                                 />
+                               
                             </div>
                             <div>
                                 <label for="sobrenome"><i class="far fa-keyboard"></i> Modelo do equipamento</label>
@@ -124,8 +96,9 @@ class CadastroProduto extends Component
                                 name="modelo" 
                                 placeholder="Modelo..."
                                 value={this.state.modelo}
-                                onChange={this.atualizaEstadoModelo}
+                                onChange={this.atualizaState}
                                 />
+                                
                             </div>
                         </section>
 
@@ -138,8 +111,9 @@ class CadastroProduto extends Component
                                 name="usuario" 
                                 placeholder="Fabricante..."
                                 value={this.state.marca}
-                                onChange={this.atualizaEstadoMarca}
+                                onChange={this.atualizaState}
                                 />
+                                 
                             </div>
                             <div>
                                 <label for="procecssador"><i class="fas fa-gopuram"></i>Processador</label>
@@ -149,8 +123,9 @@ class CadastroProduto extends Component
                                 name="processador" 
                                 placeholder="Precessador..."
                                 value={this.state.processador}
-                                onChange={this.atualizaEstadoProcessador}
+                                onChange={this.atualizaState}
                                 />
+                                
                             </div>
                         </section>
 
@@ -163,9 +138,9 @@ class CadastroProduto extends Component
                                 name="lacamento" 
                                 placeholder="Data de lançamento..."
                                 value={this.state.dataLancamento}
-                                onChange={this.atualizaEstadoDataLancamento}
+                                onChange={this.atualizaState}
                                 />
-
+                                
 
                             </div>
                             <div>
@@ -176,8 +151,9 @@ class CadastroProduto extends Component
                                 name="confirme" 
                                 placeholder="Identificação..."
                                 value={this.state.codIdentificacao}
-                                onChange={this.atualizaEstadoIdentificacao}
+                                onChange={this.atualizaState}
                                 />
+                                
                             </div>
                         </section>
                         <section class="descricao_cad_produto">
@@ -188,7 +164,7 @@ class CadastroProduto extends Component
                         rows="10"
                         placeholder="Descrição..."
                         value={this.state.descricao}
-                        onChange={this.atualizaEstadoDescricao}
+                        onChange={this.atualizaState.bind(this)}
                         />
                         </section>
 
