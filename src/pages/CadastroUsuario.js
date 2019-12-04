@@ -69,6 +69,8 @@ class CadastroUsuario extends Component {
         })
     }
 
+    
+
     render() {
         return (
             <div>
