@@ -355,7 +355,6 @@ legend {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        margin-top: 3.5em;
     }
     .amostra_descricao_cdu {
         margin-left: 0em;
@@ -393,7 +392,7 @@ legend {
         padding: 2em;
     }
     .campos {
-        margin: 0em 1.5em 1.5em 0em;
+        margin: 0em 2em 1.5em 2em;
     }
     .avaliacao_estrelas {
         width: 11vw;

@@ -96,9 +96,11 @@
     justify-content: space-evenly;
 }
 
-.informacoes_do_produto_cdu {
+.informacoes_do_produto_cdu_2 {
     display: flex;
+    margin-top: 2.8vw;
 }
+
 
 .amostra_do_produto_cdu {
     border: solid 2px #531CB3;
@@ -143,8 +145,10 @@
 
 .formulario_anuncio_cdu {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     width: 55vw;
+    margin-top: 3vw;
+    margin-bottom: 2vw;
 }
 
 .barra_preco_expiracao_cdu {
@@ -184,9 +188,9 @@ legend {
 
 .botao_adicionar_cdu {
     display: flex;
-    justify-content: space-around;
-    padding: 1em;
-}
+    align-content: space-between;
+    margin: 19px 0px 6.5vw 19vw;
+}    
 
 .botao_editar_cdu {
     width: 14vw;
@@ -235,7 +239,7 @@ legend {
 .botao_adicionar_cdu2 {
     display: flex;
     justify-content: flex-end;
-    padding: 1em;
+    /* padding: 1em; */
 }
 
 .botao_editar_cdu2 {

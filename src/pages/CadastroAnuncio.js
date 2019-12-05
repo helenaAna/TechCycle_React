@@ -64,7 +64,7 @@ class CadastroAnuncio extends Component {
             </section>
             <section className="descricao_do_produto_cdu">
 
-                <section className="informacoes_do_produto_cdu">
+                <section className="informacoes_do_produto_cdu_2">
 
                     <div className="amostra_do_produto_cdu">
                         <img src={require("../assets/img/macp1.png")} />
@@ -87,7 +87,7 @@ class CadastroAnuncio extends Component {
                         <form action="#" method="POST" className="selecaodoanuncio_cdu">
                             <div className="campos">
                                 <label for="campo_preco">Preço do equipamento:</label>
-                                <input name="campo_preco" type="text" alt="Preço..." placeholder="Preço..."
+                                <input name="campo_preco" type="text" alt="Preço..." placeholder="Preço do equipamento"
                                     className="barra_preco_expiracao_cdu"/>
                             </div>
                         </form>
