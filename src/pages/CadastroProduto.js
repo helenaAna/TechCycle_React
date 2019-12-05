@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import CabecalhoAdm from '../componentes/CabecalhoAdm';
-import Rodape from '../componentes/Rodape';
+import Rodape  from '../componentes/Rodape';
 
 import '../assets/css/padrao.css';
 import '../assets/css/cadastroproduto.css';
