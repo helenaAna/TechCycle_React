@@ -12,11 +12,14 @@ class ListaProduto extends Component
         super(props);
         this.state = {
             listaproduto: [],
+            idProduto: '',
             nomeProduto: '',
-            descricao:''
+            descricao:'',
+            mensagemErro: ''
         }
 
         this.buscarProdutos = this.buscarProdutos.bind(this);
+        this.deletarProduto = this.deletarProduto.bind(this);
     }
     
     buscarProdutos()
@@ -30,6 +33,28 @@ class ListaProduto extends Component
           console.log(erro);
         })
     }
+    deletarProduto = (idProduto) => 
+    {
+    console.log("Excuindo");
+  
+    fetch("http://localhost:5000/api/produto/"+idProduto,
+    {
+        method : "DELETE",
+        headers : {
+        "Content-type" : "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(response => {
+        console.log(response)
+        this.buscarProdutos();
+        this.setState( () =>({listaproduto: this.state.listaproduto}))
+  })
+        .catch(error =>  {
+            console.log(error)
+            this.setState({mensagemErro: 'Não foi possível excluir, verifique se não há anúncio já cadastrado com esse produto'})
+  })
+}
     
     componentDidMount()
     {
@@ -105,11 +130,11 @@ class ListaProduto extends Component
                         </div>
                         <div className="home_div_btn">
                             <button className="home_btn">Adicionar Anúncio</button>
-                            <button className="home_btn">Editar Produto</button>
+                            <button type="submit" onClick={i => this.deletarProduto(produto.idProduto)} className="home_btn">Excluir Produto</button>
                         </div>
                     </div>
                     )
-                })
+                }.bind(this))
         }
         </div>
         </main>

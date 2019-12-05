@@ -71,20 +71,20 @@ class CadastroProduto extends Component
             <div>
             <CabecalhoAdm/>
             <main>
-        <section class="titulo_cad_produto">
+        <section className="titulo_cad_produto">
             <h1>Cadastro de Produtos</h1>
             <hr/>
         </section>
-        <div class="container_cad_produto">
+        <div className="container_cad_produto">
             
-            <section class="form_cadastro">
-                <form onSubmit={this.cadastraProduto} class="formulario">
+            <section className="form_cadastro">
+                <form onSubmit={this.cadastraProduto} className="formulario">
 
-                    <section class="container_form_cad_produto">
+                    <section className="container_form_cad_produto">
 
-                        <section class="row_cad_produto">
+                        <section className="row_cad_produto">
                             <div>
-                                <label for="nome"><i class="fas fa-desktop"></i>Nome do equipamento</label>
+                                <label for="nome"><i className="fas fa-desktop"></i>Nome do equipamento</label>
                                 <input
                                 type="text" 
                                 id="input_box" 
@@ -96,7 +96,7 @@ class CadastroProduto extends Component
                                
                             </div>
                             <div>
-                                <label for="sobrenome"><i class="far fa-keyboard"></i> Modelo do equipamento</label>
+                                <label for="sobrenome"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -109,9 +109,9 @@ class CadastroProduto extends Component
                             </div>
                         </section>
 
-                        <section class="row_cad_produto">
+                        <section className="row_cad_produto">
                             <div>
-                                <label for="usuario"><i class="fas fa-industry"></i> Fabricante do equipamento</label>
+                                <label for="usuario"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -123,7 +123,7 @@ class CadastroProduto extends Component
                                  
                             </div>
                             <div>
-                                <label for="procecssador"><i class="fas fa-gopuram"></i>Processador</label>
+                                <label for="procecssador"><i className="fas fa-gopuram"></i>Processador</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -136,9 +136,9 @@ class CadastroProduto extends Component
                             </div>
                         </section>
 
-                        <section class="row_cad_produto">
+                        <section className="row_cad_produto">
                             <div>
-                                <label for="lancamento"><i class="far fa-calendar-alt"></i> Data de lançamento</label>
+                                <label for="lancamento"><i className="far fa-calendar-alt"></i> Data de lançamento</label>
                                 <input 
                                 type="date" 
                                 id="input_box" 
@@ -151,7 +151,7 @@ class CadastroProduto extends Component
 
                             </div>
                             <div>
-                                <label for="codigoIdentificacao"><i class="fas fa-qrcode"></i> Codigo de identificação</label>
+                                <label for="codigoIdentificacao"><i className="fas fa-qrcode"></i> Codigo de identificação</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -163,8 +163,8 @@ class CadastroProduto extends Component
                                 
                             </div>
                         </section>
-                        <section class="descricao_cad_produto">
-                        <label for="descricao"><i class="fas fa-desktop"></i>Descrição do equipamento</label>
+                        <section className="descricao_cad_produto">
+                        <label for="descricao"><i className="fas fa-desktop"></i>Descrição do equipamento</label>
                         <textarea 
                         name="descricao" 
                         cols="30" 
@@ -175,9 +175,9 @@ class CadastroProduto extends Component
                         />
                         </section>
 
-                    <div class="botao_cad_produto">
-                            <button type="submit" class="bot_cad_cadastrar">
-                            <i class="fas fa-plus-circle"></i> Adicionar produto
+                    <div className="botao_cad_produto">
+                            <button type="submit" className="bot_cad_cadastrar">
+                            <i className="fas fa-plus-circle"></i> Adicionar produto
                         </button>
                     </div>
 
