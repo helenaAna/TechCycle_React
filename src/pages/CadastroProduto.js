@@ -22,27 +22,31 @@ class CadastroProduto extends Component
                 dataLancamento:'',
                 codIdentificacao:'',
                 descricao: ''
-            },
-            fileInput: React.createRef()
+            }
         }
     }
     cadastraProduto = (e) => {
         e.preventDefault();
 
-        let produto = new FormData();
+        let produto = {
+            nomeProduto: this.state.postProduto.nomeProduto,
+            modelo: this.state.postProduto.modelo,
+            marca: this.state.postProduto.marca,
+            procecssador: this.state.postProduto.processador,
+            dataLancamento: this.state.postProduto.dataLancamento,
+            codIdentificacao: this.state.postProduto.codIdentificacao,
+            descricao: this.state.postProduto.descricao
+        }
 
-        produto.set("nomeProduto", this.state.cadastraProduto.nomeProduto);
-        produto.set("modelo", this.state.cadastraProduto.modelo);
-        produto.set("marca", this.state.cadastraProduto.marca);
-        produto.set("processador", this.state.cadastraProduto.processador);
-        produto.set("dataLancamento", this.state.cadastraProduto.dataLancamento);
-        produto.set("codIdentificacao", this.state.cadastraProduto.codIdentificacao);
-        produto.set("descricao", this.state.cadastraProduto.descricao);
-    
         fetch('http://localhost:5000/api/produto', {
-            method: "POST",
-            body: produto,
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+            body: JSON.stringify(produto)
         })
+        
             .then(response => response.json())
             .then(response => {
                 console.log(response);
@@ -51,13 +55,16 @@ class CadastroProduto extends Component
     }
    
     atualizaState = (input) => {
+
         this.setState({
-            cadastraProduto: {
-                ...this.state.cadastraProduto,
+            postProduto: {
+                ...this.state.postProduto,
                 [input.target.name]: input.target.value
             }
         })
     }
+    
+    
   
     render(){
         return(
@@ -81,7 +88,7 @@ class CadastroProduto extends Component
                                 <input
                                 type="text" 
                                 id="input_box" 
-                                name="nomeproduto" 
+                                name="nomeProduto" 
                                 placeholder="Nome..."
                                 value={this.state.nomeProduto}
                                 onChange={this.atualizaState}
@@ -108,7 +115,7 @@ class CadastroProduto extends Component
                                 <input 
                                 type="text" 
                                 id="input_box" 
-                                name="usuario" 
+                                name="marca" 
                                 placeholder="Fabricante..."
                                 value={this.state.marca}
                                 onChange={this.atualizaState}
@@ -135,7 +142,7 @@ class CadastroProduto extends Component
                                 <input 
                                 type="date" 
                                 id="input_box" 
-                                name="lacamento" 
+                                name="dataLancamento" 
                                 placeholder="Data de lançamento..."
                                 value={this.state.dataLancamento}
                                 onChange={this.atualizaState}
@@ -148,7 +155,7 @@ class CadastroProduto extends Component
                                 <input 
                                 type="text" 
                                 id="input_box" 
-                                name="confirme" 
+                                name="codIdentificacao" 
                                 placeholder="Identificação..."
                                 value={this.state.codIdentificacao}
                                 onChange={this.atualizaState}
@@ -168,13 +175,13 @@ class CadastroProduto extends Component
                         />
                         </section>
 
-                    </section>
-
                     <div class="botao_cad_produto">
                             <button type="submit" class="bot_cad_cadastrar">
-                            <a href="produtos_cadastrados.html"><i class="fas fa-plus-circle"></i> Adicionar produto</a> 
+                            <i class="fas fa-plus-circle"></i> Adicionar produto
                         </button>
                     </div>
+
+                    </section>
                 </form>
             </section>
         </div>
