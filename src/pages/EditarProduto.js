@@ -7,12 +7,14 @@ import '../assets/css/padrao.css';
 import '../assets/css/cadastroproduto.css';
 
 
+
+
 class EditarProduto extends Component
 { 
     constructor(props){
     super(props);
     this.state = {
-            deleteProduto:{
+            alteraProduto:{
                 listaProduto: [],
                 idProduto: '',
                 nomeProduto: '',
@@ -22,10 +24,14 @@ class EditarProduto extends Component
                 dataLancamento:'',
                 codIdentificacao:'',
                 descricao: ''
-            }
+            },
+            id: this.props.id
         }
     }
-
+    funciona(id)
+    {
+        console.log(id);
+    }
     alterarProduto = (produto) =>
     {
         this.setState({
@@ -38,15 +44,16 @@ class EditarProduto extends Component
             codIdentificacao: produto.codIdentificacao,
             descricao: produto.descricao
         })
+       
     }
     salvarAlteracao = (event) =>
     {
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/produto'+this.state.deleteProduto.idProduto,
+        fetch('http://localhost:5000/api/produto'+this.state.alteraProduto.idProduto,
         {
             method : "PUT",
-            body: JSON.stringify(this.state.deleteProduto.idProduto),
+            body: JSON.stringify(this.state.alteraProduto.idProduto),
             headers: {
                 "Content-Type" : "application/json" 
             }
@@ -56,12 +63,17 @@ class EditarProduto extends Component
     atualizaState = (input) => {
 
         this.setState({
-            deleteProduto: {
-                ...this.state.deleteProduto,
+            alteraProduto: {
+                ...this.props.alteraProduto,
                 [input.target.name]: input.target.value
             }
         })
     }
+    componentDidMount(){
+        this.funciona();
+    }
+
+    
     
 
     render(){

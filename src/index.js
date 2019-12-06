@@ -45,6 +45,8 @@ const PermissaoAdm = ({component : Component}) => (
             )}/>
 )
 
+
+
 const Rotas = (
     <Router>
         <div>
