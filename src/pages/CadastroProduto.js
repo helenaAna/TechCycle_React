@@ -22,27 +22,31 @@ class CadastroProduto extends Component
                 dataLancamento:'',
                 codIdentificacao:'',
                 descricao: ''
-            },
-            fileInput: React.createRef()
+            }
         }
     }
     cadastraProduto = (e) => {
         e.preventDefault();
 
-        let produto = new FormData();
+        let produto = {
+            nomeProduto: this.state.postProduto.nomeProduto,
+            modelo: this.state.postProduto.modelo,
+            marca: this.state.postProduto.marca,
+            procecssador: this.state.postProduto.processador,
+            dataLancamento: this.state.postProduto.dataLancamento,
+            codIdentificacao: this.state.postProduto.codIdentificacao,
+            descricao: this.state.postProduto.descricao
+        }
 
-        produto.set("nomeProduto", this.state.cadastraProduto.nomeProduto);
-        produto.set("modelo", this.state.cadastraProduto.modelo);
-        produto.set("marca", this.state.cadastraProduto.marca);
-        produto.set("processador", this.state.cadastraProduto.processador);
-        produto.set("dataLancamento", this.state.cadastraProduto.dataLancamento);
-        produto.set("codIdentificacao", this.state.cadastraProduto.codIdentificacao);
-        produto.set("descricao", this.state.cadastraProduto.descricao);
-    
         fetch('http://localhost:5000/api/produto', {
-            method: "POST",
-            body: produto,
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+            body: JSON.stringify(produto)
         })
+        
             .then(response => response.json())
             .then(response => {
                 console.log(response);
@@ -51,37 +55,40 @@ class CadastroProduto extends Component
     }
    
     atualizaState = (input) => {
+
         this.setState({
-            cadastraProduto: {
-                ...this.state.cadastraProduto,
+            postProduto: {
+                ...this.state.postProduto,
                 [input.target.name]: input.target.value
             }
         })
     }
+    
+    
   
     render(){
         return(
             <div>
             <CabecalhoAdm/>
             <main>
-        <section class="titulo_cad_produto">
+        <section className="titulo_cad_produto">
             <h1>Cadastro de Produtos</h1>
             <hr/>
         </section>
-        <div class="container_cad_produto">
+        <div className="container_cad_produto">
             
-            <section class="form_cadastro">
-                <form onSubmit={this.cadastraProduto} class="formulario">
+            <section className="form_cadastro">
+                <form onSubmit={this.cadastraProduto} className="formulario">
 
-                    <section class="container_form_cad_produto">
+                    <section className="container_form_cad_produto">
 
-                        <section class="row_cad_produto">
+                        <section className="row_cad_produto">
                             <div>
-                                <label for="nome"><i class="fas fa-desktop"></i>Nome do equipamento</label>
+                                <label for="nome"><i className="fas fa-desktop"></i>Nome do equipamento</label>
                                 <input
                                 type="text" 
                                 id="input_box" 
-                                name="nomeproduto" 
+                                name="nomeProduto" 
                                 placeholder="Nome..."
                                 value={this.state.nomeProduto}
                                 onChange={this.atualizaState}
@@ -89,7 +96,7 @@ class CadastroProduto extends Component
                                
                             </div>
                             <div>
-                                <label for="sobrenome"><i class="far fa-keyboard"></i> Modelo do equipamento</label>
+                                <label for="sobrenome"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -102,13 +109,13 @@ class CadastroProduto extends Component
                             </div>
                         </section>
 
-                        <section class="row_cad_produto">
+                        <section className="row_cad_produto">
                             <div>
-                                <label for="usuario"><i class="fas fa-industry"></i> Fabricante do equipamento</label>
+                                <label for="usuario"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
-                                name="usuario" 
+                                name="marca" 
                                 placeholder="Fabricante..."
                                 value={this.state.marca}
                                 onChange={this.atualizaState}
@@ -116,7 +123,7 @@ class CadastroProduto extends Component
                                  
                             </div>
                             <div>
-                                <label for="procecssador"><i class="fas fa-gopuram"></i>Processador</label>
+                                <label for="procecssador"><i className="fas fa-gopuram"></i>Processador</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -129,13 +136,13 @@ class CadastroProduto extends Component
                             </div>
                         </section>
 
-                        <section class="row_cad_produto">
+                        <section className="row_cad_produto">
                             <div>
-                                <label for="lancamento"><i class="far fa-calendar-alt"></i> Data de lançamento</label>
+                                <label for="lancamento"><i className="far fa-calendar-alt"></i> Data de lançamento</label>
                                 <input 
                                 type="date" 
                                 id="input_box" 
-                                name="lacamento" 
+                                name="dataLancamento" 
                                 placeholder="Data de lançamento..."
                                 value={this.state.dataLancamento}
                                 onChange={this.atualizaState}
@@ -144,11 +151,11 @@ class CadastroProduto extends Component
 
                             </div>
                             <div>
-                                <label for="codigoIdentificacao"><i class="fas fa-qrcode"></i> Codigo de identificação</label>
+                                <label for="codigoIdentificacao"><i className="fas fa-qrcode"></i> Codigo de identificação</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
-                                name="confirme" 
+                                name="codIdentificacao" 
                                 placeholder="Identificação..."
                                 value={this.state.codIdentificacao}
                                 onChange={this.atualizaState}
@@ -156,8 +163,8 @@ class CadastroProduto extends Component
                                 
                             </div>
                         </section>
-                        <section class="descricao_cad_produto">
-                        <label for="descricao"><i class="fas fa-desktop"></i>Descrição do equipamento</label>
+                        <section className="descricao_cad_produto">
+                        <label for="descricao"><i className="fas fa-desktop"></i>Descrição do equipamento</label>
                         <textarea 
                         name="descricao" 
                         cols="30" 
@@ -168,13 +175,13 @@ class CadastroProduto extends Component
                         />
                         </section>
 
-                    </section>
-
-                    <div class="botao_cad_produto">
-                            <button type="submit" class="bot_cad_cadastrar">
-                            <a href="produtos_cadastrados.html"><i class="fas fa-plus-circle"></i> Adicionar produto</a> 
+                    <div className="botao_cad_produto">
+                            <button type="submit" className="bot_cad_cadastrar">
+                            <i className="fas fa-plus-circle"></i> Adicionar produto
                         </button>
                     </div>
+
+                    </section>
                 </form>
             </section>
         </div>

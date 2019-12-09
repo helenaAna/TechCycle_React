@@ -16,6 +16,7 @@ class CadastroUsuario extends Component {
                 ListaUsuario: [],
                 loginUsuario: '',
                 senha: '',
+                senha2:'',
                 nome: '',
                 email: '',
                 foto: '',
@@ -69,7 +70,16 @@ class CadastroUsuario extends Component {
         })
     }
 
-    
+    verificarsenha(){
+        var senha1 = document.getElementById('#inputs1').value
+        var senha2 = document.getElementById('#inputs2').value
+        var btn = document.querySelector('.btn1')
+
+        if(senha1 != senha2){
+            btn.
+            
+        }
+    }
 
     render() {
         return (
@@ -149,9 +159,10 @@ class CadastroUsuario extends Component {
                                     <input
                                         id="inputs2"
                                         type="password"
+                                        value = {this.state.senha2}
                                         onChange={this.atualizaState.bind(this)}
                                         className="input_box"
-                                        name="confirmes"
+                                        name="senha2"
                                         placeholder="Confirme sua senha">
                                     </input>
                                 </div>
@@ -200,7 +211,7 @@ class CadastroUsuario extends Component {
 
                             <section className="usuario_row">
                                 <div className="botao_cad_usuario">
-                                    <button type="submit" ><i className="far fa-arrow-alt-circle-up"></i> Solicitar cadastro</button>
+                                    <button type="submit" className ="btn1"><i className="far fa-arrow-alt-circle-up"></i> Solicitar cadastro</button>
                                 </div>
 
                             </section>

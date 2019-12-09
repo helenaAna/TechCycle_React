@@ -45,6 +45,8 @@ const PermissaoAdm = ({component : Component}) => (
             )}/>
 )
 
+
+
 const Rotas = (
     <Router>
         <div>
@@ -61,7 +63,7 @@ const Rotas = (
             <Route path="/editarproduto" component={EditarProduto}/>
             <Route path="/listainteresse" component={ListaInteresse}/>
             <Route path="/listaproduto" component={ListaProduto}/>
-            {/* <Route path="/perfilusuario" component={PerfilUsuario}/> */}
+            <Route path="/perfilusuario" component={PerfilUsuario}/>
             <Route path="/cadastroproduto" component={CadastroProduto}/>
         </Switch>
         </div>

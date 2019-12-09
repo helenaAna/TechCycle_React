@@ -8,20 +8,28 @@ class Descricao extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaAnuncios: [],
+            anuncio: '',
 
             idAnuncio : '',
-
-            idProduto: {
-                
-            }
         }
+        this.buscarAnuncio = this.buscarAnuncio.bind(this);
+    }
+
+    buscarAnuncio(){
+        // this.setState({
+        //     idAnuncio : this.props.location.state.idAnuncio
+        // })
+        fetch('http://localhost:5000/api/anuncio/' + this.props.location.state.idAnuncio)
+        .then(response => response.json())
+        .then(data =>{
+            this.setState({ anuncio : data })
+            console.log(this.state.anuncio)
+            console.log(this.state.anuncio.idProdutoNavigation.nomeProduto)
+        }).catch((erro) => console.log(erro))
     }
 
     componentDidMount(){
-        this.setState({
-            idAnuncio : this.props.location.state.idAnuncio
-        })
+        this.buscarAnuncio();
     }
     
 
@@ -56,10 +64,10 @@ class Descricao extends Component {
 
 
                                     <section className="foto_principal">
-                                        <img class="foto_exibicao" src={require('../assets/img/macp1.png')} alt="foto" />
+                                        <img className="foto_exibicao" src={require('../assets/img/macp1.png')} alt="foto" />
                                         <hr />
                                         <section className="conteudo_descricao">
-                                            <h3>Macbook pro</h3>
+                                            <h3>{this.state.anuncio.preco}</h3>
                                             <p>MacBook Pro TouchBar 15 256gb 2018 - AAPL;
                                                 Tela de 15,4 polegadas (na diagonal) retroiluminada por LED com tecnologia IPS;
                                             SSD de 256 GB;</p>
@@ -70,10 +78,7 @@ class Descricao extends Component {
 
                                 <section className="anuncio_avaliacao"></section>
                                 <section className="secao_avaliacao">
-                                    {/* AQUI */}
-
                                     <div className="box_classificacao">
-                                        {/* AQUI */}
                                         <h3>avaliação <i className="far fa-star"></i></h3>
 
                                         <section className="avaliacoes">
@@ -88,7 +93,7 @@ class Descricao extends Component {
                                             <section className="quadro_avaliacao">
                                                 <div className="box_avaliacao">
                                                     <p>muito bom</p>
-                                                    <p><span className="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+                                                    <p><span className="fa fa-star checked"></span><span className="fa fa-star checked"></span>
                                                     </p>
                                                 </div>
                                                 <p className="leve_descricao">Aparelho com alguns sinais uso, e com um bom desempenho;</p>
@@ -98,7 +103,7 @@ class Descricao extends Component {
                                                 <div className="box_avaliacao">
                                                     <p>ótimo</p>
                                                     <p><span className="fa fa-star checked"></span><span
-                                                        class="fa fa-star checked"></span><span class="fa fa-star checked"></span></p>
+                                                        className="fa fa-star checked"></span><span className="fa fa-star checked"></span></p>
                                                 </div>
                                                 <p className="leve_descricao">Aparelho com leves sinais uso, e com ótimo desempenho;</p>
                                             </section>
@@ -133,7 +138,7 @@ class Descricao extends Component {
                             </section>
                             <section className="comentar_anuncio">
                                 <div className="comentar">
-                                    <form action="#" class="comentar_anuncio">
+                                    <form action="#" className="comentar_anuncio">
                                         <i className="far fa-file-alt"></i>
                                         {/*
                             <!-- <input type="textarea" name="comentario" placeholder="adicionar comentário" rows="10"> -->
