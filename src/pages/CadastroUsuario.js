@@ -75,10 +75,10 @@ class CadastroUsuario extends Component {
         var senha2 = document.getElementById('#inputs2').value
         var btn = document.querySelector('.btn1')
 
-        if(senha1 != senha2){
-            btn.
+        // if(senha1 != senha2){
+        //     btn.
             
-        }
+        // }
     }
 
     render() {

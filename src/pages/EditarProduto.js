@@ -14,43 +14,32 @@ class EditarProduto extends Component
     constructor(props){
     super(props);
     this.state = {
-            alteraProduto:{
-                listaProduto: [],
-                idProduto: '',
-                nomeProduto: '',
-                modelo: '',
-                marca:'',
-                processador:'',
-                dataLancamento:'',
-                codIdentificacao:'',
-                descricao: ''
+            idProduto:{
             },
-            id: this.props.id
+            produto : [],
         }
     }
-    funciona(id)
-    {
-        console.log(id);
-    }
-    alterarProduto = (produto) =>
-    {
-        this.setState({
-            idProduto: produto.idProduto,
-            nomeProduto: produto.nomeProduto,
-            modelo: produto.modelo,
-            marca: produto.marca,
-            processador: produto.processador,
-            dataLancamento: produto.dataLancamento,
-            codIdentificacao: produto.codIdentificacao,
-            descricao: produto.descricao
-        })
+
+    // alterarProduto = (produto) =>
+    // {
+    //     this.setState({
+    //         idProduto: this.props.produto.idProduto,
+    //         nomeProduto: this.props.produto.nomeProduto,
+    //         modelo: this.props.produto.modelo,
+    //         marca: this.props.produto.marca,
+    //         processador: this.props.produto.processador,
+    //         dataLancamento: this.props.produto.dataLancamento,
+    //         codIdentificacao: this.props.produto.codIdentificacao,
+    //         descricao: this.props.produto.descricao
+    //     })
        
-    }
+    // }
+
     salvarAlteracao = (event) =>
     {
         event.preventDefault();
 
-        fetch('http://localhost:5000/api/produto'+this.state.alteraProduto.idProduto,
+        fetch('http://localhost:5000/api/produto/'+ this.state.alteraProduto.idProduto,
         {
             method : "PUT",
             body: JSON.stringify(this.state.alteraProduto.idProduto),
@@ -69,14 +58,25 @@ class EditarProduto extends Component
             }
         })
     }
+
     componentDidMount(){
-        this.funciona();
+        this.buscaProduto()
+        this.setState({
+            idProduto : this.props.location.state.idProduto,
+        })
     }
 
-    
-    
+    buscaProduto(){
+        console.log(this.state.idProduto)
+        fetch('http://localhost:5000/api/produto/' + this.props.location.state.idProduto)
+        .then(resposta => resposta.json())
+        .then(data => this.setState({ produto : data}))
+        .catch(erro => console.log(erro))
+    }
 
     render(){
+        console.log(this.state.idProduto + " certinhooooo")
+        console.log(this.state.produto)
         return(
             <div>
                 <CabecalhoAdm/>
@@ -99,7 +99,7 @@ class EditarProduto extends Component
                                 type="text" 
                                 id="input_box" 
                                 name="nomeProduto" 
-                                placeholder="Nome..."
+                                placeholder={this.state.produto.nomeProduto}
                                 
                                 />
                                
@@ -110,7 +110,7 @@ class EditarProduto extends Component
                                 type="text" 
                                 id="input_box" 
                                 name="modelo" 
-                                placeholder="Modelo..."
+                                placeholder={this.state.produto.modelo}
                                 
                                 />
                                 
@@ -124,7 +124,7 @@ class EditarProduto extends Component
                                 type="text" 
                                 id="input_box" 
                                 name="marca" 
-                                placeholder="Fabricante..."
+                                placeholder={this.state.produto.marca}
                                 
                                 />
                                  
@@ -135,7 +135,7 @@ class EditarProduto extends Component
                                 type="text" 
                                 id="input_box" 
                                 name="processador" 
-                                placeholder="Precessador..."
+                                placeholder={this.state.produto.processador}
                                 
                                 />
                                 
@@ -149,7 +149,7 @@ class EditarProduto extends Component
                                 type="date" 
                                 id="input_box" 
                                 name="dataLancamento" 
-                                placeholder="Data de lançamento..."
+                                placeholder={this.state.produto.dataLancamento}
                                 
                                 />
                                 
@@ -161,7 +161,7 @@ class EditarProduto extends Component
                                 type="text" 
                                 id="input_box" 
                                 name="codIdentificacao" 
-                                placeholder="Identificação..."
+                                placeholder={this.state.produto.codIdentificacao}
                                 
                                 />
                                 
@@ -173,7 +173,7 @@ class EditarProduto extends Component
                         name="descricao" 
                         cols="30" 
                         rows="10"
-                        placeholder="Descrição..."
+                        placeholder={this.state.produto.descricao}
                        
                         />
                         </section>
