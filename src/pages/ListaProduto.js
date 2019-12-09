@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
@@ -15,8 +16,6 @@ class ListaProduto extends Component {
             nomeProduto: '',
             descricao: '',
             mensagemErro: '',
-            id: ''
-
         }
 
         this.buscarProdutos = this.buscarProdutos.bind(this);
@@ -57,7 +56,7 @@ class ListaProduto extends Component {
     }
     direcionaId = (id) => {
         console.log(id)
-        // this.state.id = document.card.value;
+       
     }
     componentDidMount() {
         this.buscarProdutos();
@@ -133,7 +132,12 @@ class ListaProduto extends Component {
                                             <p>{produto.descricao}</p>
                                         </div>
                                         <div className="home_div_btn">
-                                            <button type="submit" onClick={(e) => {e.preventDefault(); this.direcionaId(produto.idProduto)}} className="home_btn">Editar Produto</button>
+                                            <button type="submit" onClick={(e) => {e.preventDefault(); this.direcionaId(produto.idProduto)}} className="home_btn">
+                                                <Link to={{
+                                                    pathname: '/editarproduto',
+                                                    state: {idProduto: produto.idProduto }
+                                                }}>
+                                                Editar Produto</Link></button>
                                             <button type="submit" onClick={i => this.deletarProduto(produto.idProduto)} className="home_btn">Excluir Produto</button>
                                         </div>
                                     </form>
