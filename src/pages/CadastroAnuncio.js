@@ -8,10 +8,69 @@ import '../assets/css/cadastroanuncio.css';
 
 class CadastroAnuncio extends Component {
 
+
+    constructor(props){
+        super(props);
+        this.state = {
+            listaproduto: [],
+            nomeProduto: '',
+            descricao: '',
+
+            postAnuncio:{
+                listaAnuncio: [],
+                cadastrarPreco: '',
+                dataExpiracao: ''
+            },
+
+            fileInput: React.createRef()
+        }
+    }
+    cadastraAnuncio = (e) => {
+        e.preventDefault();
+
+        let anuncio = new FormData();
+
+        anuncio.set("cadastrarPreco", this.state.cadastraAnuncio.cadastrarPreco);
+        anuncio.set("dataExpiracao", this.state.cadastraAnuncio.dataExpiracao);
+    
+        fetch('http://localhost:5000/api/anuncio', {
+            method: "POST",
+            body: anuncio,
+        })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response.status);
+            })
+            .catch(error => console.log('Não foi possível cadastrar:' + error)) 
+    }
+
+    buscarProdutos()
+    {
+        fetch('http://localhost:5000/api/produto')
+        .then(resposta => resposta.json())
+        .then(data =>{
+        this.setState({listaproduto : data});
+        })
+        .catch((erro) =>{
+        console.log(erro);
+        })
+    }
+
+
+    atualizaState = (input) => {
+        this.setState({
+            cadastraAnuncio: {
+                ...this.state.cadastraAnuncio,
+                [input.target.name]: input.target.value
+            }
+        })
+    }
+
+
     render(){
         return(
         <div>
-            <CabecalhoUser/>
+            <CabecalhoUser />
             <main className="conteudo_cdu">
     
         <div className="titulo_cdu">
@@ -27,41 +86,20 @@ class CadastroAnuncio extends Component {
                         className="barraanuncio_cdu1"/>
                 </form>
 
-
+        {
+            this.state.listaproduto.map( produto => {
+            return (
                 <div className="notebooksanuncio_cdu">
                     <div className="imagem_notebook">
                         <img src={require("../assets/img/Dell-Inspiron-I14-7472-A20G.png")} />
                     </div>
-                    <p>Dell Inspiron</p>
+                    <p>{produto.nomeProduto}</p>
                 </div>
-
-                <div className="notebooksanuncio_cdu">
-                    <div className="imagem_notebook">
-                        <img src={require("../assets/img/MQD32 1-1450x1450.png")} />
-
-                    </div>
-                    <p>Macbook</p>
-                </div>
-
-
-                <div className="notebooksanuncio_cdu">
-                    <div className="imagem_notebook">
-                        <img src={require("../assets/img/Apple-MacBook-Pro-715x560.png")} />
-
-                    </div>
-                    <p>Macbook pro</p>
-                </div>
-
-
-                <div className="notebooksanuncio_cdu">
-                    <div className="imagem_notebook">
-                        <img src={require("../assets/img/Dell-Inspiron-I14-7472-A20G.png")} />
-
-                    </div>
-                    <p>Dell Inspiron</p>
-                </div>
-
+            )
+            })
+        }
             </section>
+
             <section className="descricao_do_produto_cdu">
 
                 <section className="informacoes_do_produto_cdu_2">
@@ -72,6 +110,7 @@ class CadastroAnuncio extends Component {
                     </div>
 
                     <div className="amostra_descricao_cdu">
+                        
                         <p><span>Descrição do produto:</span></p>
                         <h2>Macbook pro</h2>
                         <p>MacBook Pro TouchBar 15 256gb 2018 - AAPL.</p>
@@ -97,7 +136,7 @@ class CadastroAnuncio extends Component {
                         <form action="#" method="POST" className="selecaodoanuncio_cdu">
                             <div className="campos">
                                 <label for="campo_expiracao">Data de expiração do anúncio:</label>
-                                <input name="campo_expiracao" type="text" alt="Data de expiração"
+                                <input name="campo_expiracao" type="data" alt="Data de expiração"
                                     placeholder="Data de expiração" className="barra_preco_expiracao_cdu"/>
                             </div>
                         </form>

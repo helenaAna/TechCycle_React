@@ -24,10 +24,10 @@ class ListaProduto extends Component
         fetch('http://localhost:5000/api/produto')
         .then(resposta => resposta.json())
         .then(data =>{
-           this.setState({listaproduto : data});
+        this.setState({listaproduto : data});
         })
         .catch((erro) =>{
-          console.log(erro);
+        console.log(erro);
         })
     }
     
@@ -88,7 +88,6 @@ class ListaProduto extends Component
 
             </div>
         </div>
-       
         <div className="produtoCadastrado_main">
         {
             this.state.listaproduto.map(function(produto){
