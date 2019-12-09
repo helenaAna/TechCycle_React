@@ -117,6 +117,8 @@ class CadastroAnuncio extends Component {
 
                                 </div>
 
+
+
                                 <div className="amostra_descricao_cdu">
 
                                     <p><span>Descrição do produto:</span></p>
