@@ -51,7 +51,9 @@ class AlterarAnuncio extends Component {
         fetch('http://localhost:5000/api/produto')
             .then(resposta => resposta.json())
             .then(data => {
+                console.log(data);
                 this.setState({ listaproduto: data });
+                console.log(this.state.listaproduto);
             })
             .catch((erro) => {
                 console.log(erro);
@@ -68,11 +70,11 @@ class AlterarAnuncio extends Component {
     }
 
     componentDidMount() {
-        this.buscarProdutos()
+        this.buscarProdutos();
     }
 
     render() {
-        // console.log(this.state.listaproduto)
+        console.log(this.state.listaproduto)
         return (
             <div>
                 {<CabecalhoUser />}
@@ -87,7 +89,7 @@ class AlterarAnuncio extends Component {
 
                         <section className="criar_anuncio_cdu">
 
-                            <form class="selecaodoanuncio_cdu1">
+                            <form class="selecaodoanuncio_cdu102">
                                 <input type="text" alt="Selecione o produto" placeholder="Selecione o produto"
                                     className="barraanuncio_cdu1" />
                             </form>
@@ -101,13 +103,12 @@ class AlterarAnuncio extends Component {
                                                 <img src={require("../assets/img/Dell-Inspiron-I14-7472-A20G.png")} />
                                             </div>
                                             <p>{produto.nomeProduto}</p>
-                                            
-
                                         </div>
                                     )
                                 })
                             }
                         </section>
+
 
 
                         <section className="descricao_do_produto_cdu">
@@ -130,14 +131,12 @@ class AlterarAnuncio extends Component {
                             </section>
                             <section className="formulario_anuncio_cdu_2">
                                 <form action="#" method="POST" className="formAnuncio" >
-                                    <div className="anuncio_group" className="selecaodoanuncio_cdu1">
-
-
+                                    <div className="anuncio_group selecaodoanuncio_cdu10">
                                         <div className="preco_expiracao_cdu">
                                             <div className="selecaodoanuncio_cdu">
                                                 <div className="campos">
                                                     <label for="campo_preco">Preço do equipamento:</label>
-                                                    <input name="campo_preco" type="text" alt="Preço..." placeholder={this.state.preco}
+                                                    <input name="campo_preco" type="text" alt="Preço do equipamento" placeholder="Preço do equipamento"
                                                         className="barra_preco_expiracao_cdu" />
                                                 </div>
                                             </div>
@@ -179,14 +178,14 @@ class AlterarAnuncio extends Component {
                                         <div className="botao_deletar_cdu2">
                                             <button className="botao_editar_cdu2">
                                                 <i className="far fa-trash-alt"></i>
-                                                <a href="#">Deletar anúncio</a>
+                                                <a href="./home">Deletar anúncio</a>
                                             </button>
                                         </div>
 
                                         <div className="botao_adicionar_cdu3">
                                             <button className="botao_editar_cdu3">
                                                 <i className="far fa-edit"></i>
-                                                <a href="#">Editar anúncio</a>
+                                                <a href="./home">Editar anúncio</a>
                                             </button>
                                         </div>
                                     </div>

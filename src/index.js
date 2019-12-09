@@ -21,7 +21,7 @@ import EditarPerfilUsuario from './pages/EditarPerfilUsuario';
 import EditarProduto from './pages/EditarProduto';
 import ListaInteresse from './pages/ListaInteresse';
 import ListaProduto from './pages/ListaProduto';
-//import PerfilUsuario from './pages/PerfilUsuario';
+import PerfilUsuario from './pages/PerfilUsuario';
 import CadastroProduto from './pages/CadastroProduto';
 
 // const PermissaoLogar = ({component : Component}) => (
