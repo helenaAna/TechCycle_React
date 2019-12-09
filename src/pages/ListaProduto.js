@@ -151,4 +151,4 @@ class ListaProduto extends Component {
         );
     }
 }
-export default ListaProduto;
+export default ListaProduto;    

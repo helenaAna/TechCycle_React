@@ -46,6 +46,10 @@ form{
     justify-content: center;
     margin-top: 0.5em;
 }
+.formAnuncio{
+  display: flex;
+  flex-direction: column;
+}
 
 .barraanuncio_cdu1 {
     width: 15vw;
@@ -284,7 +288,8 @@ legend {
 .botoes{
     display: flex;
     align-content: space-between;
-    margin: 19px 0px 6.5vw 19vw;
+    margin: 40px 0px 2vw 10vw;
+
 }
 
 .botao_editar_cdu3{

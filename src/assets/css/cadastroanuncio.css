@@ -189,7 +189,7 @@ legend {
 .botao_adicionar_cdu {
     display: flex;
     align-content: space-between;
-    margin: 19px 0px 6.5vw 19vw;
+    margin: 3px 0px 6.5vw 19vw;
 }    
 
 .botao_editar_cdu {
