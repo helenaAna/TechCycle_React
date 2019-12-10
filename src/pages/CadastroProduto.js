@@ -22,8 +22,19 @@ class CadastroProduto extends Component
                 dataLancamento:'',
                 codIdentificacao:'',
                 descricao: ''
-            }
+            },
+            listamarca:[]
         }
+    }
+    buscarMarca() {
+        fetch('http://localhost:5000/api/marca')
+            .then(resposta => resposta.json())
+            .then(data => {
+                this.setState({ listamarca: data });
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
     }
     cadastraProduto = (e) => {
         e.preventDefault();
@@ -31,8 +42,8 @@ class CadastroProduto extends Component
         let produto = {
             nomeProduto: this.state.postProduto.nomeProduto,
             modelo: this.state.postProduto.modelo,
-            marca: this.state.postProduto.marca,
-            procecssador: this.state.postProduto.processador,
+            idMarca: this.state.postProduto.marca,
+            processador: this.state.postProduto.processador,
             dataLancamento: this.state.postProduto.dataLancamento,
             codIdentificacao: this.state.postProduto.codIdentificacao,
             descricao: this.state.postProduto.descricao
@@ -62,6 +73,9 @@ class CadastroProduto extends Component
                 [input.target.name]: input.target.value
             }
         })
+    }
+    componentDidMount(){
+        this.buscarMarca();
     }
     
     
@@ -95,7 +109,7 @@ class CadastroProduto extends Component
                                
                             </div>
                             <div>
-                                <label for="sobrenome"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
+                                <label for="modelo"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -110,15 +124,20 @@ class CadastroProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="usuario"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
-                                <input 
-                                type="text" 
-                                id="input_box" 
-                                name="marca" 
-                                placeholder="Fabricante..."
-                                value={this.state.marca}
-                                onChange={this.atualizaState}
-                                />
+                                <label for="marca"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
+                                <select
+                                    name="marca"
+                                    value={this.state.marca}
+                                    onChange={this.atualizaState}
+                                    >
+                                    <option value="">Selecione uma marca</option>
+                                    {
+                                        this.state.listamarca.map(function(marca){
+                                            return <option key={marca.idMarca} value={marca.idMarca}>{marca.nomeMarca}</option>
+                                        })
+                                    }   
+                                </select>
+                                                        
                                  
                             </div>
                             <div>
