@@ -25,8 +25,10 @@ class Home extends Component{
 
     toggleFiltro(event){
       if(event.target.checked){
-        if(event.target.name !== ''){
-          return this.filtroDeAnuncio(event.target.value)
+        if(event.target.name == 'marca'){
+          return this.filtroDeMarca(event.target.value)
+        }else if(event.target.name == "processador"){
+          return this.filtroDeProcessador(event.target.value)
         }
       }
         this.removerFiltro()
@@ -36,17 +38,25 @@ class Home extends Component{
       this.setState({listaComFiltro : this.state.listaAnuncios})
     }
 
-    filtroDeAnuncio(valor){
+    filtroDeMarca(valor){
       var lista = this.state.listaAnuncios
 
       var listaFiltrada = lista.filter((undefined, index, lista) => {
-        if(lista[index].idProdutoNavigation.idMarca == valor){
+        if(lista[index].idProdutoNavigation.idMarcaNavigation.idMarca == valor){
            return lista[index]
         }
       })
 
+      this.setState({
+        listaComFiltro : listaFiltrada
+      })
+    }
+
+    filtroDeProcessador(valor){
+      var lista = this.state.listaAnuncios
+
       var listaFiltrada= lista.filter((undefined, index, lista) => {
-        if(lista[index].idProdutoNavigation.idCategoria == valor){
+        if(lista[index].idProdutoNavigation.processador == valor){
            return lista[index]
         }
       })
@@ -96,10 +106,10 @@ class Home extends Component{
                 <form>
                   <div className="categoria">
                       <h5>Marca:</h5>
-                      <input type="checkbox" value='1' name='marca' id="dell" onChange={this.toggleFiltro}/>
-                      <label htmlfor="dell">Dell 1</label>
-                      <input type="checkbox" value='2' name='marca' id="apple" onChange={this.toggleFiltro}/>
-                      <label htmlfor="apple">Apple 2</label>
+                      <input type="checkbox" value='2' name='marca' id="dell" onChange={this.toggleFiltro}/>
+                      <label htmlfor="dell">Dell 2</label>
+                      <input type="checkbox" value='1' name='marca' id="apple" onChange={this.toggleFiltro}/>
+                      <label htmlfor="apple">Apple 1</label>
                   </div>
 
                   {/* <div className="categoria">
@@ -118,20 +128,20 @@ class Home extends Component{
                   
                   <div className="categoria">
                     <h5>Precessador:</h5>
-                    <input type="checkbox" value='2' name="processador" id="intel" onChange={this.toggleFiltro}/>
+                    <input type="checkbox" value='Intel' name="processador" id="intel" onChange={this.toggleFiltro}/>
                     <label htmlfor="intel">Intel 2</label>
-                    <input type="checkbox" id="amd" value='1' name="processador" onChange={this.toggleFiltro}/>
+                    <input type="checkbox" id="amd" value='AMD' name="processador" onChange={this.toggleFiltro}/>
                     <label htmlfor="amd">AMD 1</label>
                   </div>
 
                   {/* <div className="categoria categoriaDiferente">
                       <h5>Categoria:</h5>
                       <div>
-                          <input type="checkbox" id="computador"/>
+                          <input type="checkbox" value='Computador' id="computador" onChange={this.toggleFiltro}/>
                           <label htmlfor="computador">Computador</label>
                       </div>
                       <div>
-                          <input type="checkbox" id="notebook"/>
+                          <input type="checkbox" value='Notebook' id="notebook" onChange={this.toggleFiltro}/>
                           <label htmlfor="notebook">Notebook</label>
                       </div>
                   </div> */}
@@ -146,7 +156,6 @@ class Home extends Component{
                     <div className="home_card" key={anuncio.idAnuncio} value={anuncio.idAnuncio}>
                       <div className="home_img">
                           <img src={"http://localhost:5000/Resources/Anuncio/" + anuncio.foto} alt="Macbook"/>
-                          {console.log(anuncio.foto)}
                       </div>
                       <div className="home_linha">
                           <div>
