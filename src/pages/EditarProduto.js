@@ -16,38 +16,42 @@ class EditarProduto extends Component
     this.state = {
             idProduto:{
             },
+            idMarca: {
+            },
             produto : [],
+            marca : [],
+            editaProduto: {
+                idProduto: '',
+                nomeProduto: '',
+                modelo: '',
+                marca:'',
+                processador:'',
+                dataLancamento:'',
+                codIdentificacao:'',
+                descricao: ''
+            }
         }
     }
 
-    // alterarProduto = (produto) =>
-    // {
-    //     this.setState({
-    //         idProduto: this.props.produto.idProduto,
-    //         nomeProduto: this.props.produto.nomeProduto,
-    //         modelo: this.props.produto.modelo,
-    //         marca: this.props.produto.marca,
-    //         processador: this.props.produto.processador,
-    //         dataLancamento: this.props.produto.dataLancamento,
-    //         codIdentificacao: this.props.produto.codIdentificacao,
-    //         descricao: this.props.produto.descricao
-    //     })
-       
-    // }
-
-    salvarAlteracao = (event) =>
+    alteraProduto = (e) =>
     {
-        event.preventDefault();
-
-        fetch('http://localhost:5000/api/produto/'+ this.state.alteraProduto.idProduto,
-        {
-            method : "PUT",
-            body: JSON.stringify(this.state.alteraProduto.idProduto),
-            headers: {
-                "Content-Type" : "application/json" 
+        this.setState({
+            editaProduto:{
+                idProduto: e.idProduto,
+                nomeProduto: e.nomeProduto,
+                modelo: e.modelo,
+                marca: e.marca,
+                processador: e.processador,
+                dataLancamento: e.dataLancamento,
+                codIdentificacao: e.codIdentificacao,
+                descricao: e.descricao
             }
         })
     }
+
+ 
+
+   
 
     atualizaState = (input) => {
 
@@ -59,19 +63,33 @@ class EditarProduto extends Component
         })
     }
 
-    componentDidMount(){
-        this.buscaProduto()
-        this.setState({
-            idProduto : this.props.location.state.idProduto,
-        })
-    }
-
+    
     buscaProduto(){
         console.log(this.state.idProduto)
         fetch('http://localhost:5000/api/produto/' + this.props.location.state.idProduto)
         .then(resposta => resposta.json())
         .then(data => this.setState({ produto : data}))
         .catch(erro => console.log(erro))
+    }
+    buscarMarca() {
+        fetch('http://localhost:5000/api/marca'+ this.props.location.state.idMarca)
+            .then(resposta => resposta.json())
+            .then(data => {
+                this.setState({ marca: data });
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
+    }
+    componentDidMount(){
+        this.buscaProduto()
+        this.setState({
+            idProduto : this.props.location.state.idProduto,
+        })
+        this.buscarMarca()
+        this.setState({
+            idMarca : this.props.location.state.idMarca,
+        })
     }
 
     render(){
@@ -94,7 +112,7 @@ class EditarProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="nome"><i className="fas fa-desktop"></i>Nome do equipamento</label>
+                                <label for="nome"><i className="fas fa-desktop"></i>Nome do equipamento: </label>
                                 <input
                                 type="text" 
                                 id="input_box" 
@@ -105,7 +123,7 @@ class EditarProduto extends Component
                                
                             </div>
                             <div>
-                                <label for="sobrenome"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
+                                <label for="modelo"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -119,7 +137,7 @@ class EditarProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="usuario"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
+                                <label for="marca"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -130,7 +148,7 @@ class EditarProduto extends Component
                                  
                             </div>
                             <div>
-                                <label for="procecssador"><i className="fas fa-gopuram"></i>Processador</label>
+                                <label for="processador"><i className="fas fa-gopuram"></i>Processador</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
@@ -144,7 +162,7 @@ class EditarProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="lancamento"><i className="far fa-calendar-alt"></i> Data de lançamento</label>
+                                <label for="dataLancamento"><i className="far fa-calendar-alt"></i> Data de lançamento</label>
                                 <input 
                                 type="date" 
                                 id="input_box" 
@@ -156,7 +174,7 @@ class EditarProduto extends Component
 
                             </div>
                             <div>
-                                <label for="codigoIdentificacao"><i className="fas fa-qrcode"></i> Codigo de identificação</label>
+                                <label for="codIdentificacao"><i className="fas fa-qrcode"></i> Codigo de identificação</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 

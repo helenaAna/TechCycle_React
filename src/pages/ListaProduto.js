@@ -32,6 +32,9 @@ class ListaProduto extends Component {
                 console.log(erro);
             })
     }
+    direcionaId(id){
+        console.log(id);
+    }
 
     deletarProduto = (idProduto) => {
         console.log("Excuindo");
@@ -54,12 +57,10 @@ class ListaProduto extends Component {
                 this.setState({ mensagemErro: 'Não foi possível excluir, verifique se não há anúncio já cadastrado com esse produto' })
             })
     }
-    direcionaId = (id) => {
-        console.log(id)
-       
-    }
+    
     componentDidMount() {
         this.buscarProdutos();
+        this.deletarProduto();
     }
 
     render() {

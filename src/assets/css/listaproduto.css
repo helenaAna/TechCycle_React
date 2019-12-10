@@ -32,6 +32,7 @@
 .home_linha {
     display: flex;
     justify-content: space-around;
+    
 }
 .home_texto p{
     display: flex;
