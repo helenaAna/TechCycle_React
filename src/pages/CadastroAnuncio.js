@@ -15,11 +15,12 @@ class CadastroAnuncio extends Component {
             listaproduto: [],
             nomeProduto: '',
             descricao: '',
-
+            
+            listaAnuncio: [],
             postAnuncio: {
-                listaAnuncio: [],
                 cadastrarPreco: '',
-                dataExpiracao: ''
+                dataExpiracao: '',
+                classificacao:''
             },
 
             fileInput: React.createRef()
@@ -67,7 +68,7 @@ class CadastroAnuncio extends Component {
         })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.buscarProdutos();
     }
 
@@ -117,17 +118,22 @@ class CadastroAnuncio extends Component {
 
                                 </div>
 
+                                {/* {
+                                    this.state.listaproduto.map(produto => {
+                                        return (
+                                            <div className="amostra_descricao_cdu" key={produto.idProduto} >
 
+                                                <p><span>Descrição do produto:</span></p>
+                                                <h2>{produto.nomeProduto}</h2>
+                                                <p>{produto.modelo}</p>
+                                                <p> {produto.descricao}</p>
+                                                <p>{produto.memoria}</p>
+                                            </div>
+                                        )
 
-                                <div className="amostra_descricao_cdu">
-
-                                    <p><span>Descrição do produto:</span></p>
-                                    <h2>Macbook pro</h2>
-                                    <p>MacBook Pro TouchBar 15 256gb 2018 - AAPL.</p>
-                                    <p> Tela de 15,4 polegadas (na diagonal) retroiluminada
-                            por LED com tecnologia IPS.</p>
-                                    <p>SSD de 256 GB.</p>
-                                </div>
+                                    }
+                                    )
+                                } */}
 
                             </section>
                             <section className="formulario_anuncio_cdu">
@@ -136,8 +142,12 @@ class CadastroAnuncio extends Component {
                                     <form action="#" method="POST" className="selecaodoanuncio_cdu">
                                         <div className="campos">
                                             <label for="campo_preco">Preço do equipamento:</label>
-                                            <input name="campo_preco" type="text" alt="Preço..." placeholder="Preço do equipamento"
-                                                className="barra_preco_expiracao_cdu" />
+                                            <input onChange={this.atualizaState} 
+                                            name="campo_preco" 
+                                            type="text" 
+                                            alt="Preço..." 
+                                            placeholder="Preço do equipamento"
+                                            className="barra_preco_expiracao_cdu" />
                                         </div>
                                     </form>
                                 </div>
@@ -146,7 +156,7 @@ class CadastroAnuncio extends Component {
                                     <form action="#" method="POST" className="selecaodoanuncio_cdu">
                                         <div className="campos">
                                             <label for="campo_expiracao">Data de expiração do anúncio:</label>
-                                            <input name="campo_expiracao" type="data" alt="Data de expiração"
+                                            <input onChange={this.atualizaState} name="campo_expiracao" type="data" alt="Data de expiração"
                                                 placeholder="Data de expiração" className="barra_preco_expiracao_cdu" />
                                         </div>
                                     </form>

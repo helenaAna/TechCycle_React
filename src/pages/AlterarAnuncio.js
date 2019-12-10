@@ -14,7 +14,7 @@ class AlterarAnuncio extends Component {
             nomeProduto: '',
             descricao: '',
 
-            postAnuncio: {
+            putAnuncio: {
                 listaAnuncio: [],
                 cadastrarPreco: '',
                 dataExpiracao: ''
@@ -46,7 +46,7 @@ class AlterarAnuncio extends Component {
             })
             .catch(error => console.log('Não foi possível cadastrar:' + error))
     }
-
+    
     buscarProdutos() {
         fetch('http://localhost:5000/api/produto')
             .then(resposta => resposta.json())
@@ -130,7 +130,7 @@ class AlterarAnuncio extends Component {
 
                             </section>
                             <section className="formulario_anuncio_cdu_2">
-                                <form action="#" method="POST" className="formAnuncio" >
+                                <form onSubmit={this.putAnuncio} action="#" method="POST" className="formAnuncio" >
                                     <div className="anuncio_group selecaodoanuncio_cdu10">
                                         <div className="preco_expiracao_cdu">
                                             <div className="selecaodoanuncio_cdu">
@@ -183,7 +183,7 @@ class AlterarAnuncio extends Component {
                                         </div>
 
                                         <div className="botao_adicionar_cdu3">
-                                            <button className="botao_editar_cdu3">
+                                            <button type="submit" className="botao_editar_cdu3">
                                                 <i className="far fa-edit"></i>
                                                 <a href="./home">Editar anúncio</a>
                                             </button>

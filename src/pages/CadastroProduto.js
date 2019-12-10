@@ -53,7 +53,7 @@ class CadastroProduto extends Component
             })
             .catch(error => console.log('Não foi possível cadastrar:' + error)) 
     }
-   
+
     atualizaState = (input) => {
 
         this.setState({
@@ -65,7 +65,6 @@ class CadastroProduto extends Component
     }
     
     
-  
     render(){
         return(
             <div>

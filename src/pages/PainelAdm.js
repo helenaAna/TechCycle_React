@@ -2,26 +2,37 @@ import React from 'react';
 import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 
+import '../assets/css/paineladm.css';
+
 
 function PainelAdm() {
 
-  return (
+return (
     <div className="App">
-      <CabecalhoAdm/>
+        <CabecalhoAdm/>
 
-      <main className="painel_controle">
+    <main className="painel_controle">
         <section class="perfil_adm">
         <img src={require("../assets/img/FotoPerfil.jpg")} />
             <div>
+                <div className="admpaineladm1">
                 <i className="fas fa-user"></i>
                 <h2>Nome:</h2>
                 <h3>Gandalf</h3>
+                </div>
+
+                <div className="admpaineladm2">
                 <i className="fas fa-user-tag"></i>
                 <h2>Sobrenome:</h2>
                 <h3>O Cinzento</h3>
+                </div>
+
+                <div className="admpaineladm3">
                 <i className="fas fa-envelope"></i>
                 <h2>E-mail:</h2>
                 <h3>gandalf@tolkien.com</h3>
+                </div>
+
                 <a href="edicao_perfil.html">Editar perfil</a>
             </div>
         </section> 
@@ -52,7 +63,7 @@ function PainelAdm() {
                         <i className="fas fa-headset"></i>
                     </div>
                     <div>
-                        <a href="#">Comentários</a>
+                        <a href="#">Comentários&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
                         <i className="fas fa-comment-alt"></i>
                         <a href="anunciosExpiracao.html">Anúncios a expirar</a>
                         <i className="fas fa-calendar-alt"></i>
@@ -64,9 +75,9 @@ function PainelAdm() {
     </main>
 
 
-      <Rodape/>
+    <Rodape/>
     </div>
-  );
+);
 }
 
 export default PainelAdm;
