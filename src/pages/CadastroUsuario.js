@@ -10,21 +10,18 @@ class CadastroUsuario extends Component {
 
             // Listar - Get
             listarUsu: [],
-
+            senha2: '',
             // Post
             postUsuario: {
                 ListaUsuario: [],
                 loginUsuario: '',
                 senha: '',
-                senha2:'',
                 nome: '',
                 email: '',
-                foto: '',
                 departamento: '',
-                tipoUsuario: ''
+                tipoUsuario: 'Funcionario',
             },
-
-            fileInput: React.createRef()
+            foto: React.createRef()
 
         }
     }
@@ -39,7 +36,7 @@ class CadastroUsuario extends Component {
         usuario.set("senha", this.state.cadastroUsuario.senha);
         usuario.set("nome", this.state.cadastroUsuario.nome);
         usuario.set("email", this.state.cadastroUsuario.email);
-        usuario.set("foto", this.state.fileInput.current.files[0]);
+        usuario.set("foto", this.state.foto.current.files[0]);
         usuario.set("departamento", this.state.cadastroUsuario.departamento);
         usuario.set("tipoUsuario", this.state.cadastroUsuario.tipoUsuario)
 
@@ -54,6 +51,10 @@ class CadastroUsuario extends Component {
             .catch(error => console.log('Não foi possível cadastrar:' + error))
     }
 
+    atualizasenha2(e){
+        this.setState({[e.target.name] : e.target.value})
+    }
+
     atualizaState = (input) => {
         this.setState({
             cadastroUsuario: {
@@ -62,24 +63,16 @@ class CadastroUsuario extends Component {
             }
         })
     }
-
-
-    handleImageChange = (e) => {
-        this.setState({
-            fileInput: e.target.files[0]
-        })
+    
+    atualiza = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
-    verificarsenha(){
-        var senha1 = document.getElementById('#inputs1').value
-        var senha2 = document.getElementById('#inputs2').value
-        var btn = document.querySelector('.btn1')
-
-        if(senha1 != senha2){
-            btn.
-            
-        }
-    }
+    // handleImageChange = (e) => {
+    //     this.setState({
+    //         foto: e.target.files[0]
+    //     })
+    // }
 
     render() {
         return (
@@ -89,7 +82,8 @@ class CadastroUsuario extends Component {
                     <h1>Cadastro de Usuario</h1>
                     <hr></hr>
 
-                    <form className="usuario_formulario" onSubmit={this.cadastroUsuario}>
+                    <form className="usuario_formulario" name="form" onSubmit={this.cadastroUsuario.bind(this)}>
+
 
                         <section className="coluna_cad_usu_1">
 
@@ -103,7 +97,7 @@ class CadastroUsuario extends Component {
                                 <label for='input-file'> <i class="fas fa-upload"></i>     Selecionar um arquivo</label>
                                 <input id='input-file' type='file'
                                     arial-label="coloque sua foto"
-                                    ref={this.state.fileInput}
+                                    ref={this.state.foto}
                                 />
                                 <span id='file-name'></span>
                             </div>
@@ -119,7 +113,7 @@ class CadastroUsuario extends Component {
                                     <label><i className="far fa-address-book"></i>     Informe seu nome</label>
                                     <input
                                         type="text"
-                                        onChange={this.atualizaState}
+                                        onChange={this.atualizaState.bind(this)}
                                         value={this.state.nome}
                                         required
                                         className="input_box"
@@ -132,7 +126,7 @@ class CadastroUsuario extends Component {
                                     <input
                                         type="text"
                                         value={this.state.loginUsuario}
-                                        onChange={this.atualizaState}
+                                        onChange={this.atualizaState.bind(this)}
                                         className="input_box"
                                         required
                                         name="loginUsuario"
@@ -144,9 +138,9 @@ class CadastroUsuario extends Component {
                                 <div>
                                     <label><i className="fas fa-lock"></i>     Informe sua senha</label>
                                     <input
-                                        id="inputs1"
+                                        id="senha"
                                         type="password"
-                                        onChange={this.atualizaState}
+                                        onChange={this.atualizaState.bind(this)}
                                         value={this.state.senha}
                                         className="input_box"
                                         required
@@ -157,12 +151,12 @@ class CadastroUsuario extends Component {
                                 <div>
                                     <label><i className="fas fa-unlock-alt"></i>     Confirme sua senha</label>
                                     <input
-                                        id="inputs2"
+                                        id="senha2"
                                         type="password"
-                                        value = {this.state.senha2}
-                                        onChange={this.atualizaState.bind(this)}
-                                        className="input_box"
+                                        value={this.state.senha2}
+                                        onChange={this.atualizasenha2.bind(this)}
                                         name="senha2"
+                                        className="input_box"
                                         placeholder="Confirme sua senha">
                                     </input>
                                 </div>
@@ -183,7 +177,7 @@ class CadastroUsuario extends Component {
                                 </div>
 
                                 <div>
-                                    <label><i className="far fa-address-book"></i>     Informe seu departamento</label>
+                                    <label><i className="far fa-address-book"></i>Informe seu departamento</label>
                                     <input
                                         type="text"
                                         value={this.state.departamento}
@@ -203,21 +197,18 @@ class CadastroUsuario extends Component {
                                         value={this.state.tipoUsuario}
                                         onChange={this.atualizaState}
                                         className="input_box"
-                                        value="funcionario"
+                                        value={this.state.tipoUsuario}
                                         name="tipoUsuario"
                                         placeholder="Digite seu tipo de usuário" />
                                 </div>
                             </section>
-
                             <section className="usuario_row">
-                                <div className="botao_cad_usuario">
-                                    <button type="submit" className ="btn1"><i className="far fa-arrow-alt-circle-up"></i> Solicitar cadastro</button>
+                                  
+                                <div className="botao_cad_usuario">     
+                                <button type="submit" className="btn1"><i className="far fa-arrow-alt-circle-up"></i>Solicitar cadastro</button>
                                 </div>
-
+                                
                             </section>
-
-
-
                         </section>
 
                     </form>

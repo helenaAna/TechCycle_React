@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import CabecalhoUser from '../componentes/CabecalhoUser';
 import Rodape from '../componentes/Rodape';
+import '../assets/css/alterarusuario.css';
+import api, { apiForm } from '../services/api';
+import { parseJwt } from '../services/auth';
 
 
 class EditarPerfilUsuario extends Component {
@@ -8,51 +11,130 @@ class EditarPerfilUsuario extends Component {
         super()
         this.state = {
 
-            // Listar - Get
-            listarUsu: [],
-
-            // Post
-            postUsuario: {
-                ListaUsuario: [],
+            usuario : [],
+            putUsuario: '',
+            updateUsuario:{
+                idUser : parseJwt().IdUsuario,
                 loginUsuario: '',
                 senha: '',
                 nome: '',
                 email: '',
-                foto: '',
                 departamento: '',
-                tipoUsuario: ''
-            },
-
-            fileInput: React.createRef()
-
+                tipoUsuario: 'Funcionario',
+                foto : React.createRef()
+            }
         }
     }
 
+    //#region COMPONENTS
+    componentDidMount() {
+        console.log("Carregado")
+        this.getUsuarioId();
+    }
 
-    render() {
+    //#region GETS
+    getUsuarioId = () => {
+        let idUser = this.state.updateUsuario.idUser;
+        console.log("idUser: ", idUser);
+
+        api.get("/usuario/" + idUser)
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ putUsuario: response.data })
+                }
+                console.log("respUser: ", this.state.putUsuario)
+            })
+            .catch(error => {
+                console.log("error: ", error)
+                window.location.reload();
+            })
+        }
+    
+    //#region SET STATES
+    putSetStateUsuario = (input) => {
+        this.setState({
+        updateUsuario: {...this.state.updateUsuario, [input.target.name]: input.target.value}
+        }
+        )}
+
+    putSetStateImg = (input) => {
+        this.setState({
+        updateUsuario: {
+        ...this.state.updateUsuario, [input.target.name]: input.target.files[0]
+        }
+        })
+    }
+
+    putAltUsuario = (e) => {
+    e.preventDefault();
+        let idUserr = this.state.updateUsuario.idUser;
+    
+        let usuarioForm = new FormData();
+
+        usuarioForm.set('idUser', this.state.updateUsuario.idUser);
+        usuarioForm.set('loginUsuario', this.state.updateUsuario.loginUsuario);
+        usuarioForm.set('senha', this.state.updateUsuario.senha);
+        usuarioForm.set('nome', this.state.updateUsuario.nome);
+        usuarioForm.set('email', this.state.updateUsuario.email);
+        usuarioForm.set('departamento', this.state.updateUsuario.departamento); 
+        usuarioForm.set('foto', this.state.updateUsuario.foto.current.files[0], this.state.updateUsuario.foto.value);
+
+        console.log('formUsu:',this.state.updateUsuario.foto);
+        // console.log(this.state.foto)
+
+        apiForm.put("/usuario/"+ idUserr , usuarioForm)
+        .then(response => {
+            if (response.status === 200){
+                this.setState({updateUsuario : response.data})
+            }
+        })
+        .then(response => {
+            if(response.status === 200){
+                console.log("updateUsuarioResponde:" , response)
+            }
+        })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => console.log("error:", error))
+    }
+
+    putGeral = (e) => {
+        e.preventDefault();
+        this.putAltUsuario();
+    }
+
+
+   render() {
         return (
             <div>
                 <CabecalhoUser />
 
                 <main className="cadUsuario_main">
-                    <h1>Cadastro de Usuario</h1>
+                    <h1>Editar Perfil</h1>
                     <hr></hr>
 
-                    <form className="usuario_formulario" onSubmit={this.cadastroUsuario}>
+                    <form className="usuario_formulario" onSubmit={this.putAltUsuario.bind(this)}>
 
                         <section className="coluna_cad_usu_1">
 
                             <div className="usuario_secao_imagem_cad">
-                                {/* <img src="{require("../}" alt="icone de alterar imagem"></img> */}
-                                <img src={require("../assets/img/camera.svg")} />
+                            <img src={require("../assets/img/camera.svg")} />
+                                {/* <img src={"http://localhost:5000/Resources/Usuario/" + this.state.putUsuario.foto} /> */}
                             </div>
 
 
                             <div class='input-wrapper'>
-                                <label for='input-file'> <i class="fas fa-upload"></i>     Selecionar um arquivo</label>
-                                <input id='input-file' type='file'
-                                    arial-label="coloque sua foto"
-                                    ref={this.state.fileInput}
+                                <label htmlFor='input-file'> <i class="fas fa-upload"></i>     Selecionar um arquivo</label>
+                                <input 
+                                id='input-file' 
+                                type='file'
+                                name = "foto"
+                                arial-label="coloque sua foto"
+                                value = {this.state.foto}
+                                onChange = {this.putSetStateImg}
+                                ref={this.state.updateUsuario.foto}
                                 />
                                 <span id='file-name'></span>
                             </div>
@@ -65,81 +147,75 @@ class EditarPerfilUsuario extends Component {
                             <section className="usuario_row">
 
                                 <div>
-                                    <label><i className="far fa-address-book"></i>     Informe seu nome</label>
+                                    <label><i className="far fa-address-book"></i>     Edite seu nome</label>
                                     <input
                                         type="text"
-                                        onChange={this.atualizaState}
+                                        onChange={this.putSetStateUsuario}
                                         value={this.state.nome}
-                                        required
                                         className="input_box"
                                         name="nome"
-                                        placeholder="Digite seu nome" />
+                                        placeholder={this.state.putUsuario.nome}/>
                                 </div>
 
                                 <div>
-                                    <label><i className="far fa-address-book"></i>     Informe seu login</label>
+                                    <label><i className="far fa-address-book"></i>     Edite seu login</label>
                                     <input
                                         type="text"
+                                        onChange={this.putSetStateUsuario}
                                         value={this.state.loginUsuario}
-                                        onChange={this.atualizaState}
                                         className="input_box"
-                                        required
                                         name="loginUsuario"
-                                        placeholder="Digite seu login" />
+                                        placeholder={this.state.putUsuario.loginUsuario}/>
                                 </div>
                             </section>
 
                             <section className="usuario_row">
                                 <div>
-                                    <label><i className="fas fa-lock"></i>     Informe sua senha</label>
+                                    <label><i className="fas fa-lock"></i>     Edite sua senha</label>
                                     <input
                                         id="inputs1"
                                         type="password"
-                                        onChange={this.atualizaState}
                                         value={this.state.senha}
+                                        onChange={this.putSetStateUsuario}
                                         className="input_box"
-                                        required
                                         name="senha"
-                                        placeholder="Digite sua senha" />
+                                        placeholder="Digite sua senha"/>
                                 </div>
 
-                                <div>
-                                    <label><i className="fas fa-unlock-alt"></i>     Confirme sua senha</label>
-                                    <input
-                                        id="inputs2"
-                                        type="password"
-                                        
-                                        className="input_box"
-                                        name="confirmes"
-                                        placeholder="Confirme sua senha">
-                                    </input>
-                                </div>
+                                    <div>
+                                        <label><i className="fas fa-unlock-alt"></i>     Confirme sua senha</label>
+                                        <input
+                                            id="inputs2"
+                                            type="password"
+                                            className="input_box"
+                                            name="confirmes"
+                                            placeholder="Confirme sua senha">
+                                        </input>
+                                    </div>
                             </section>
 
 
                             <section className="usuario_row">
                                 <div>
-                                    <label><i className="far fa-address-card"></i>     Informe seu email</label>
+                                    <label><i className="far fa-address-card"></i>     Edite seu email</label>
                                     <input
                                         type="email"
+                                        onChange={this.putSetStateUsuario}
                                         value={this.state.email}
-                                        onChange={this.atualizaState}
                                         className="input_box"
-                                        required
                                         name="email"
-                                        placeholder="Digite seu email" />
+                                        placeholder={this.state.putUsuario.email}/>
                                 </div>
 
                                 <div>
-                                    <label><i className="far fa-address-book"></i>     Informe seu departamento</label>
+                                    <label><i className="far fa-address-book"></i>     Edite seu Departamento</label>
                                     <input
                                         type="text"
                                         value={this.state.departamento}
-                                        onChange={this.atualizaState}
+                                        onChange={this.putSetStateUsuario}
                                         className="input_box"
-                                        required
                                         name="departamento"
-                                        placeholder="Digite seu departamento" />
+                                        placeholder={this.state.putUsuario.departamento}/>
                                 </div>
                             </section>
 
@@ -149,7 +225,7 @@ class EditarPerfilUsuario extends Component {
                                     <input
                                         type="text"
                                         value={this.state.tipoUsuario}
-                                        onChange={this.atualizaState}
+                                        onChange={this.putSetStateUsuario}
                                         className="input_box"
                                         value="funcionario"
                                         name="tipoUsuario"
@@ -162,19 +238,13 @@ class EditarPerfilUsuario extends Component {
                                     <button type="submit" ><i className="far fa-arrow-alt-circle-up"></i> Solicitar cadastro</button>
                                 </div>
 
-                            </section>
-
-
-
+                                </section>
                         </section>
-
-                    </form>
+                        </form>
                 </main>
-
                 <Rodape />
             </div>
         )
     }
-
 }
 export default EditarPerfilUsuario;
