@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ImageUploader from 'react-images-upload';
 import CabecalhoUser from '../componentes/CabecalhoUser';
 import Rodape from '../componentes/Rodape';
 
@@ -7,24 +7,35 @@ import '../assets/css/padrao.css';
 import '../assets/css/alteraranuncio.css';
 
 class AlterarAnuncio extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             listaproduto: [],
             nomeProduto: '',
             descricao: '',
+            produtoSelecionado: {},
+            pictures: [],
 
             putAnuncio: {
                 listaAnuncio: [],
                 cadastrarPreco: '',
                 dataExpiracao: ''
             },
+            
 
             preco : '',
             data : '',
 
-            fileInput: React.createRef()
+            fileInput: React.createRef(),
         }
+        this.onDrop = this.onDrop.bind(this)
+
+    }
+    onDrop(picture) {
+        this.setState({
+        pictures: this.state.pictures.concat(picture),
+        });
     }
     cadastraAnuncio(idProduto){
         // e.preventDefault();
@@ -78,103 +89,116 @@ class AlterarAnuncio extends Component {
         return (
             <div>
                 {<CabecalhoUser />}
-
                 <main className="conteudo_cdu">
-                    <div className="titulo_cdu">
-                        <h1 className="h1_cdu">Alterar anúncio</h1>
-                        <hr className="linha_cadastrodeanuncio_cdu" />
+
+<div className="titulo_cdu">
+    <h1 className="h1_cdu">Alterar anúncio</h1>
+    <hr className="linha_cadastrodeanuncio_cdu" />
+</div>
+<section id="container_selecao_anuncio_cdu">
+
+    <section className="criar_anuncio_cdu">
+
+        <form action="#" method="POST" className="selecaodoanuncio_cdu1">
+            
+        <section className="sessao_produtos_cda">
+        <input type="text" alt="Selecione o produto" placeholder="Selecione o produto"
+                className="barraanuncio_cdu1" />
+                
+        {
+            this.state.listaproduto.map(produto => {
+                return (
+                    <div className="notebooksanuncio_cdu" key={produto.idProduto}
+                        onClick={e => {
+                            // this.cadastraAnuncio(produto.idProduto)
+                            console.log(produto) 
+                            this.setState({produtoSelecionado: produto})
+                            }}>
+                        <div className="imagem_notebook">
+                            <img src={require("../assets/img/Dell-Inspiron-I14-7472-A20G.png")} />
+                        </div>
+                        <p>{produto.nomeProduto}</p>
                     </div>
+                )
+            })
+        }
+        </section>
+        {/* </form> */}
 
-                    <section id="container_selecao_anuncio_cdu">
+        
+    {/* </section> */}
 
-                        <section className="criar_anuncio_cdu">
+    <section className="descricao_do_produto_cdu">
 
-                            <form class="selecaodoanuncio_cdu102">
-                                <input type="text" alt="Selecione o produto" placeholder="Selecione o produto"
-                                    className="barraanuncio_cdu1" />
-                            </form>
+        <section className="informacoes_do_produto_cdu_2">
 
-                            {
-                                this.state.listaproduto.map(produto => {
-                                    return (
-                                        <div className="notebooksanuncio_cdu" key={produto.idProduto}
-                                            onClick={e => this.cadastraAnuncio(produto.idProduto)}>
-                                            <div className="imagem_notebook">
-                                                <img src={require("../assets/img/Dell-Inspiron-I14-7472-A20G.png")} />
-                                            </div>
-                                            <p>{produto.nomeProduto}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </section>
+            <div className="amostra_do_produto_cdu">
+            <ImageUploader
+            withIcon={true}
+            buttonText='Adicionar imagem'
+            onChange={this.onDrop}
+            imgExtension={['.jpg', '.png']}
+            maxFileSize={5242880}
+            />
+            </div>
 
+                        <div className="amostra_descricao_cdu" >
+                            <p><span>Descrição do produto:</span></p>
+                            <h2>{this.state.produtoSelecionado.nomeProduto}</h2>
+                            <p>Número do modelo: {this.state.produtoSelecionado.modelo}</p>
+                            <p> {this.state.produtoSelecionado.descricao}</p>
+                            <p>Memória: {this.state.produtoSelecionado.memoria}</p> 
+                        </div>
 
+        </section>
+        <section className="formulario_anuncio_cdu">
 
-                        <section className="descricao_do_produto_cdu">
+            <div className="preco_expiracao_cdu">
+                {/* <form action="#" method="POST" className="selecaodoanuncio_cdu"> */}
+                    <div className="campos">
+                        <label for="campo_preco">Preço do equipamento:</label>
+                        <input onChange={this.atualizaState} 
+                        name="campo_preco" 
+                        type="text" 
+                        alt="Preço..." 
+                        placeholder="Preço do equipamento"
+                        className="barra_preco_expiracao_cdu" />
+                    </div>
+                {/* </form> */}
+            </div>
 
-                            <section className="informacoes_do_produto_cdu">
+            <div className="preco_expiracao_cdu">
+                <form action="#" method="POST" className="selecaodoanuncio_cdu">
+                    <div className="campos">
+                        <label for="campo_expiracao">Data de expiração do anúncio:</label>
+                        <input onChange={this.atualizaState} name="campo_expiracao" type="data" alt="Data de expiração"
+                            placeholder="Data de expiração" className="barra_preco_expiracao_cdu" />
+                    </div>
+                </form>
+            </div>
+            
 
-                                <div className="amostra_do_produto_cdu">
-                                    <img src={require("../assets/img/macp1.png")} />
-                                </div>
-
-                                <div className="amostra_descricao_cdu">
-                                    <p>Descrição do produto:</p>
-                                    <h2>Macbook pro</h2>
-                                    <p>MacBook Pro TouchBar 15 256gb 2018 - AAPL.</p>
-                                    <p> Tela de 15,4 polegadas (na diagonal) retroiluminada
-                            por LED com tecnologia IPS.</p>
-                                    <p>SSD de 256 GB.</p>
-                                </div>
-
-                            </section>
-                            <section className="formulario_anuncio_cdu_2">
-                                <form onSubmit={this.putAnuncio} action="#" method="POST" className="formAnuncio" >
-                                    <div className="anuncio_group selecaodoanuncio_cdu10">
-                                        <div className="preco_expiracao_cdu">
-                                            <div className="selecaodoanuncio_cdu">
-                                                <div className="campos">
-                                                    <label for="campo_preco">Preço do equipamento:</label>
-                                                    <input name="campo_preco" type="text" alt="Preço do equipamento" placeholder="Preço do equipamento"
-                                                        className="barra_preco_expiracao_cdu" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="preco_expiracao_cdu">
-
-                                            <div className="campos">
-                                                <label for="campo_expiracao">Data de expiração do anúncio:</label>
-                                                <input name="campo_expiracao" type="text" alt="Data de expiração"
-                                                    placeholder="Data de expiração" className="barra_preco_expiracao_cdu" />
-                                            </div>
-
-                                        </div>
-
-                                        <div className="informar_avaliacao">
-
-                                            <legend>Avaliação do equipamento:</legend>
-                                            <div className="tipos_avaliacao">
-                                                <div className="avaliacao_estrelas">
-                                                    <span className="fa fa-star checked"></span>
-                                                    <span className="fa fa-star checked"></span>
-                                                    <span className="fa fa-star checked"></span>
-                                                </div>
-                                                <div className="avaliacao_estrelas">
-                                                    <span className="fa fa-star checked"></span>
-                                                    <span className="fa fa-star checked"></span>
-                                                </div>
-                                                <div className="avaliacao_estrelas">
-                                                    <span className="fa fa-star checked"></span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {/* fim div tsuka */}
-
-                                    <div className="botoes">
+            <div className="informar_avaliacao">
+                {/* <form action="#" className="avaliacao"> */}
+                    <legend>Avaliação do equipamento:</legend>
+                    <div className="tipos_avaliacao">
+                        <div className="avaliacao_estrelas">
+                            <span className="fa fa-star checked"></span>
+                            <span className="fa fa-star checked"></span>
+                            <span className="fa fa-star checked"></span>
+                        </div>
+                        <div className="avaliacao_estrelas">
+                            <span className="fa fa-star checked"></span>
+                            <span className="fa fa-star checked"></span>
+                        </div>
+                        <div className="avaliacao_estrelas">
+                            <span className="fa fa-star checked"></span>
+                        </div>
+                    </div>
+                {/* </form> */}
+            </div>
+        </section>
+        <div className="botoes">
                                         <div className="botao_deletar_cdu2">
                                             <button className="botao_editar_cdu2">
                                                 <i className="far fa-trash-alt"></i>
@@ -188,15 +212,24 @@ class AlterarAnuncio extends Component {
                                                 <a href="./home">Editar anúncio</a>
                                             </button>
                                         </div>
-                                    </div>
-                                </form>
-                            </section>
-                        </section>
-                    </section>
-                </main>
+                                        </div>
+    </section>
+        </form>
+        </section>
+</section>
+
+</main>
                 {<Rodape />}
             </div>
         );
     }
 }
 export default AlterarAnuncio;
+
+
+
+
+
+
+
+

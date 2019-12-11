@@ -23,6 +23,8 @@
 #container_selecao_anuncio_cdu {
     display: flex;
     justify-content: space-evenly;
+    width: 46.5vw;
+    margin-top: 1vw;
 }
 
 
@@ -39,6 +41,7 @@
     display: flex;
     justify-content: center;
     margin-top: 0.5em;
+    width: 78vw;
 }
 
 .barraanuncio_cdu1 {
@@ -48,7 +51,7 @@
     border: none;
     border-bottom: solid 1.5px #000;
     font-size: 1em;
-    margin-left: -1.4vw;
+    margin-left: 1.6vw;
     
 }
 
@@ -62,6 +65,7 @@
     margin-top: 1em;
     align-items: center;
     justify-content: space-around;
+    margin-left: -3.9vw;
 }
 
 .notebooksanuncio_cdu .imagem_notebook {
@@ -82,6 +86,7 @@
 
 .notebooksanuncio_cdu {
     padding: 1em 1em;
+    width: 22vw;
 }
 
 .criar_anuncio_cdu hr {
@@ -96,13 +101,29 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-left: 8vw;
 }
 
 .informacoes_do_produto_cdu_2 {
     display: flex;
-    margin-top: 2.8vw;
+    margin-top: -0.3vw;
 }
 
+
+.input-wrapper label {
+    width: 8.5vw;
+    background-color: #fff;
+    /* border-radius: 5px; */
+    border-bottom: solid 2px var(--roxo);
+    color: var(--roxo);
+    margin: 10px;
+    padding: 6px 20px
+}
+
+.sessao_produtos_cda{
+    margin-left: 1vw;
+    width: -1.5vw;
+}
 
 .amostra_do_produto_cdu {
     border: solid 2px #531CB3;

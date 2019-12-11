@@ -84,11 +84,13 @@ form{
 
 .notebooksanuncio_cdu p {
     font-family: 'Opens Sans', sans-serif;
+    cursor: pointer;
 }
 
 .notebooksanuncio_cdu img {
     width: 100%;
     padding: 0.5em;
+    cursor: pointer;
 }
 
 .notebooksanuncio_cdu {
@@ -107,6 +109,7 @@ form{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-left: 9vw;
 }
 
 .informacoes_do_produto_cdu {
@@ -291,7 +294,7 @@ legend {
 .botoes{
     display: flex;
     align-content: space-between;
-    margin: 50px 27px 4.5vw 10vw;
+    margin: 18px 27px 6.5vw 10vw;
     justify-content: flex-end;
     
 }
@@ -350,6 +353,7 @@ legend {
     .notebooksanuncio_cdu img {
         width: 10vw;
         height: 8vh;
+        cursor: pointer;
     }
     .notebooksanuncio_cdu .imagem_notebook {
         width: 10vw;
@@ -487,9 +491,11 @@ legend {
     }
     .notebooksanuncio_cdu img {
         width: 20vw;
+        cursor: pointer;
     }
     .notebooksanuncio_cdu p {
         padding-right: 2em;
+        cursor: pointer;
     }
     .criar_anuncio_cdu hr {
         width: 63vw;
