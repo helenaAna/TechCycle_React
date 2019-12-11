@@ -8,24 +8,28 @@ class Descricao extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaAnuncios: [],
+            anuncio: [],
 
             idAnuncio : '',
-
-            idProduto: {
-                
-            }
         }
+        this.buscarAnuncio = this.buscarAnuncio.bind(this);
+    }
+
+    buscarAnuncio(){
+        fetch('http://localhost:5000/api/anuncio/' + this.props.location.state.idAnuncio)
+        .then(response => response.json())
+        .then(data =>{
+            this.setState({ anuncio : data })
+        }).catch((erro) => console.log(erro))
     }
 
     componentDidMount(){
-        this.setState({
-            idAnuncio : this.props.location.state.idAnuncio
-        })
+        this.buscarAnuncio();
     }
     
 
     render() { 
+        console.log(this.state.anuncio.idProduto)
         return (
             <div className="App">
                 <CabecalhoAdm />
@@ -33,85 +37,69 @@ class Descricao extends Component {
                     <section className="anuncio">
                         <section className="titulo_descricao">
                             <h1>Descrição do produto</h1>
-                            <hr />
+                            <hr/>
                         </section>
 
-                        <section className="produto_avaliacao">
-                            <section className="descricao">
-                                {/* AQUI */}
-                                <section className="anuncio_descritivo">
-                                    {/* AQUI */}
+                                {/* {
+                                    this.state.anuncio.map(function(anc){
+                                        return( */}
+                                <section className="produto_avaliacao">
+                                            <section className="descricao">
+                                                <section className="anuncio_descritivo">
+                                                    <section className="foto_principal">
+                                                        <img className="foto_exibicao" src={require('../assets/img/macp1.png')} alt="foto" />
+                                                        <hr />
+                                                        <section className="conteudo_descricao">
+                                                            <h3>{this.state.anuncio.idProdutoNavegation}</h3>
+                                                            <p>{this.state.anuncio.idProduto.descricao}</p>
+                                                            <h4>R$ {this.state.anuncio.preco},00</h4>
+                                                        </section>
+                                                    </section>
+                                                </section>
 
-                                    {/* <div className="fotos_lateral">
-                                    <div className="fotos_secundarias">
-                                        <img src={require('../assets/img/macp1.png')} alt="foto" />
-                                    </div>
-                                    <div className="fotos_secundarias central">
-                                        <img src={require('../assets/img/macp2.png')} alt="foto" />
-                                    </div>
-                                    <div className="fotos_secundarias">
-                                        <img src={require('../assets/img/macp3.png')} alt="foto" />
-                                    </div>
-                                </div> */}
+                                                <section className="anuncio_avaliacao"></section>
+                                                <section className="secao_avaliacao">
+                                                    <div className="box_classificacao">
+                                                        <h3>avaliação <i className="far fa-star"></i></h3>
 
+                                                        <section className="avaliacoes">
+                                                            <section className="quadro_avaliacao">
+                                                                <div className="box_avaliacao">
+                                                                    <p>bom</p>
+                                                                    <p><span className="fa fa-star checked"></span></p>
+                                                                </div>
+                                                                <p className="leve_descricao">Aparelho com leves sinais uso, e com um bom desempenho;</p>
+                                                            </section>
 
-                                    <section className="foto_principal">
-                                        <img class="foto_exibicao" src={require('../assets/img/macp1.png')} alt="foto" />
-                                        <hr />
-                                        <section className="conteudo_descricao">
-                                            <h3>Macbook pro</h3>
-                                            <p>MacBook Pro TouchBar 15 256gb 2018 - AAPL;
-                                                Tela de 15,4 polegadas (na diagonal) retroiluminada por LED com tecnologia IPS;
-                                            SSD de 256 GB;</p>
-                                            <h4>R$ 2 100,00</h4>
-                                        </section>
-                                    </section>
-                                </section>
+                                                            <section className="quadro_avaliacao">
+                                                                <div className="box_avaliacao">
+                                                                    <p>muito bom</p>
+                                                                    <p><span className="fa fa-star checked"></span><span className="fa fa-star checked"></span>
+                                                                    </p>
+                                                                </div>
+                                                                <p className="leve_descricao">Aparelho com alguns sinais uso, e com um bom desempenho;</p>
+                                                            </section>
 
-                                <section className="anuncio_avaliacao"></section>
-                                <section className="secao_avaliacao">
-                                    {/* AQUI */}
-
-                                    <div className="box_classificacao">
-                                        {/* AQUI */}
-                                        <h3>avaliação <i className="far fa-star"></i></h3>
-
-                                        <section className="avaliacoes">
-                                            <section className="quadro_avaliacao">
-                                                <div className="box_avaliacao">
-                                                    <p>bom</p>
-                                                    <p><span className="fa fa-star checked"></span></p>
-                                                </div>
-                                                <p className="leve_descricao">Aparelho com leves sinais uso, e com um bom desempenho;</p>
+                                                            <section className="quadro_avaliacao">
+                                                                <div className="box_avaliacao">
+                                                                    <p>ótimo</p>
+                                                                    <p><span className="fa fa-star checked"></span><span
+                                                                        className="fa fa-star checked"></span><span className="fa fa-star checked"></span></p>
+                                                                </div>
+                                                                <p className="leve_descricao">Aparelho com leves sinais uso, e com ótimo desempenho;</p>
+                                                            </section>
+                                                        </section>
+                                                    </div>
+                                                    <div className="btn_descricao">
+                                                        <a href="lista_interesses.html"><button><i className="fas fa-plus"></i> Adicionar a
+                                                        interessados</button></a>
+                                                    </div>
+                                                </section>
                                             </section>
-
-                                            <section className="quadro_avaliacao">
-                                                <div className="box_avaliacao">
-                                                    <p>muito bom</p>
-                                                    <p><span className="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-                                                    </p>
-                                                </div>
-                                                <p className="leve_descricao">Aparelho com alguns sinais uso, e com um bom desempenho;</p>
-                                            </section>
-
-                                            <section className="quadro_avaliacao">
-                                                <div className="box_avaliacao">
-                                                    <p>ótimo</p>
-                                                    <p><span className="fa fa-star checked"></span><span
-                                                        class="fa fa-star checked"></span><span class="fa fa-star checked"></span></p>
-                                                </div>
-                                                <p className="leve_descricao">Aparelho com leves sinais uso, e com ótimo desempenho;</p>
-                                            </section>
-                                        </section>
-                                    </div>
-                                    <div className="btn_descricao">
-                                        <a href="lista_interesses.html"><button><i className="fas fa-plus"></i> Adicionar a
-                            interessados</button></a>
-                                    </div>
-                                </section>
-                            </section>
-
                         </section>
+                                        {/* )
+                                    })
+                                } */}
 
                         <section className="titulo_comentarios">
                             <hr />
@@ -133,18 +121,14 @@ class Descricao extends Component {
                             </section>
                             <section className="comentar_anuncio">
                                 <div className="comentar">
-                                    <form action="#" class="comentar_anuncio">
+                                    <form action="#" className="comentar_anuncio">
                                         <i className="far fa-file-alt"></i>
-                                        {/*
-                            <!-- <input type="textarea" name="comentario" placeholder="adicionar comentário" rows="10"> -->
-                            */}
                                         <textarea name="comentario" placeholder="adicionar comentario" id="comentario" cols="30"
                                             rows="10"></textarea>
                                     </form>
                                 </div>
                                 <button className="adicionar_comentario">
                                     <i className="far fa-comment"></i> Adicionar comentário...
-
                                 </button>
                             </section>
                         </section>

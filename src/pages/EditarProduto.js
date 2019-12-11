@@ -7,13 +7,20 @@ import '../assets/css/padrao.css';
 import '../assets/css/cadastroproduto.css';
 
 
+
+
 class EditarProduto extends Component
 { 
     constructor(props){
     super(props);
     this.state = {
-            deleteProduto:{
-                listaProduto: [],
+            idProduto:{
+            },
+            idMarca: {
+            },
+            produto : [],
+            marca : [],
+            editaProduto: {
                 idProduto: '',
                 nomeProduto: '',
                 modelo: '',
@@ -26,45 +33,68 @@ class EditarProduto extends Component
         }
     }
 
-    alterarProduto = (produto) =>
+    alteraProduto = (e) =>
     {
         this.setState({
-            idProduto: produto.idProduto,
-            nomeProduto: produto.nomeProduto,
-            modelo: produto.modelo,
-            marca: produto.marca,
-            processador: produto.processador,
-            dataLancamento: produto.dataLancamento,
-            codIdentificacao: produto.codIdentificacao,
-            descricao: produto.descricao
-        })
-    }
-    salvarAlteracao = (event) =>
-    {
-        event.preventDefault();
-
-        fetch('http://localhost:5000/api/produto'+this.state.deleteProduto.idProduto,
-        {
-            method : "PUT",
-            body: JSON.stringify(this.state.deleteProduto.idProduto),
-            headers: {
-                "Content-Type" : "application/json" 
+            editaProduto:{
+                idProduto: e.idProduto,
+                nomeProduto: e.nomeProduto,
+                modelo: e.modelo,
+                marca: e.marca,
+                processador: e.processador,
+                dataLancamento: e.dataLancamento,
+                codIdentificacao: e.codIdentificacao,
+                descricao: e.descricao
             }
         })
     }
+
+ 
+
+   
 
     atualizaState = (input) => {
 
         this.setState({
-            deleteProduto: {
-                ...this.state.deleteProduto,
+            alteraProduto: {
+                ...this.props.alteraProduto,
                 [input.target.name]: input.target.value
             }
         })
     }
+
     
+    buscaProduto(){
+        console.log(this.state.idProduto)
+        fetch('http://localhost:5000/api/produto/' + this.props.location.state.idProduto)
+        .then(resposta => resposta.json())
+        .then(data => this.setState({ produto : data}))
+        .catch(erro => console.log(erro))
+    }
+    buscarMarca() {
+        fetch('http://localhost:5000/api/marca'+ this.props.location.state.idMarca)
+            .then(resposta => resposta.json())
+            .then(data => {
+                this.setState({ marca: data });
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
+    }
+    componentDidMount(){
+        this.buscaProduto()
+        this.setState({
+            idProduto : this.props.location.state.idProduto,
+        })
+        this.buscarMarca()
+        this.setState({
+            idMarca : this.props.location.state.idMarca,
+        })
+    }
 
     render(){
+        console.log(this.state.idProduto + " certinhooooo")
+        console.log(this.state.produto)
         return(
             <div>
                 <CabecalhoAdm/>
@@ -82,23 +112,23 @@ class EditarProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="nome"><i className="fas fa-desktop"></i>Nome do equipamento</label>
+                                <label for="nome"><i className="fas fa-desktop"></i>Nome do equipamento: </label>
                                 <input
                                 type="text" 
                                 id="input_box" 
                                 name="nomeProduto" 
-                                placeholder="Nome..."
+                                placeholder={this.state.produto.nomeProduto}
                                 
                                 />
                                
                             </div>
                             <div>
-                                <label for="sobrenome"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
+                                <label for="modelo"><i className="far fa-keyboard"></i> Modelo do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
                                 name="modelo" 
-                                placeholder="Modelo..."
+                                placeholder={this.state.produto.modelo}
                                 
                                 />
                                 
@@ -107,23 +137,23 @@ class EditarProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="usuario"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
+                                <label for="marca"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
                                 name="marca" 
-                                placeholder="Fabricante..."
+                                placeholder={this.state.produto.marca}
                                 
                                 />
                                  
                             </div>
                             <div>
-                                <label for="procecssador"><i className="fas fa-gopuram"></i>Processador</label>
+                                <label for="processador"><i className="fas fa-gopuram"></i>Processador</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
                                 name="processador" 
-                                placeholder="Precessador..."
+                                placeholder={this.state.produto.processador}
                                 
                                 />
                                 
@@ -132,24 +162,24 @@ class EditarProduto extends Component
 
                         <section className="row_cad_produto">
                             <div>
-                                <label for="lancamento"><i className="far fa-calendar-alt"></i> Data de lançamento</label>
+                                <label for="dataLancamento"><i className="far fa-calendar-alt"></i> Data de lançamento</label>
                                 <input 
                                 type="date" 
                                 id="input_box" 
                                 name="dataLancamento" 
-                                placeholder="Data de lançamento..."
+                                placeholder={this.state.produto.dataLancamento}
                                 
                                 />
                                 
 
                             </div>
                             <div>
-                                <label for="codigoIdentificacao"><i className="fas fa-qrcode"></i> Codigo de identificação</label>
+                                <label for="codIdentificacao"><i className="fas fa-qrcode"></i> Codigo de identificação</label>
                                 <input 
                                 type="text" 
                                 id="input_box" 
                                 name="codIdentificacao" 
-                                placeholder="Identificação..."
+                                placeholder={this.state.produto.codIdentificacao}
                                 
                                 />
                                 
@@ -161,7 +191,7 @@ class EditarProduto extends Component
                         name="descricao" 
                         cols="30" 
                         rows="10"
-                        placeholder="Descrição..."
+                        placeholder={this.state.produto.descricao}
                        
                         />
                         </section>

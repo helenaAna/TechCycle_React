@@ -68,11 +68,7 @@ class CadastroUsuario extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    // handleImageChange = (e) => {
-    //     this.setState({
-    //         foto: e.target.files[0]
-    //     })
-    // }
+
 
     render() {
         return (

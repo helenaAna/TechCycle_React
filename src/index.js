@@ -45,11 +45,13 @@ const PermissaoAdm = ({component : Component}) => (
             )}/>
 )
 
+
+
 const Rotas = (
     <Router>
         <div>
         <Switch>
-            <PermissaoAdm path="/paineladm" component={PainelAdm}/>
+            <Route path="/paineladm" component={PainelAdm}/>
             <Route exact path="/home" component={Home}/> 
             <Route path="/login" component={Login}/>  
             <Route path="/sobrenos" component={SobreNos}/>

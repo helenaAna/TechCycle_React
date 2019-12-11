@@ -57,6 +57,7 @@
 .home_linhaCard{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     width: 85vw;
 }
 
