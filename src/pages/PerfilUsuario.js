@@ -43,7 +43,7 @@ class PerfilUsuario extends Component {
                     <section className="conteudo_pu">
                         <div className="coluna_pu_imagem">
                             <div className="secao_imagem_pu">
-                                <img src={require("../assets/img/camera.svg")} />
+                                <img src={"http://localhost:5000/Resources/Usuario/" + this.state.usuario.foto} />
                             </div>
 
                         </div>
