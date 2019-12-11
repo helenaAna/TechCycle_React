@@ -20,11 +20,12 @@ class EditarProduto extends Component
             },
             produto : [],
             marca : [],
+            listamarca: [],
             editaProduto: {
                 idProduto: '',
                 nomeProduto: '',
                 modelo: '',
-                marca:'',
+                // marca:'',
                 processador:'',
                 dataLancamento:'',
                 codIdentificacao:'',
@@ -32,69 +33,88 @@ class EditarProduto extends Component
             }
         }
     }
-
-    alteraProduto = (e) =>
-    {
-        this.setState({
-            editaProduto:{
-                idProduto: e.idProduto,
-                nomeProduto: e.nomeProduto,
-                modelo: e.modelo,
-                marca: e.marca,
-                processador: e.processador,
-                dataLancamento: e.dataLancamento,
-                codIdentificacao: e.codIdentificacao,
-                descricao: e.descricao
-            }
-        })
+    
+    buscaProduto(){
+        console.log(this.props.location.state.idProduto)
+        fetch('http://localhost:5000/api/produto/' + this.props.location.state.idProduto)
+        .then(resposta => resposta.json())
+        .then(data => this.setState({ produto : data}))
+        .catch(erro => console.log(erro))
     }
 
- 
+    buscarMarca() {
+        fetch('http://localhost:5000/api/marca')
+            .then(resposta => resposta.json())
+            .then(data => {
+                this.setState({ listamarca: data });
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
+    }
+    alteraProduto = (event) =>
+    {
+        event.preventDefault();
 
-   
+        this.setState({
+            editaProduto:{
+                // idProduto: event.target.idProduto.value,
+                nomeProduto: event.target.nomeProduto.value,
+                modelo: event.target.modelo.value,
+                marca: event.target.marca.value,
+                processador: event.target.processador.value,
+                dataLancamento: event.target.dataLancamento.value,
+                codIdentificacao: event.target.codIdentificacao.value,
+                descricao: event.target.descricao.value
+            }
+        })
+        this.salvaAlteracoes()
+    }
+    salvaAlteracoes = () =>
+    {
+        // event.preventDefault();
+        fetch("http://localhost:5000/api/produto/"+ this.state.produto.idProduto,
+        {
+            method : "PUT",
+            body: JSON.stringify(this.state.editaProduto),
+            headers : {
+              "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(
+          setTimeout(() => {
+            this.buscaProduto()
+          }, 2000)
+        )
+        .catch(error => console.log(error))
+    }
 
     atualizaState = (input) => {
 
         this.setState({
-            alteraProduto: {
-                ...this.props.alteraProduto,
+            editaProduto : {
+                ...this.state.editaProduto.idProduto,
                 [input.target.name]: input.target.value
             }
         })
     }
 
     
-    buscaProduto(){
-        console.log(this.state.idProduto)
-        fetch('http://localhost:5000/api/produto/' + this.props.location.state.idProduto)
-        .then(resposta => resposta.json())
-        .then(data => this.setState({ produto : data}))
-        .catch(erro => console.log(erro))
-    }
-    buscarMarca() {
-        fetch('http://localhost:5000/api/marca'+ this.props.location.state.idMarca)
-            .then(resposta => resposta.json())
-            .then(data => {
-                this.setState({ marca: data });
-            })
-            .catch((erro) => {
-                console.log(erro);
-            })
-    }
     componentDidMount(){
         this.buscaProduto()
-        this.setState({
-            idProduto : this.props.location.state.idProduto,
-        })
+        // this.setState({
+        //     idProduto : this.props.location.state.idProduto,
+        // })
         this.buscarMarca()
         this.setState({
             idMarca : this.props.location.state.idMarca,
         })
+        
     }
 
     render(){
-        console.log(this.state.idProduto + " certinhooooo")
-        console.log(this.state.produto)
+        
         return(
             <div>
                 <CabecalhoAdm/>
@@ -106,7 +126,7 @@ class EditarProduto extends Component
         <div className="container_cad_produto">
             
             <section className="form_cadastro">
-                <form  className="formulario">
+                <form  onSubmit={this.alteraProduto} className="formulario">
 
                     <section className="container_form_cad_produto">
 
@@ -117,8 +137,9 @@ class EditarProduto extends Component
                                 type="text" 
                                 id="input_box" 
                                 name="nomeProduto" 
+                                value={this.state.editaProduto.nomeProduto}
                                 placeholder={this.state.produto.nomeProduto}
-                                
+                                onChange={this.atualizaState.bind(this)}
                                 />
                                
                             </div>
@@ -129,7 +150,8 @@ class EditarProduto extends Component
                                 id="input_box" 
                                 name="modelo" 
                                 placeholder={this.state.produto.modelo}
-                                
+                                value={this.state.editaProduto.modelo}
+                                onChange={this.atualizaState.bind(this)}
                                 />
                                 
                             </div>
@@ -138,14 +160,18 @@ class EditarProduto extends Component
                         <section className="row_cad_produto">
                             <div>
                                 <label for="marca"><i className="fas fa-industry"></i> Fabricante do equipamento</label>
-                                <input 
-                                type="text" 
-                                id="input_box" 
+                                <select
                                 name="marca" 
-                                placeholder={this.state.produto.marca}
-                                
-                                />
-                                 
+                                value={this.state.produto.marca}
+                                onChange={this.atualizaState.bind(this)}
+                                >
+                                <option value="">Selecione uma marca</option>
+                                {
+                                    this.state.listamarca.map(function(marca){
+                                        return <option key={marca.idMarca} value={marca.idMarca}>{marca.nomeMarca}</option>
+                                    })
+                                }   
+                                </select>
                             </div>
                             <div>
                                 <label for="processador"><i className="fas fa-gopuram"></i>Processador</label>
@@ -154,7 +180,8 @@ class EditarProduto extends Component
                                 id="input_box" 
                                 name="processador" 
                                 placeholder={this.state.produto.processador}
-                                
+                                value={this.state.editaProduto.processador}
+                                onChange={this.atualizaState.bind(this)}
                                 />
                                 
                             </div>
@@ -168,7 +195,8 @@ class EditarProduto extends Component
                                 id="input_box" 
                                 name="dataLancamento" 
                                 placeholder={this.state.produto.dataLancamento}
-                                
+                                value={this.state.editaProduto.dataLancamento}
+                                onChange={this.atualizaState.bind(this)}
                                 />
                                 
 
@@ -180,7 +208,8 @@ class EditarProduto extends Component
                                 id="input_box" 
                                 name="codIdentificacao" 
                                 placeholder={this.state.produto.codIdentificacao}
-                                
+                                value={this.state.editaProduto.codIdentificacao}
+                                onChange={this.atualizaState.bind(this)}
                                 />
                                 
                             </div>
@@ -192,7 +221,8 @@ class EditarProduto extends Component
                         cols="30" 
                         rows="10"
                         placeholder={this.state.produto.descricao}
-                       
+                        // value={this.editaProduto.descricao}
+                        onChange={this.atualizaState.bind(this)}
                         />
                         </section>
 
