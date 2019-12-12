@@ -25,7 +25,7 @@ class EditarProduto extends Component
                 idProduto: '',
                 nomeProduto: '',
                 modelo: '',
-                // marca:'',
+                marca:'',
                 processador:'',
                 dataLancamento:'',
                 codIdentificacao:'',
@@ -58,7 +58,7 @@ class EditarProduto extends Component
 
         this.setState({
             editaProduto:{
-                // idProduto: event.target.idProduto.value,
+                idProduto: event.target.idProduto,
                 nomeProduto: event.target.nomeProduto.value,
                 modelo: event.target.modelo.value,
                 marca: event.target.marca.value,
@@ -216,12 +216,13 @@ class EditarProduto extends Component
                         </section>
                         <section className="descricao_cad_produto">
                         <label for="descricao"><i className="fas fa-desktop"></i>Descrição do equipamento</label>
+                        
                         <textarea 
                         name="descricao" 
                         cols="30" 
                         rows="10"
                         placeholder={this.state.produto.descricao}
-                        // value={this.editaProduto.descricao}
+                        value={this.state.editaProduto.descricao}
                         onChange={this.atualizaState.bind(this)}
                         />
                         </section>

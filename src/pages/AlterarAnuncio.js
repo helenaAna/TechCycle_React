@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImageUploader from 'react-images-upload';
+// import ImageUploader from 'react-images-upload';
 import CabecalhoUser from '../componentes/CabecalhoUser';
 import Rodape from '../componentes/Rodape';
 
@@ -133,13 +133,13 @@ class AlterarAnuncio extends Component {
         <section className="informacoes_do_produto_cdu_2">
 
             <div className="amostra_do_produto_cdu">
-            <ImageUploader
+            {/* <ImageUploader
             withIcon={true}
             buttonText='Adicionar imagem'
             onChange={this.onDrop}
             imgExtension={['.jpg', '.png']}
             maxFileSize={5242880}
-            />
+            /> */}
             </div>
 
                         <div className="amostra_descricao_cdu" >

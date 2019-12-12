@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImageUploader from 'react-images-upload';
+// import ImageUploader from 'react-images-upload';
 import CabecalhoUser from '../componentes/CabecalhoUser';
 import Rodape from '../componentes/Rodape';
 
@@ -134,14 +134,14 @@ class CadastroAnuncio extends Component {
 
                                         <div className="amostra_do_produto_cdu">
 
-                                            <ImageUploader
+                                            {/* <ImageUploader
                                                 withPreview={true}
                                                 withIcon={true}
                                                 buttonText='Adicionar imagem'
                                                 onChange={this.onDrop}
                                                 imgExtension={['.jpg', '.png']}
                                                 maxFileSize={5242880}
-                                            />
+                                            /> */}
 
                                         </div>
 
