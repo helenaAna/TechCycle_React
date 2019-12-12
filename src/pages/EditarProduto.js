@@ -103,9 +103,6 @@ class EditarProduto extends Component
     
     componentDidMount(){
         this.buscaProduto()
-        // this.setState({
-        //     idProduto : this.props.location.state.idProduto,
-        // })
         this.buscarMarca()
         this.setState({
             idMarca : this.props.location.state.idMarca,
@@ -216,7 +213,7 @@ class EditarProduto extends Component
                         </section>
                         <section className="descricao_cad_produto">
                         <label for="descricao"><i className="fas fa-desktop"></i>Descrição do equipamento</label>
-                        
+
                         <textarea 
                         name="descricao" 
                         cols="30" 
