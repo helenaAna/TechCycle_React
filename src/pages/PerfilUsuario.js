@@ -27,6 +27,7 @@ class PerfilUsuario extends Component {
             .then(resposta => resposta.json())
             .then(data => this.setState({ usuario: data }))
             .catch(erro => console.log(erro))
+            console.log(this.state.idUsuario)
     }
 
     componentDidMount() {

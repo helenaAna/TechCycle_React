@@ -3,11 +3,13 @@ import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 import '../assets/css/home.css';
 import {Link} from 'react-router-dom'
+import { parseJwt } from '../services/auth';
 
 class Home extends Component{
     constructor(props){
       super(props);
       this.state = {
+        idUser : parseJwt().IdUsuario,
         listaAnuncios : [],
         listaComFiltro : [],
         idAnuncio : '',
@@ -72,6 +74,18 @@ class Home extends Component{
       .then(data =>{
         this.setState({ listaAnuncios : data, listaComFiltro : data})
       }).catch((erro) => console.log(erro))
+    }
+
+    cadastrarInteresse(idClicado){
+      
+      fetch('http://localhost:5000/api/interesse',{ // aqui
+        method : 'POST',
+        body : JSON.stringify({
+        idAnuncio : idClicado,
+        idUsuario : parseInt(this.state.idUser),
+        aprovado : 'agd'
+        })
+      })
     }
 
     passarAnuncio(event){
@@ -145,6 +159,7 @@ class Home extends Component{
                           <label htmlfor="notebook">Notebook</label>
                       </div>
                   </div> */}
+
                 </form>
               </div>
           </div>
@@ -174,7 +189,7 @@ class Home extends Component{
                                                                 pathname: '/descricao',
                                                                 state: {idAnuncio: anuncio.idAnuncio  }
                                                                 }}>Detalhes</Link></button>
-                          <div className="home_coracao"><i className="far fa-heart"></i></div>
+                          <div className="home_coracao"><i className="far fa-heart" onClick={e => {this.cadastrarInteresse(anuncio.idAnuncio)}}></i></div>
                       </div>
                   </div>          
                 )
