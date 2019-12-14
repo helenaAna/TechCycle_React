@@ -76,16 +76,26 @@ class Home extends Component{
       }).catch((erro) => console.log(erro))
     }
 
-    cadastrarInteresse(idClicado){
-      
-      fetch('http://localhost:5000/api/interesse',{ // aqui
-        method : 'POST',
-        body : JSON.stringify({
-        idAnuncio : idClicado,
-        idUsuario : parseInt(this.state.idUser),
-        aprovado : 'agd'
+    cadastrarInteresse(){
+      let interesse = {
+          idUsuario : parseInt(this.state.idUsuario),
+          idAnuncio : this.state.idAnuncio,
+          aprovado : 'agd'
+      }
+
+      fetch('http://localhost:5000/api/interesse',{
+          method : 'POST',
+          body : JSON.stringify(interesse) ,           
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          }
         })
-      })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => console.log('Não foi possível cadastrar:' + error)) 
     }
 
     passarAnuncio(event){
@@ -189,7 +199,7 @@ class Home extends Component{
                                                                 pathname: '/descricao',
                                                                 state: {idAnuncio: anuncio.idAnuncio  }
                                                                 }}>Detalhes</Link></button>
-                          <div className="home_coracao"><i className="far fa-heart" onClick={e => {this.cadastrarInteresse(anuncio.idAnuncio)}}></i></div>
+                          <div className="home_coracao"><i className="far fa-heart" onClick={e => {this.cadastrarInteresse()}}></i></div>
                       </div>
                   </div>          
                 )
