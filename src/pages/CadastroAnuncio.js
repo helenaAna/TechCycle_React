@@ -7,6 +7,7 @@ import '../assets/css/padrao.css';
 import '../assets/css/cadastroanuncio.css';
 
 class CadastroAnuncio extends Component {
+    
 
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class CadastroAnuncio extends Component {
             descricao: '',
             produtoSelecionado: {},
             pictures: [],
+            active: false,
 
             postAnuncio: {
                 listaAnuncio: [],
@@ -27,9 +29,14 @@ class CadastroAnuncio extends Component {
             fileInput: React.createRef()
 
         }
-        this.onDrop = this.onDrop.bind(this)
 
     }
+
+    toggleClass() {
+        const currentState = this.state.active;
+        this.setState({ active: !currentState });
+    };
+
     onDrop(picture) {
         this.setState({
             pictures: this.state.pictures.concat(picture),
@@ -84,6 +91,7 @@ class CadastroAnuncio extends Component {
     }
 
     render() {
+        
         return (
             <div>
                 <CabecalhoUser />
@@ -114,37 +122,35 @@ class CadastroAnuncio extends Component {
                                                         console.log(produto)
                                                         this.setState({ produtoSelecionado: produto })
                                                     }}>
-                                                    <div className="imagem_notebook">
-                                                        <img src={require("../assets/img/Dell-Inspiron-I14-7472-A20G.png")} />
-                                                    </div>
+                                                    
                                                     <p>{produto.nomeProduto}</p>
                                                 </div>
                                             )
                                         })
                                     }
                                 </section>
-                                {/* </form> */}
-
-
-                                {/* </section> */}
 
                                 <section className="descricao_do_produto_cdu">
 
                                     <section className="informacoes_do_produto_cdu_2">
 
-                                        <div className="amostra_do_produto_cdu">
+                                        <div className="amostra_do_produto_cdu1">
 
-                                            <ImageUploader
-                                                withPreview={true}
-                                                withIcon={true}
-                                                buttonText='Adicionar imagem'
-                                                onChange={this.onDrop}
-                                                imgExtension={['.jpg', '.png']}
-                                                maxFileSize={5242880}
-                                            />
+                                        <div className="usuario_secao_imagem_cad1">
+                                <img clasName="imgcda123" src={require("../assets/img/camera.svg")} />
+                            </div>
 
-                                        </div>
 
+                            <div class='input-wrapper'>
+                                <label for='input-file'> <i class="fas fa-upload"></i>     Selecionar um arquivo</label>
+                                <input id='input-file' type='file'
+                                    arial-label="coloque sua foto"
+                                    ref={this.state.foto}
+                                />
+                                <span id='file-name'></span>
+                            </div>
+
+                                        </div> 
                                         <div className="amostra_descricao_cdu" >
                                             <p><span>Descrição do produto:</span></p>
                                             <h2>{this.state.produtoSelecionado.nomeProduto}</h2>
@@ -184,6 +190,7 @@ class CadastroAnuncio extends Component {
                                             {/* <form action="#" className="avaliacao"> */}
                                             <legend>Avaliação do equipamento:</legend>
                                             <div className="tipos_avaliacao">
+                                                
                                                 <div className="avaliacao_estrelas">
                                                     <span className="fa fa-star checked"></span>
                                                     <span className="fa fa-star checked"></span>
@@ -218,6 +225,7 @@ class CadastroAnuncio extends Component {
                 </main>
                 <Rodape />
             </div>
+            
         );
     }
 }

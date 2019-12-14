@@ -123,24 +123,32 @@ class AlterarAnuncio extends Component {
             })
         }
         </section>
-        {/* </form> */}
 
-        
-    {/* </section> */}
 
-    <section className="descricao_do_produto_cdu">
 
-        <section className="informacoes_do_produto_cdu_2">
 
-            <div className="amostra_do_produto_cdu">
-            <ImageUploader
-            withIcon={true}
-            buttonText='Adicionar imagem'
-            onChange={this.onDrop}
-            imgExtension={['.jpg', '.png']}
-            maxFileSize={5242880}
-            />
-            </div>
+<section className="descricao_do_produto_cdu1">
+
+<section className="informacoes_do_produto_cdu_2">
+
+    <div className="amostra_do_produto_cdu1">
+
+    <div className="usuario_secao_imagem_cad1">
+<img clasName="imgcda123" src={require("../assets/img/camera.svg")} />
+</div>
+
+
+<div class='input-wrapper'>
+<label for='input-file'> <i class="fas fa-upload"></i>     Selecionar um arquivo</label>
+<input id='input-file' type='file'
+arial-label="coloque sua foto"
+ref={this.state.foto}
+/>
+<span id='file-name'></span>
+</div>
+</div> 
+
+
 
                         <div className="amostra_descricao_cdu" >
                             <p><span>Descrição do produto:</span></p>
@@ -149,8 +157,8 @@ class AlterarAnuncio extends Component {
                             <p> {this.state.produtoSelecionado.descricao}</p>
                             <p>Memória: {this.state.produtoSelecionado.memoria}</p> 
                         </div>
-
         </section>
+        
         <section className="formulario_anuncio_cdu">
 
             <div className="preco_expiracao_cdu">
@@ -179,10 +187,9 @@ class AlterarAnuncio extends Component {
             
 
             <div className="informar_avaliacao">
-                {/* <form action="#" className="avaliacao"> */}
                     <legend>Avaliação do equipamento:</legend>
                     <div className="tipos_avaliacao">
-                        <div className="avaliacao_estrelas">
+                        <div className="avaliacao_estrelas rating_select">
                             <span className="fa fa-star checked"></span>
                             <span className="fa fa-star checked"></span>
                             <span className="fa fa-star checked"></span>
@@ -195,7 +202,6 @@ class AlterarAnuncio extends Component {
                             <span className="fa fa-star checked"></span>
                         </div>
                     </div>
-                {/* </form> */}
             </div>
         </section>
         <div className="botoes">
@@ -225,11 +231,3 @@ class AlterarAnuncio extends Component {
     }
 }
 export default AlterarAnuncio;
-
-
-
-
-
-
-
-
