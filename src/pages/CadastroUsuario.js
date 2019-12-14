@@ -10,7 +10,6 @@ class CadastroUsuario extends Component {
 
             // Listar - Get
             listarUsu: [],
-            senha2: '',
             // Post
             postUsuario: {
                 ListaUsuario: [],
@@ -39,6 +38,9 @@ class CadastroUsuario extends Component {
         usuario.set("foto", this.state.foto.current.files[0]);
         usuario.set("departamento", this.state.cadastroUsuario.departamento);
         usuario.set("tipoUsuario", this.state.cadastroUsuario.tipoUsuario)
+
+        if(this.state.foto == undefined)
+            this.state.foto = "sem foto";
 
         fetch('http://localhost:5000/api/usuario', {
             method: "POST",
@@ -143,7 +145,7 @@ class CadastroUsuario extends Component {
                                         name="senha"
                                         placeholder="Digite sua senha" />
                                 </div>
-
+{/* 
                                 <div>
                                     <label><i className="fas fa-unlock-alt"></i>     Confirme sua senha</label>
                                     <input
@@ -155,7 +157,7 @@ class CadastroUsuario extends Component {
                                         className="input_box"
                                         placeholder="Confirme sua senha">
                                     </input>
-                                </div>
+                                </div> */}
                             </section>
 
 
@@ -193,7 +195,7 @@ class CadastroUsuario extends Component {
                                         value={this.state.tipoUsuario}
                                         onChange={this.atualizaState}
                                         className="input_box"
-                                        value={this.state.tipoUsuario}
+                                        value={this.state.postUsuario.tipoUsuario}
                                         name="tipoUsuario"
                                         placeholder="Digite seu tipo de usuário" />
                                 </div>

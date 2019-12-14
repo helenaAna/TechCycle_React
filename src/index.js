@@ -23,6 +23,7 @@ import ListaInteresse from './pages/ListaInteresse';
 import ListaProduto from './pages/ListaProduto';
 import PerfilUsuario from './pages/PerfilUsuario';
 import CadastroProduto from './pages/CadastroProduto';
+import ListaUsuario from './pages/ListaUsuario';
 
 // const PermissaoLogar = ({component : Component}) => (
 //     <Route
@@ -61,6 +62,7 @@ const Rotas = (
             <Route path="/descricao" component={Descricao}/>
             <Route path="/editarperfil" component={EditarPerfilUsuario}/>
             <Route path="/editarproduto" component={EditarProduto}/>
+            <Route path="/listausuario" component={ListaUsuario}/>
             <Route path="/listainteresse" component={ListaInteresse}/>
             <Route path="/listaproduto" component={ListaProduto}/>
             <Route path="/perfilusuario" component={PerfilUsuario}/>

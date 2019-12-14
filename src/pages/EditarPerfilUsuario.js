@@ -64,10 +64,9 @@ class EditarPerfilUsuario extends Component {
         }
         })
     }
-
     putAltUsuario = (e) => {
     e.preventDefault();
-        let idUserr = this.state.updateUsuario.idUser;
+        // let idUser = this.state.updateUsuario.idUser.IdUsuario;
     
         let usuarioForm = new FormData();
 
@@ -79,10 +78,9 @@ class EditarPerfilUsuario extends Component {
         usuarioForm.set('departamento', this.state.updateUsuario.departamento); 
         usuarioForm.set('foto', this.state.updateUsuario.foto.current.files[0], this.state.updateUsuario.foto.value);
 
-        console.log('formUsu:',this.state.updateUsuario.foto);
-        // console.log(this.state.foto)
 
-        apiForm.put("/usuario/"+ idUserr , usuarioForm)
+
+        apiForm.put("/Usuario/"+ this.state.updateUsuario.idUser, usuarioForm)
         .then(response => {
             if (response.status === 200){
                 this.setState({updateUsuario : response.data})
@@ -100,10 +98,6 @@ class EditarPerfilUsuario extends Component {
         .catch(error => console.log("error:", error))
     }
 
-    putGeral = (e) => {
-        e.preventDefault();
-        this.putAltUsuario();
-    }
 
 
    render() {
@@ -120,8 +114,8 @@ class EditarPerfilUsuario extends Component {
                         <section className="coluna_cad_usu_1">
 
                             <div className="usuario_secao_imagem_cad">
-                            <img src={require("../assets/img/camera.svg")} />
-                                {/* <img src={"http://localhost:5000/Resources/Usuario/" + this.state.putUsuario.foto} /> */}
+                            {/* <img src={require("../assets/img/camera.svg")} /> */}
+                                <img src={"http://localhost:5000/Resources/Usuario/" + this.state.putUsuario.foto} />
                             </div>
 
 
@@ -136,6 +130,7 @@ class EditarPerfilUsuario extends Component {
                                 onChange = {this.putSetStateImg}
                                 ref={this.state.updateUsuario.foto}
                                 />
+                                
                                 <span id='file-name'></span>
                             </div>
 
@@ -156,7 +151,7 @@ class EditarPerfilUsuario extends Component {
                                         name="nome"
                                         placeholder={this.state.putUsuario.nome}/>
                                 </div>
-
+                                
                                 <div>
                                     <label><i className="far fa-address-book"></i>     Edite seu login</label>
                                     <input
@@ -167,6 +162,7 @@ class EditarPerfilUsuario extends Component {
                                         name="loginUsuario"
                                         placeholder={this.state.putUsuario.loginUsuario}/>
                                 </div>
+
                             </section>
 
                             <section className="usuario_row">
