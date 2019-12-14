@@ -22,7 +22,7 @@ class EditarProduto extends Component
             marca : [],
             listamarca: [],
             editaProduto: {
-                idProduto: '',
+                IdProduto: '',
                 nomeProduto: '',
                 modelo: '',
                 marca:'',
@@ -56,18 +56,18 @@ class EditarProduto extends Component
     {
         event.preventDefault();
 
-        this.setState({
-            editaProduto:{
-                idProduto: event.target.idProduto,
-                nomeProduto: event.target.nomeProduto.value,
-                modelo: event.target.modelo.value,
-                marca: event.target.marca.value,
-                processador: event.target.processador.value,
-                dataLancamento: event.target.dataLancamento.value,
-                codIdentificacao: event.target.codIdentificacao.value,
-                descricao: event.target.descricao.value
-            }
-        })
+        // this.setState({
+        //     editaProduto:{
+        //         idProduto: event.target.idProduto,
+        //         nomeProduto: event.target.nomeProduto.value,
+        //         modelo: event.target.modelo.value,
+        //         marca: event.target.marca.value,
+        //         processador: event.target.processador.value,
+        //         dataLancamento: event.target.dataLancamento.value,
+        //         codIdentificacao: event.target.codIdentificacao.value,
+        //         descricao: event.target.descricao.value
+        //     }
+        // })
         this.salvaAlteracoes()
     }
     salvaAlteracoes = () =>
@@ -94,7 +94,8 @@ class EditarProduto extends Component
 
         this.setState({
             editaProduto : {
-                ...this.state.editaProduto.idProduto,
+                ...this.state.editaProduto,
+                IdProduto: this.state.produto.idProduto,
                 [input.target.name]: input.target.value
             }
         })
