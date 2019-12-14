@@ -23,7 +23,11 @@ import ListaInteresse from './pages/ListaInteresse';
 import ListaProduto from './pages/ListaProduto';
 import PerfilUsuario from './pages/PerfilUsuario';
 import CadastroProduto from './pages/CadastroProduto';
+<<<<<<< HEAD
 import  ListaUsuario from './pages/ListaUsuario';
+=======
+import ListaUsuario from './pages/ListarUsuarios';
+>>>>>>> 7a3163dd64de015d42e2ee21d373264d8b379c41
 import Aprovacoes from './pages/Aprovacoes';
 
 // const PermissaoLogar = ({component : Component}) => (

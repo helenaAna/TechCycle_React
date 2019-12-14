@@ -18,7 +18,7 @@ class CadastroUsuario extends Component {
                 nome: '',
                 email: '',
                 departamento: '',
-                tipoUsuario: 'Funcionario',
+                tipoUsuario: 'AguardandoAprovacao'
             },
             foto: React.createRef()
 
@@ -37,8 +37,8 @@ class CadastroUsuario extends Component {
         usuario.set("email", this.state.cadastroUsuario.email);
         usuario.set("foto", this.state.foto.current.files[0]);
         usuario.set("departamento", this.state.cadastroUsuario.departamento);
-        usuario.set("tipoUsuario", this.state.cadastroUsuario.tipoUsuario)
-
+        usuario.set("tipoUsuario", this.state.cadastroUsuario.tipoUsuario);
+       
         if(this.state.foto == undefined)
             this.state.foto = "sem foto";
 

@@ -3,14 +3,14 @@ import Axios from 'axios';
 import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 import '../assets/css/descricao.css';
+import { parseJwt } from '../services/auth';
 
 class Descricao extends Component {
     constructor(props) {
         super(props);
         this.state = {
             anuncio: [],
-
-            idAnuncio : '',
+            idUsuario : parseJwt().idUsuario
         }
         this.buscarAnuncio = this.buscarAnuncio.bind(this);
     }
@@ -26,6 +26,28 @@ class Descricao extends Component {
     componentDidMount(){
         this.buscarAnuncio();
     }
+
+    cadastrarInteresse(){
+        let interesse = {
+            idUsuario : parseInt(this.state.idUsuario),
+            idAnuncio : this.state.idAnuncio,
+            aprovado : 'agd'
+        }
+  
+        fetch('http://localhost:5000/api/interesse',{
+            method : 'POST',
+            body : JSON.stringify(interesse) ,           
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+          })
+          .then(response => response.json())
+          .then(response => {
+              console.log(response);
+          })
+          .catch(error => console.log('Não foi possível cadastrar:' + error)) 
+      }
     
 
     render() { 
@@ -51,7 +73,7 @@ class Descricao extends Component {
                                                         <hr />
                                                         <section className="conteudo_descricao">
                                                             <h3>{this.state.anuncio.idProdutoNavegation}</h3>
-                                                            <p>{this.state.anuncio.idProduto.descricao}</p>
+                                                            <p>{this.state.anuncio.idProduto}</p>
                                                             <h4>R$ {this.state.anuncio.preco},00</h4>
                                                         </section>
                                                     </section>
@@ -90,8 +112,8 @@ class Descricao extends Component {
                                                             </section>
                                                         </section>
                                                     </div>
-                                                    <div className="btn_descricao">
-                                                        <a href="lista_interesses.html"><button><i className="fas fa-plus"></i> Adicionar a
+                                                    <div className="btn_descricao" onClick={e => {this.cadastrarInteresse()}}>
+                                                        <a href="#"><button><i className="fas fa-plus"></i> Adicionar a
                                                         interessados</button></a>
                                                     </div>
                                                 </section>
