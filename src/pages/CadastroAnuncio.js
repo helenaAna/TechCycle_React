@@ -174,13 +174,7 @@ class CadastroAnuncio extends Component {
                                                     placeholder="Preço do equipamento"
                                                     className="barra_preco_expiracao_cdu" />
                                             </div>
-<<<<<<< HEAD
-                                        )
-
-                                    }
-                                    )
-                                } */}
-
+                                        </div>
                             </section>
                             <section className="formulario_anuncio_cdu">
 
@@ -195,9 +189,6 @@ class CadastroAnuncio extends Component {
                                             alt="Preço..." 
                                             placeholder="Preço do equipamento"
                                             className="barra_preco_expiracao_cdu" />
-=======
-                                            {/* </form> */}
->>>>>>> 6df2744f822ff99ed50fcd798ea94e4350b85ce4
                                         </div>
 
                                         <div className="preco_expiracao_cdu">
@@ -231,69 +222,71 @@ class CadastroAnuncio extends Component {
 
 
 <form className="rating-form" action="#" method="post" name="rating-movie">
-  <fieldset className="form-group">
+<fieldset className="form-group">
     
     <legend className="form-legend">Rating:</legend>
     
     <div className="form-item">
-      
-      <input id="rating-5" name="rating" type="radio" value="5" />
-      <label for="rating-5" data-value="5">
+    
+    <input id="rating-5" name="rating" type="radio" value="5" />
+    <label for="rating-5" data-value="5">
         <span className="rating-star">
-          <i className="fa fa-star-o"></i>
-          <i className="fa fa-star"></i>
+        <i className="fa fa-star-o"></i>
+        <i className="fa fa-star"></i>
         </span>
         <span className="ir">5</span>
-      </label>
-      <input id="rating-4" name="rating" type="radio" value="4" />
-      <label for="rating-4" data-value="4">
+    </label>
+    <input id="rating-4" name="rating" type="radio" value="4" />
+    <label for="rating-4" data-value="4">
         <span className="rating-star">
-          <i className="fa fa-star-o"></i>
-          <i className="fa fa-star"></i>
+        <i className="fa fa-star-o"></i>
+        <i className="fa fa-star"></i>
         </span>
         <span className="ir">4</span>
-      </label>
-      <input id="rating-3" name="rating" type="radio" value="3" />
-      <label for="rating-3" data-value="3">
+    </label>
+    <input id="rating-3" name="rating" type="radio" value="3" />
+    <label for="rating-3" data-value="3">
         <span className="rating-star">
-          <i className="fa fa-star-o"></i>
-          <i className="fa fa-star"></i>
+        <i className="fa fa-star-o"></i>
+        <i className="fa fa-star"></i>
         </span>
         <span className="ir">3</span>
-      </label>
-      <input id="rating-2" name="rating" type="radio" value="2" />
-      <label for="rating-2" data-value="2">
+    </label>
+    <input id="rating-2" name="rating" type="radio" value="2" />
+    <label for="rating-2" data-value="2">
         <span className="rating-star">
-          <i className="fa fa-star-o"></i>
-          <i className="fa fa-star"></i>
+        <i className="fa fa-star-o"></i>
+        <i className="fa fa-star"></i>
         </span>
         <span className="ir">2</span>
-      </label>
-      <input id="rating-1" name="rating" type="radio" value="1" />
-      <label for="rating-1" data-value="1">
+    </label>
+    <input id="rating-1" name="rating" type="radio" value="1" />
+    <label for="rating-1" data-value="1">
         <span className="rating-star">
-          <i className="fa fa-star-o"></i>
-          <i className="fa fa-star"></i>
+        <i className="fa fa-star-o"></i>
+        <i className="fa fa-star"></i>
         </span>
         <span className="ir">1</span>
-      </label>
-      
-      {/* <div className="form-action">
+    </label>
+    
+    {/* <div className="form-action">
         <input className="btn-reset" type="reset" value="Reset" />   
       </div> */}
 
-      {/* <div className="form-output">
+    {/* <div className="form-output">
         ? / 5
       </div> */}
-      
+    
     </div>
     
-  </fieldset>
+</fieldset>
 </form>
 
-                                            </div>
-                                            {/* </form> */}
                                         </div>
+                                        </div>
+                                        </form>
+                                        </div>
+                                        
                                     </section>
                                     <div className="botao_adicionar_cdu">
 
