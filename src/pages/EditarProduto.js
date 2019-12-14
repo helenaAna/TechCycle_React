@@ -22,10 +22,10 @@ class EditarProduto extends Component
             marca : [],
             listamarca: [],
             editaProduto: {
-                idProduto: '',
+                IdProduto: '',
                 nomeProduto: '',
                 modelo: '',
-                // marca:'',
+                marca:'',
                 processador:'',
                 dataLancamento:'',
                 codIdentificacao:'',
@@ -56,18 +56,18 @@ class EditarProduto extends Component
     {
         event.preventDefault();
 
-        this.setState({
-            editaProduto:{
-                // idProduto: event.target.idProduto.value,
-                nomeProduto: event.target.nomeProduto.value,
-                modelo: event.target.modelo.value,
-                marca: event.target.marca.value,
-                processador: event.target.processador.value,
-                dataLancamento: event.target.dataLancamento.value,
-                codIdentificacao: event.target.codIdentificacao.value,
-                descricao: event.target.descricao.value
-            }
-        })
+        // this.setState({
+        //     editaProduto:{
+        //         idProduto: event.target.idProduto,
+        //         nomeProduto: event.target.nomeProduto.value,
+        //         modelo: event.target.modelo.value,
+        //         marca: event.target.marca.value,
+        //         processador: event.target.processador.value,
+        //         dataLancamento: event.target.dataLancamento.value,
+        //         codIdentificacao: event.target.codIdentificacao.value,
+        //         descricao: event.target.descricao.value
+        //     }
+        // })
         this.salvaAlteracoes()
     }
     salvaAlteracoes = () =>
@@ -94,7 +94,8 @@ class EditarProduto extends Component
 
         this.setState({
             editaProduto : {
-                ...this.state.editaProduto.idProduto,
+                ...this.state.editaProduto,
+                IdProduto: this.state.produto.idProduto,
                 [input.target.name]: input.target.value
             }
         })
@@ -103,9 +104,6 @@ class EditarProduto extends Component
     
     componentDidMount(){
         this.buscaProduto()
-        // this.setState({
-        //     idProduto : this.props.location.state.idProduto,
-        // })
         this.buscarMarca()
         this.setState({
             idMarca : this.props.location.state.idMarca,
@@ -216,12 +214,13 @@ class EditarProduto extends Component
                         </section>
                         <section className="descricao_cad_produto">
                         <label for="descricao"><i className="fas fa-desktop"></i>Descrição do equipamento</label>
+
                         <textarea 
                         name="descricao" 
                         cols="30" 
                         rows="10"
                         placeholder={this.state.produto.descricao}
-                        // value={this.editaProduto.descricao}
+                        value={this.state.editaProduto.descricao}
                         onChange={this.atualizaState.bind(this)}
                         />
                         </section>

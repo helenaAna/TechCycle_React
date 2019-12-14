@@ -45,7 +45,7 @@ function Cabecalho(){
         </ul>
     </nav>
     </div>
-    
+
     );
 }
 export default Cabecalho;

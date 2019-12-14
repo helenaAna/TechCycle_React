@@ -23,6 +23,7 @@ import ListaInteresse from './pages/ListaInteresse';
 import ListaProduto from './pages/ListaProduto';
 import PerfilUsuario from './pages/PerfilUsuario';
 import CadastroProduto from './pages/CadastroProduto';
+import ListaUsuario from './pages/ListarUsuarios';
 
 // const PermissaoLogar = ({component : Component}) => (
 //     <Route
@@ -65,6 +66,7 @@ const Rotas = (
             <Route path="/listaproduto" component={ListaProduto}/>
             <Route path="/perfilusuario" component={PerfilUsuario}/>
             <Route path="/cadastroproduto" component={CadastroProduto}/>
+            <Route path="/listausuario" component={ListaUsuario}/>
         </Switch>
         </div>
     </Router>

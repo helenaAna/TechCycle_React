@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImageUploader from 'react-images-upload';
+// import ImageUploader from 'react-images-upload';
 import CabecalhoUser from '../componentes/CabecalhoUser';
 import Rodape from '../componentes/Rodape';
 
