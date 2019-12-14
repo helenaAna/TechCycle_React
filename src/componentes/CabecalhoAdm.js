@@ -29,14 +29,22 @@ function Cabecalho(){
             <img src="imagens/FotoPerfil.jpg" alt=""/>
         </div>
         <ul className="menu-admin">
-            <li><a href="perfil_usuario.html">Meu Perfil <span><i className="far fa-user-circle"></i></span></a></li>
-            <li><a href="cadastrodeanuncio.html">Cadastrar Anúncio <span><i className="fas fa-plus"></i></span></a></li>
-            <li><a href="aprovacao_interesse.html">Lista de Pedidos <span><i className="fas fa-user-plus"></i></span></a>
-            </li>
-            <li><a href="produtos_cadastrados.html">Produtos Cadastrados <span><i
-                            className="fas fa-clipboard-list"></i></span></a></li>
-            <li><a href="painel_controle.html">Painel do Administrador <span><i className="fas fa-user-cog"></i></span></a>
-            </li>
+            <li><Link to={'/paineladm'}>
+            Painel do Administrador <span><i className="fas fa-user-cog"></i></span>
+            </Link></li>
+            
+            <li><Link to={'/cadastroanuncio'}>
+            Cadastrar Anúncio <span><i className="fas fa-plus"></i></span>
+            </Link></li>
+
+            <li><Link to={'/aprovacoes'}>
+            Lista de Pedidos <span><i className="fas fa-user-plus"></i></span>
+            </Link></li>
+            
+            <li><Link to={'/listaproduto'}>
+            Produtos Cadastrados <span><i className="fas fa-clipboard-list"></i></span>
+            </Link></li>
+          
         </ul>
 
         <ul>
@@ -45,7 +53,7 @@ function Cabecalho(){
         </ul>
     </nav>
     </div>
-    
+
     );
 }
 export default Cabecalho;

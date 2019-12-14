@@ -88,6 +88,7 @@ class CadastroUsuario extends Component {
                             <div className="usuario_secao_imagem_cad">
                                 {/* <img src="{require("../}" alt="icone de alterar imagem"></img> */}
                                 <img src={require("../assets/img/camera.svg")} />
+                                
                             </div>
 
 

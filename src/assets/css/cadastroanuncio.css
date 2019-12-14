@@ -17,12 +17,22 @@
     margin-top: 1em;
 }
 
+.formulario_anuncio_cdu{
+    display: flex;
+    justify-content: space-between;
+    width: 55vw;
+    margin-top: 7.5vw;
+    margin-bottom: 2vw;
+
+} 
 
 /* pai das caixas */
 
 #container_selecao_anuncio_cdu {
     display: flex;
     justify-content: space-evenly;
+    width: 46.5vw;
+    margin-top: 1vw;
 }
 
 
@@ -39,6 +49,7 @@
     display: flex;
     justify-content: center;
     margin-top: 0.5em;
+    width: 78vw;
 }
 
 .barraanuncio_cdu1 {
@@ -48,7 +59,7 @@
     border: none;
     border-bottom: solid 1.5px #000;
     font-size: 1em;
-    margin-left: -1.4vw;
+    margin-left: 1.6vw;
     
 }
 
@@ -62,6 +73,7 @@
     margin-top: 1em;
     align-items: center;
     justify-content: space-around;
+    margin-left: -3.9vw;
 }
 
 .notebooksanuncio_cdu .imagem_notebook {
@@ -81,7 +93,8 @@
 }
 
 .notebooksanuncio_cdu {
-    padding: 1em 1em;
+    padding: 1.5em 1em;
+    width: 22vw;
 }
 
 .criar_anuncio_cdu hr {
@@ -96,20 +109,62 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-left: 11vw;
+}
+
+.notebooksanuncio_cdu {
+    padding: 2em 1em;
+    width: 22vw;
+}
+
+.usuario_secao_imagem_cad1 {
+    margin-bottom: 1vw;
+    margin-right: 1.5vw;
+    margin-left: 0vw; 
+}
+
+.usuario_secao_imagem_cad1 {
+    width: 14vw;
 }
 
 .informacoes_do_produto_cdu_2 {
     display: flex;
-    margin-top: 2.8vw;
+    margin-top: -0.3vw;
+    margin-bottom: 2vw;
 }
 
+.amostra_do_produto_cdu1 {
+height: 19vw;
+}
+
+.input-wrapper label {
+    width: 8.5vw;
+    background-color: #fff;
+    /* border-radius: 5px; */
+    border-bottom: solid 2px var(--roxo);
+    color: var(--roxo);
+    margin: 33px;
+    padding: 6px 20px;
+    cursor: pointer;
+}
+
+.sessao_produtos_cda{
+    margin-left: 1vw;
+    width: -1.5vw;
+}
+
+.usuario_secao_imagem_cad1{
+    width: 15vw;
+}
+
+.amostra_do_produto_cdu1{
+    margin-left: 4vw;
+}
 
 .amostra_do_produto_cdu {
-    border: solid 2px #531CB3;
     width: 22vw;
     height: 28vh;
     text-align: center;
-    border-radius: 1em;
     margin-top: 1em;
 }
 
@@ -179,6 +234,9 @@ legend {
     margin: 0em 0.2em;
     width: 6vw;
     text-align: center;
+}
+.rating_select{
+    border:solid 2px rebeccapurple;
 }
 
 .tipos_avaliacao {
@@ -319,7 +377,6 @@ legend {
         width: 60vw;
     }
     .amostra_do_produto_cdu {
-        border: solid 2px #531CB3;
         width: 48vw;
         height: 30vh;
         text-align: center;
