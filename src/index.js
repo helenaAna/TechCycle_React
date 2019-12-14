@@ -24,6 +24,7 @@ import ListaProduto from './pages/ListaProduto';
 import PerfilUsuario from './pages/PerfilUsuario';
 import CadastroProduto from './pages/CadastroProduto';
 import ListaUsuario from './pages/ListarUsuarios';
+import Aprovacoes from './pages/Aprovacoes';
 
 // const PermissaoLogar = ({component : Component}) => (
 //     <Route
@@ -67,6 +68,7 @@ const Rotas = (
             <Route path="/perfilusuario" component={PerfilUsuario}/>
             <Route path="/cadastroproduto" component={CadastroProduto}/>
             <Route path="/listausuario" component={ListaUsuario}/>
+            <Route path="/aprovacoes" component={Aprovacoes}/>
         </Switch>
         </div>
     </Router>
