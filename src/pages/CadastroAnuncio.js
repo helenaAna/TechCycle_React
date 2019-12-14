@@ -46,15 +46,16 @@ class CadastroAnuncio extends Component {
     cadastraAnuncio = (e) => {
         e.preventDefault();
 
-        let anuncio = new FormData();
+        // let anuncio = new FormData();
 
-        anuncio.set("cadastrarPreco", this.state.cadastraAnuncio.cadastrarPreco);
-        anuncio.set("dataExpiracao", this.state.cadastraAnuncio.dataExpiracao);
-        anuncio.set()
+        // anuncio.set("cadastrarPreco", this.state.cadastraAnuncio.cadastrarPreco);
+        // anuncio.set("dataExpiracao", this.state.cadastraAnuncio.dataExpiracao);
 
         fetch('http://localhost:5000/api/anuncio', {
             method: "POST",
-            body: anuncio,
+            body: JSON.stringify({dataExpiracao: this.state.postAnuncio.dataExpiracao,
+            cadastrarPreco: this.state.postAnuncio.cadastrarPreco
+            })
         })
             .then(response => response.json())
             .then(response => {
@@ -79,8 +80,8 @@ class CadastroAnuncio extends Component {
 
     atualizaState = (input) => {
         this.setState({
-            cadastraAnuncio: {
-                ...this.state.cadastraAnuncio,
+            postAnuncio: {
+                ...this.state.postAnuncio,
                 [input.target.name]: input.target.value
             }
         })
@@ -173,7 +174,30 @@ class CadastroAnuncio extends Component {
                                                     placeholder="Preço do equipamento"
                                                     className="barra_preco_expiracao_cdu" />
                                             </div>
+<<<<<<< HEAD
+                                        )
+
+                                    }
+                                    )
+                                } */}
+
+                            </section>
+                            <section className="formulario_anuncio_cdu">
+
+                                <div className="preco_expiracao_cdu">
+                                    <form action="#" method="POST" className="selecaodoanuncio_cdu" onSubmit = {this.cadastraAnuncio.bind()}>
+                                        <div className="campos">
+                                            <label for="campo_preco">Preço do equipamento:</label>
+                                            <input 
+                                            onChange={this.atualizaState} 
+                                            name="cadastrarPreco" 
+                                            type="text" 
+                                            alt="Preço..." 
+                                            placeholder="Preço do equipamento"
+                                            className="barra_preco_expiracao_cdu" />
+=======
                                             {/* </form> */}
+>>>>>>> 6df2744f822ff99ed50fcd798ea94e4350b85ce4
                                         </div>
 
                                         <div className="preco_expiracao_cdu">
