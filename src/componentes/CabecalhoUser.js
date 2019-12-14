@@ -1,6 +1,7 @@
 import React from 'react';
-import '../assets/css/padrao.css'
-import '../assets/css/cabecalho.css'
+import '../assets/css/padrao.css';
+import '../assets/css/cabecalho.css';
+import {Link} from 'react-router-dom';
 
 function Cabecalho(){
     return(
@@ -26,9 +27,12 @@ function Cabecalho(){
             <img src="imagens/FotoPerfil.jpg" alt=""/>
         </div>
         <ul className="menu-admin">
-            <li><a href="perfil_usuario.html">Meu Perfil <span><i className="far fa-user-circle"></i></span></a></li>
-            <li><a href="lista_interesses.html">Lista de Interesse <span><i
-                            class="fas fa-clipboard-list"></i></span></a></li>
+            <li><Link to={'/perfilusuario'}>
+            Meu Perfil <span><i className="far fa-user-circle"></i></span>
+            </Link></li>
+                
+            <li><Link to={'/listainteresse'}>Lista de Interesse <span><i class="fas fa-clipboard-list"></i></span>
+            </Link></li>
         </ul>
 
         <ul>
