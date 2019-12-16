@@ -18,7 +18,7 @@ class CadastroUsuario extends Component {
                 nome: '',
                 email: '',
                 departamento: '',
-                tipoUsuario: 'AguardandoAprovacao'
+                tipoUsuario: 'aguardandoaprovacao'
             },
             foto: React.createRef()
 
@@ -196,7 +196,7 @@ class CadastroUsuario extends Component {
                                         value={this.state.tipoUsuario}
                                         onChange={this.atualizaState}
                                         className="input_box"
-                                        value={this.state.postUsuario.tipoUsuario}
+                                        // value={this.state.postUsuario.tipoUsuario}
                                         name="tipoUsuario"
                                         placeholder="Digite seu tipo de usuário" />
                                 </div>
