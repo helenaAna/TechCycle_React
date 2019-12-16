@@ -98,6 +98,8 @@ padding: 10px;
 
 .li_botao{
     width: 20em;
+    display: flex;
+    justify-content: space-around;
 }
 
 
