@@ -2,14 +2,17 @@ import React, {Component} from 'react';
 import CabecalhoAdm from '../componentes/CabecalhoAdm';
 import Rodape from '../componentes/Rodape';
 
-import '../assets/css/padrao.css';
-import '../assets/css/listainteresse.css'
+import '../assets/css/aprovacoes.css';
+
+
+
 
 class Aprovacoes extends Component{
    constructor(props){
        super(props);
        this.state ={
-           listaInteresse: [],
+           listaUsuario: [],
+           listaInteresse:[],
             usuario: {
                nome:'',
                departamento:''
@@ -26,12 +29,23 @@ class Aprovacoes extends Component{
     fetch("http://localhost:5000/api/usuario/buscarTipo/aguardandoaprovacao")
     .then(response => response.json())
     .then(data => {
-        this.setState({listaInteresse:data})
+        this.setState({listaUsuario:data})
     })
     .catch((error) => console.log(error))
-}
+    }
+
+    buscarInteresse(){
+        fetch("http://localhost:5000/api/interesse")
+        .then(response => response.json())
+        .then(data => {
+            this.setState({listaInteresse:data})
+        })
+        .catch((error) => console.log(error))
+        }
+
 componentDidMount(){
     this.buscarUsuario();
+    this.buscarInteresse();
 }
 
 
@@ -41,7 +55,7 @@ componentDidMount(){
             <div>
                 <CabecalhoAdm/>
                 <main>
-                <section classNameName="titulo_interesses">
+                <section classNameName="titulo_aprovacoes">
                     <h1>Lista de aprovações</h1>
                     <hr/>
                 </section>
@@ -49,33 +63,31 @@ componentDidMount(){
                     <ul>
                         <li>
                         <input type="radio" id="tab1" className="rd_tab" name="tabs" checked/>
-                        <label for="tab1" className="tab_label">Lista de Interesses</label>
+                        <label for="tab1" className="tab_label">Lista de Pedidos</label>
                         <div className="tab-content">
                         <article>
-                            <section classNameName="lista_aprovados">
-                                <ul classNameName="lista_aprovados">
-                                    {
-                                        this.state.listainteresse.map(function (interesse) {
-                                            if (interesse.aprovado == "Sim") {
+                            <section className="lista_aprovados_main">
+                                <ul className="lista_aprovados">
+                                {
+                                    this.state.listaInteresse.map(function (interesse) 
+                                        {
+                                            return (
                                                 
-                                                return (
-                                                    
-                                                    <li classNameName="linha" value="{interesse.idInteresse}">
-                                                        <div classNameName="li_imagem">
-                                                            <img src={"http://localhost:5000/Resources/Anuncio/" + interesse.foto} alt="imagem do produto" />
-                                                        </div>
-                                                        {console.log(interesse.foto)}
-                                                        <div classNameName="li_titulo">
-                                                            <h3>{interesse.idAnuncioNavigation.idProdutoNavigation.nomeProduto}</h3>
-                                                        </div>
-                                                        <div classNameName="li_descricao">
-                                                            <p>{interesse.idAnuncioNavigation.idProdutoNavigation.descricao}</p>
-                                                        </div>
-                                                    </li>
-                                                )
-                                            }
+                                                <li className="linha" value="{usuario.idUsuario}">
+                                                    <div classNameName="li_titulo">
+                                                        <h3>{interesse.idUsuarioNavigation.nome}</h3>
+                                                    </div>
+                                                    <div className="li_descricao">
+                                                        <p>demonstrou interesse em uma uma unidade de {/*{interesse.idAnuncioNavigation.idProdutoNavigation.nomeProduto}*/}</p>
+                                                    </div>
+                                                    <div className="li_botao">
+                                                        <button className="botao_recusar">Recusar</button>
+                                                        <button className="botao_aprovar">Aprovar</button>
+                                                    </div>
+                                                </li>
+                                            )
                                         }.bind(this))
-                                    }
+                                    }  
                                 </ul>
                             </section>
                         </article> 
@@ -84,34 +96,32 @@ componentDidMount(){
                         <li>
                         <input type="radio" id="tab2" className="rd_tab" name="tabs" checked> 
                     </input>
-                    <label for="tab2" className="tab_label">Interesses sem resposta</label>
+                    <label for="tab2" className="tab_label">Solicitação de Cadastro</label>
 
                     <div className="tab-content">
                         <article>
-                            <section classNameName="lista_aprovados">
-                                <ul classNameName="lista_aprovados">
+                            <section className="lista_aprovados">
+                                <ul className="lista_aprovados">
                                 {
-                                    this.state.listainteresse.map(function (interesse) {
-                                        if (interesse.aprovado == "Não") {
-                                            
+                                    this.state.listaUsuario.map(function (usuario) 
+                                        {
                                             return (
-                                            
-                                                <li classNameName="linha" value="{interesse.idInteresse}">
-                                                    <div classNameName="li_imagem">
-                                                        <img src={"http://localhost:5000/Resources/Anuncio/" + interesse.foto} alt="imagem do produto" />
-                                                    </div>
-                                                    {console.log(interesse.foto)}
+                                                
+                                                <li className="linha" value="{usuario.idUsuario}">
                                                     <div classNameName="li_titulo">
-                                                        <h3>{interesse.idAnuncioNavigation.idProdutoNavigation.nomeProduto}</h3>
+                                                        <h3>{usuario.nome}</h3>
                                                     </div>
-                                                    <div classNameName="li_descricao">
-                                                        <p>{interesse.idAnuncioNavigation.idProdutoNavigation.descricao}</p>
+                                                    <div className="li_descricao">
+                                                        <p>{usuario.departamento}</p>
+                                                    </div>
+                                                    <div className="li_botao">
+                                                        <button className="botao_recusar">Recusar</button>
+                                                        <button className="botao_aprovar">Aprovar</button>
                                                     </div>
                                                 </li>
                                             )
-                                        }
-                                    }.bind(this))
-                                }
+                                        }.bind(this))
+                                    }
                                 </ul>
                             </section>
                         </article> 
