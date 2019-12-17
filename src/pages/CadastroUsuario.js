@@ -39,8 +39,6 @@ class CadastroUsuario extends Component {
         usuario.set("departamento", this.state.cadastroUsuario.departamento);
         usuario.set("tipoUsuario", "agd");
        
-        if(this.state.foto == undefined)
-            this.state.foto = "sem foto";
 
         fetch('http://localhost:5000/api/usuario', {
             method: "POST",
@@ -53,9 +51,6 @@ class CadastroUsuario extends Component {
             .catch(error => console.log('Não foi possível cadastrar:' + error))
     }
 
-    atualizasenha2(e){
-        this.setState({[e.target.name] : e.target.value})
-    }
 
     atualizaState = (input) => {
         this.setState({
