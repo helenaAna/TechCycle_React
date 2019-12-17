@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../assets/css/padrao.css'
+// import '../assets/css/padrao.css'
 import '../assets/css/login.css'
 import Axios from 'axios';
 import{parseJwt} from '../services/auth';
@@ -58,12 +58,14 @@ class Login extends Component
   render(){
     return(
       <div className="body_login">
-          <header class="header_login">
+          <header className="header_login">
             <a href="home.html"><img src={require("../assets/img/Logo.svg")} alt="Logotipo"/></a> 
           </header>
         <main className="main_login">
             <section className="area_login">
+              <div className="titulo_entrar">
                 <h1>Entrar</h1>
+              </div>
                 <form onSubmit = {this.efetuarLogin.bind(this)}>
                    <label for="nome">Nome:</label>
                    <i className="fas fa-user-friends"></i>

@@ -53,9 +53,9 @@ const Rotas = (
     <Router>
         <div>
         <Switch>
-            <Route path="/paineladm" component={PainelAdm}/>
-            <Route exact path="/home" component={Home}/> 
-            <Route path="/login" component={Login}/>  
+            <PermissaoAdm path="/paineladm" component={PainelAdm}/>
+            <Route path="/home" component={Home}/> 
+            <Route exact path="/" component={Login}/>  
             <Route path="/sobrenos" component={SobreNos}/>
             <Route path="/alteraranuncio" component={AlterarAnuncio}/>
             <Route path="/cadastroanuncio" component={CadastroAnuncio}/>

@@ -18,7 +18,7 @@ class CadastroUsuario extends Component {
                 nome: '',
                 email: '',
                 departamento: '',
-                tipoUsuario: 'aguardandoaprovacao'
+                tipoUsuario: 'agd'
             },
             foto: React.createRef()
 
@@ -37,7 +37,7 @@ class CadastroUsuario extends Component {
         usuario.set("email", this.state.cadastroUsuario.email);
         usuario.set("foto", this.state.foto.current.files[0]);
         usuario.set("departamento", this.state.cadastroUsuario.departamento);
-        usuario.set("tipoUsuario", this.state.cadastroUsuario.tipoUsuario);
+        usuario.set("tipoUsuario", "agd");
        
         if(this.state.foto == undefined)
             this.state.foto = "sem foto";
@@ -92,7 +92,7 @@ class CadastroUsuario extends Component {
                             </div>
 
 
-                            <div class='input-wrapper'>
+                            <div className='input-wrapper'>
                                 <label for='input-file'> <i class="fas fa-upload"></i>     Selecionar um arquivo</label>
                                 <input id='input-file' type='file'
                                     arial-label="coloque sua foto"
@@ -146,19 +146,7 @@ class CadastroUsuario extends Component {
                                         name="senha"
                                         placeholder="Digite sua senha" />
                                 </div>
-{/* 
-                                <div>
-                                    <label><i className="fas fa-unlock-alt"></i>     Confirme sua senha</label>
-                                    <input
-                                        id="senha2"
-                                        type="password"
-                                        value={this.state.senha2}
-                                        onChange={this.atualizasenha2.bind(this)}
-                                        name="senha2"
-                                        className="input_box"
-                                        placeholder="Confirme sua senha">
-                                    </input>
-                                </div> */}
+
                             </section>
 
 
@@ -189,14 +177,13 @@ class CadastroUsuario extends Component {
                             </section>
 
                             <section className="usuario_row_none">
-                                <div>
+                            <div>
                                     <label><i className="far fa-address-book"></i>Informe seu Tipo Usuário</label>
                                     <input
                                         type="text"
-                                        value={this.state.tipoUsuario}
+                                        value='agd'
                                         onChange={this.atualizaState}
                                         className="input_box"
-                                        // value={this.state.postUsuario.tipoUsuario}
                                         name="tipoUsuario"
                                         placeholder="Digite seu tipo de usuário" />
                                 </div>

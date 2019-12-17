@@ -56,23 +56,11 @@ class EditarProduto extends Component
     {
         event.preventDefault();
 
-        // this.setState({
-        //     editaProduto:{
-        //         idProduto: event.target.idProduto,
-        //         nomeProduto: event.target.nomeProduto.value,
-        //         modelo: event.target.modelo.value,
-        //         marca: event.target.marca.value,
-        //         processador: event.target.processador.value,
-        //         dataLancamento: event.target.dataLancamento.value,
-        //         codIdentificacao: event.target.codIdentificacao.value,
-        //         descricao: event.target.descricao.value
-        //     }
-        // })
         this.salvaAlteracoes()
     }
     salvaAlteracoes = () =>
     {
-        // event.preventDefault();
+      
         fetch("http://localhost:5000/api/produto/"+ this.state.produto.idProduto,
         {
             method : "PUT",

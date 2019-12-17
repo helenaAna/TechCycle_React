@@ -113,11 +113,7 @@ padding: 10px;
 
 }
 
-.botao{
-    display: flex;
-    justify-content: space-between;
-    width: 18em;
-}
+
 
 .botao_recusar {
     border: solid 0.1em #CF0000;

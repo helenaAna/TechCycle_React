@@ -119,9 +119,7 @@ class Descricao extends Component {
                                                 </section>
                                             </section>
                         </section>
-                                        {/* )
-                                    })
-                                } */}
+                                     
 
                         <section className="titulo_comentarios">
                             <hr />

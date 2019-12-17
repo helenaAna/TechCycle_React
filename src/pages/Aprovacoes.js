@@ -26,7 +26,7 @@ class Aprovacoes extends Component{
    }
 
    buscarUsuario(){
-    fetch("http://localhost:5000/api/usuario/buscarTipo/aguardandoaprovacao")
+    fetch("http://localhost:5000/api/usuario/buscarTipo/agd")
     .then(response => response.json())
     .then(data => {
         this.setState({listaUsuario:data})
@@ -55,7 +55,7 @@ componentDidMount(){
             <div>
                 <CabecalhoAdm/>
                 <main>
-                <section classNameName="titulo_aprovacoes">
+                <section className="titulo_aprovacoes">
                     <h1>Lista de aprovações</h1>
                     <hr/>
                 </section>
@@ -74,7 +74,7 @@ componentDidMount(){
                                             return (
                                                 
                                                 <li className="linha" value="{usuario.idUsuario}">
-                                                    <div classNameName="li_titulo">
+                                                    <div className="li_titulo">
                                                         <h3>{interesse.idUsuarioNavigation.nome}</h3>
                                                     </div>
                                                     <div className="li_descricao">
@@ -108,7 +108,7 @@ componentDidMount(){
                                             return (
                                                 
                                                 <li className="linha" value="{usuario.idUsuario}">
-                                                    <div classNameName="li_titulo">
+                                                    <div className="li_titulo">
                                                         <h3>{usuario.nome}</h3>
                                                     </div>
                                                     <div className="li_descricao">

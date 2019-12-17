@@ -8,7 +8,6 @@ import '../assets/css/padrao.css';
 import '../assets/css/listainteresse.css';
 
 import {Link} from "react-router-dom"
-// import console = require('console');
 
 class ListaInteresse extends Component {
     constructor(props) {
@@ -44,7 +43,7 @@ class ListaInteresse extends Component {
             <CabecalhoUser />
 
             <main>
-            <section classNameName="titulo_interesses">
+            <section className="titulo_interesses">
                 <h1>Lista de Interesses</h1>
                 <hr></hr>
             </section>
@@ -57,23 +56,23 @@ class ListaInteresse extends Component {
                     <label for="tab1" className="tab_label">Interesses Aprovados</label>
                     <div className="tab-content">
                         <article>
-                            <section classNameName="lista_aprovados">
-                                <ul classNameName="lista_aprovados">
+                            <section className="lista_aprovados">
+                                <ul className="lista_aprovados">
                                     {
                                         this.state.listainteresse.map(function (interesse) {
                                             if (interesse.aprovado == "Sim") {
                                                 
                                                 return (
                                                     
-                                                    <li classNameName="linha" value="{interesse.idInteresse}">
-                                                        <div classNameName="li_imagem">
+                                                    <li className="linha" value="{interesse.idInteresse}">
+                                                        <div className="li_imagem">
                                                             <img src={"http://localhost:5000/Resources/Anuncio/" + interesse.foto} alt="imagem do produto" />
                                                         </div>
                                                         {console.log(interesse.foto)}
-                                                        <div classNameName="li_titulo">
+                                                        <div className="li_titulo">
                                                             <h3>{interesse.idAnuncioNavigation.idProdutoNavigation.nomeProduto}</h3>
                                                         </div>
-                                                        <div classNameName="li_descricao">
+                                                        <div className="li_descricao">
                                                             <p>{interesse.idAnuncioNavigation.idProdutoNavigation.descricao}</p>
                                                         </div>
                                                     </li>
@@ -93,23 +92,23 @@ class ListaInteresse extends Component {
 
                     <div className="tab-content">
                         <article>
-                            <section classNameName="lista_aprovados">
-                                <ul classNameName="lista_aprovados">
+                            <section className="lista_aprovados">
+                                <ul className="lista_aprovados">
                                 {
                                     this.state.listainteresse.map(function (interesse) {
                                         if (interesse.aprovado == "Não") {
                                             
                                             return (
                                             
-                                                <li classNameName="linha" value="{interesse.idInteresse}">
-                                                    <div classNameName="li_imagem">
+                                                <li className="linha" value="{interesse.idInteresse}">
+                                                    <div className="li_imagem">
                                                         <img src={"http://localhost:5000/Resources/Anuncio/" + interesse.foto} alt="imagem do produto" />
                                                     </div>
                                                     {console.log(interesse.foto)}
-                                                    <div classNameName="li_titulo">
+                                                    <div className="li_titulo">
                                                         <h3>{interesse.idAnuncioNavigation.idProdutoNavigation.nomeProduto}</h3>
                                                     </div>
-                                                    <div classNameName="li_descricao">
+                                                    <div className="li_descricao">
                                                         <p>{interesse.idAnuncioNavigation.idProdutoNavigation.descricao}</p>
                                                     </div>
                                                 </li>

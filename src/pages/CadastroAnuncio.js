@@ -144,7 +144,7 @@ class CadastroAnuncio extends Component {
                         </div>
 
 
-                        <div class='input-wrapper'>
+                        <div className='input-wrapper'>
                             <label for='input-file'> <i className="fas fa-upload"></i>     Selecionar um arquivo</label>
                             <input id='input-file' type='file'
                                 arial-label="coloque sua foto"

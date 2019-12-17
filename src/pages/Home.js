@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CabecalhoAdm from '../componentes/CabecalhoAdm';
+import CabecalhoUser from '../componentes/CabecalhoUser';
 import Rodape from '../componentes/Rodape';
 import '../assets/css/home.css';
 import {Link} from 'react-router-dom'
@@ -116,7 +116,7 @@ class Home extends Component{
   render(){
     return (
       <div className="App">
-        <CabecalhoAdm/>
+        <CabecalhoUser/>
           <main className="home_main">
           <h1>Vitrine de Anúncios</h1>
 
@@ -136,19 +136,7 @@ class Home extends Component{
                       <label htmlfor="apple">Apple 1</label>
                   </div>
 
-                  {/* <div className="categoria">
-                      <h5>Memória:</h5>
-                      <input type="checkbox" id="32gb"/>
-                      <label htmlfor="16gb">32GB</label>
-                      <input type="checkbox" id="16gb"/>
-                      <label htmlfor="16gb">16GB</label>
-                      <input type="checkbox" id="8gb"/>
-                      <label htmlfor="8gb">8GB</label>
-                      <input type="checkbox" id="6gb"/>
-                      <label htmlfor="6gb">6GB</label>
-                      <input type="checkbox" id="4gb"/>
-                      <label htmlfor="4gb">4GB</label>
-                  </div> */}
+                 
                   
                   <div className="categoria">
                     <h5>Precessador:</h5>
@@ -158,17 +146,7 @@ class Home extends Component{
                     <label htmlfor="amd">AMD 1</label>
                   </div>
 
-                  {/* <div className="categoria categoriaDiferente">
-                      <h5>Categoria:</h5>
-                      <div>
-                          <input type="checkbox" value='Computador' id="computador" onChange={this.toggleFiltro}/>
-                          <label htmlfor="computador">Computador</label>
-                      </div>
-                      <div>
-                          <input type="checkbox" value='Notebook' id="notebook" onChange={this.toggleFiltro}/>
-                          <label htmlfor="notebook">Notebook</label>
-                      </div>
-                  </div> */}
+               
 
                 </form>
               </div>
