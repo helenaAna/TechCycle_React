@@ -162,7 +162,6 @@ ref={this.state.foto}
         <section className="formulario_anuncio_cdu">
 
             <div className="preco_expiracao_cdu">
-                {/* <form action="#" method="POST" className="selecaodoanuncio_cdu"> */}
                     <div className="campos">
                         <label for="campo_preco">Preço do equipamento:</label>
                         <input onChange={this.atualizaState} 
@@ -172,14 +171,13 @@ ref={this.state.foto}
                         placeholder="Preço do equipamento"
                         className="barra_preco_expiracao_cdu" />
                     </div>
-                {/* </form> */}
             </div>
 
             <div className="preco_expiracao_cdu">
                 <form action="#" method="POST" className="selecaodoanuncio_cdu">
                     <div className="campos">
                         <label for="campo_expiracao">Data de expiração do anúncio:</label>
-                        <input onChange={this.atualizaState} name="campo_expiracao" type="data" alt="Data de expiração"
+                        <input onChange={this.atualizaState} name="campo_expiracao" type="date" alt="Data de expiração"
                             placeholder="Data de expiração" className="barra_preco_expiracao_cdu" />
                     </div>
                 </form>
@@ -188,47 +186,18 @@ ref={this.state.foto}
 
             <div className="informar_avaliacao"> 
                     <legend>Avaliação do equipamento:</legend>
-                     <div className="tipos_avaliacao">
-    {/* <div className="avaliacao_estrelas rating_select">
-                            <span className="fa fa-star checked"></span>
-                            <span className="fa fa-star checked"></span>
-                            <span className="fa fa-star checked"></span>
-                        </div>
-                        <div className="avaliacao_estrelas">
-                            <span className="fa fa-star checked"></span>
-                            <span className="fa fa-star checked"></span>
-                        </div>
-                        <div className="avaliacao_estrelas">
-                            <span className="fa fa-star checked"></span>
-                        </div>
-                    </div>*/}
+                    <div className="tipos_avaliacao">
             </div> 
 
 
 
 <form className="rating-form" action="#" method="post" name="rating-movie">
-  <fieldset className="form-group">
+<fieldset className="form-group">
     
     <legend className="form-legend">Rating:</legend>
     
     <div className="form-item">
-    
-    <input id="rating-5" name="rating" type="radio" value="5" />
-    <label for="rating-5" data-value="5">
-        <span className="rating-star">
-        <i className="fa fa-star-o"></i>
-        <i className="fa fa-star"></i>
-        </span>
-        {/* <span className="ir">5</span> */}
-    </label>
-    <input id="rating-4" name="rating" type="radio" value="4" />
-    <label for="rating-4" data-value="4">
-        <span className="rating-star">
-        <i className="fa fa-star-o"></i>
-        <i className="fa fa-star"></i>
-        </span>
-        {/* <span className="ir">4</span> */}
-    </label>
+
     <input id="rating-3" name="rating" type="radio" value="3" />
     <label for="rating-3" data-value="3">
         <span className="rating-star">
@@ -261,10 +230,10 @@ ref={this.state.foto}
     {/* <div className="form-output">
         ? / 5
       </div> */}
-      
+    
     </div>
     
-  </fieldset>
+</fieldset>
 </form>
 </div>
         </section>
